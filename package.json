@@ -9,9 +9,15 @@
   "scripts": {
     "start": "node src/server.js",
     "generate-data": "node src/generate-data.js",
-    "test": "node src/test-client.js"
+    "test": "node src/test-client.js",
+    "build-demo": "node scripts/build-demo.js"
   },
-  "keywords": ["mcp", "model-context-protocol", "finance", "general-ledger"],
+  "keywords": [
+    "mcp",
+    "model-context-protocol",
+    "finance",
+    "general-ledger"
+  ],
   "author": "Hadi Agha",
   "license": "MIT",
   "type": "module",

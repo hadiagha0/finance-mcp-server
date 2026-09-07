@@ -1,6 +1,6 @@
 transaction_id,line_id,date,period,account_code,account_name,debit,credit,description,source_doc
-JE-000001,JE-000001-1,2024-01-02,2024-01,1000,Cash,500000,0,Founding equity contribution,JE-OPEN-0001
-JE-000001,JE-000001-2,2024-01-02,2024-01,3000,Common Stock,0,500000,Founding equity contribution,JE-OPEN-0001
+JE-000001,JE-000001-1,2024-01-02,2024-01,1000,Cash,650000,0,Founding equity contribution,JE-OPEN-0001
+JE-000001,JE-000001-2,2024-01-02,2024-01,3000,Common Stock,0,650000,Founding equity contribution,JE-OPEN-0001
 JE-000002,JE-000002-1,2024-01-31,2024-01,1100,Accounts Receivable,184552.55,0,Monthly SaaS subscription revenue recognized,SUB-40001
 JE-000002,JE-000002-2,2024-01-31,2024-01,4000,Product Revenue,0,184552.55,Monthly SaaS subscription revenue recognized,SUB-40001
 JE-000003,JE-000003-1,2024-01-31,2024-01,1100,Accounts Receivable,24710.26,0,Professional services revenue recognized,SVC-40002
@@ -29,10 +29,10 @@ JE-000014,JE-000014-1,2024-01-15,2024-01,6800,Office Supplies,969.04,0,Office su
 JE-000014,JE-000014-2,2024-01-15,2024-01,1000,Cash,0,969.04,Office supplies,EXP-40012
 JE-000015,JE-000015-1,2024-01-15,2024-01,6900,Utilities,2499.27,0,Utilities,UTIL-40013
 JE-000015,JE-000015-2,2024-01-15,2024-01,1000,Cash,0,2499.27,Utilities,UTIL-40013
-JE-000016,JE-000016-1,2024-01-31,2024-01,1000,Cash,177873.38,0,Customer collections on account,COLL-2024-01
-JE-000016,JE-000016-2,2024-01-31,2024-01,1100,Accounts Receivable,0,177873.38,Customer collections on account,COLL-2024-01
-JE-000017,JE-000017-1,2024-01-31,2024-01,2000,Accounts Payable,72131.54,0,Vendor payments on account,PMT-2024-01
-JE-000017,JE-000017-2,2024-01-31,2024-01,1000,Cash,0,72131.54,Vendor payments on account,PMT-2024-01
+JE-000016,JE-000016-1,2024-01-31,2024-01,1000,Cash,125557.68,0,Customer collections on account,COLL-2024-01
+JE-000016,JE-000016-2,2024-01-31,2024-01,1100,Accounts Receivable,0,125557.68,Customer collections on account,COLL-2024-01
+JE-000017,JE-000017-1,2024-01-31,2024-01,2000,Accounts Payable,54098.66,0,Vendor payments on account,PMT-2024-01
+JE-000017,JE-000017-2,2024-01-31,2024-01,1000,Cash,0,54098.66,Vendor payments on account,PMT-2024-01
 JE-000018,JE-000018-1,2024-02-29,2024-02,1100,Accounts Receivable,192923.18,0,Monthly SaaS subscription revenue recognized,SUB-40014
 JE-000018,JE-000018-2,2024-02-29,2024-02,4000,Product Revenue,0,192923.18,Monthly SaaS subscription revenue recognized,SUB-40014
 JE-000019,JE-000019-1,2024-02-29,2024-02,1100,Accounts Receivable,22967.78,0,Professional services revenue recognized,SVC-40015
@@ -59,10 +59,10 @@ JE-000029,JE-000029-1,2024-02-15,2024-02,6800,Office Supplies,1185.38,0,Office s
 JE-000029,JE-000029-2,2024-02-15,2024-02,1000,Cash,0,1185.38,Office supplies,EXP-40024
 JE-000030,JE-000030-1,2024-02-15,2024-02,6900,Utilities,1881.82,0,Utilities,UTIL-40025
 JE-000030,JE-000030-2,2024-02-15,2024-02,1000,Cash,0,1881.82,Utilities,UTIL-40025
-JE-000031,JE-000031-1,2024-02-29,2024-02,1000,Cash,183507.31,0,Customer collections on account,COLL-2024-02
-JE-000031,JE-000031-2,2024-02-29,2024-02,1100,Accounts Receivable,0,183507.31,Customer collections on account,COLL-2024-02
-JE-000032,JE-000032-1,2024-02-29,2024-02,2000,Accounts Payable,73714.64,0,Vendor payments on account,PMT-2024-02
-JE-000032,JE-000032-2,2024-02-29,2024-02,1000,Cash,0,73714.64,Vendor payments on account,PMT-2024-02
+JE-000031,JE-000031-1,2024-02-29,2024-02,1000,Cash,179757.65,0,Customer collections on account,COLL-2024-02
+JE-000031,JE-000031-2,2024-02-29,2024-02,1100,Accounts Receivable,0,179757.65,Customer collections on account,COLL-2024-02
+JE-000032,JE-000032-1,2024-02-29,2024-02,2000,Accounts Payable,76925.44,0,Vendor payments on account,PMT-2024-02
+JE-000032,JE-000032-2,2024-02-29,2024-02,1000,Cash,0,76925.44,Vendor payments on account,PMT-2024-02
 JE-000033,JE-000033-1,2024-03-31,2024-03,1100,Accounts Receivable,188494.09,0,Monthly SaaS subscription revenue recognized,SUB-40026
 JE-000033,JE-000033-2,2024-03-31,2024-03,4000,Product Revenue,0,188494.09,Monthly SaaS subscription revenue recognized,SUB-40026
 JE-000034,JE-000034-1,2024-03-31,2024-03,1100,Accounts Receivable,26324.88,0,Professional services revenue recognized,SVC-40027
@@ -89,10 +89,10 @@ JE-000044,JE-000044-1,2024-03-15,2024-03,6800,Office Supplies,1349.54,0,Office s
 JE-000044,JE-000044-2,2024-03-15,2024-03,1000,Cash,0,1349.54,Office supplies,EXP-40036
 JE-000045,JE-000045-1,2024-03-15,2024-03,6900,Utilities,1826.65,0,Utilities,UTIL-40037
 JE-000045,JE-000045-2,2024-03-15,2024-03,1000,Cash,0,1826.65,Utilities,UTIL-40037
-JE-000046,JE-000046-1,2024-03-31,2024-03,1000,Cash,182596.13,0,Customer collections on account,COLL-2024-03
-JE-000046,JE-000046-2,2024-03-31,2024-03,1100,Accounts Receivable,0,182596.13,Customer collections on account,COLL-2024-03
-JE-000047,JE-000047-1,2024-03-31,2024-03,2000,Accounts Payable,66343.8,0,Vendor payments on account,PMT-2024-03
-JE-000047,JE-000047-2,2024-03-31,2024-03,1000,Cash,0,66343.8,Vendor payments on account,PMT-2024-03
+JE-000046,JE-000046-1,2024-03-31,2024-03,1000,Cash,200794.44,0,Customer collections on account,COLL-2024-03
+JE-000046,JE-000046-2,2024-03-31,2024-03,1100,Accounts Receivable,0,200794.44,Customer collections on account,COLL-2024-03
+JE-000047,JE-000047-1,2024-03-31,2024-03,2000,Accounts Payable,80528.03,0,Vendor payments on account,PMT-2024-03
+JE-000047,JE-000047-2,2024-03-31,2024-03,1000,Cash,0,80528.03,Vendor payments on account,PMT-2024-03
 JE-000048,JE-000048-1,2024-04-30,2024-04,1100,Accounts Receivable,199369.85,0,Monthly SaaS subscription revenue recognized,SUB-40038
 JE-000048,JE-000048-2,2024-04-30,2024-04,4000,Product Revenue,0,199369.85,Monthly SaaS subscription revenue recognized,SUB-40038
 JE-000049,JE-000049-1,2024-04-30,2024-04,1100,Accounts Receivable,28280.48,0,Professional services revenue recognized,SVC-40039
@@ -121,10 +121,10 @@ JE-000060,JE-000060-1,2024-04-15,2024-04,6800,Office Supplies,1044.68,0,Office s
 JE-000060,JE-000060-2,2024-04-15,2024-04,1000,Cash,0,1044.68,Office supplies,EXP-40049
 JE-000061,JE-000061-1,2024-04-15,2024-04,6900,Utilities,1823.99,0,Utilities,UTIL-40050
 JE-000061,JE-000061-2,2024-04-15,2024-04,1000,Cash,0,1823.99,Utilities,UTIL-40050
-JE-000062,JE-000062-1,2024-04-30,2024-04,1000,Cash,193502.78,0,Customer collections on account,COLL-2024-04
-JE-000062,JE-000062-2,2024-04-30,2024-04,1100,Accounts Receivable,0,193502.78,Customer collections on account,COLL-2024-04
-JE-000063,JE-000063-1,2024-04-30,2024-04,2000,Accounts Payable,68463,0,Vendor payments on account,PMT-2024-04
-JE-000063,JE-000063-2,2024-04-30,2024-04,1000,Cash,0,68463,Vendor payments on account,PMT-2024-04
+JE-000062,JE-000062-1,2024-04-30,2024-04,1000,Cash,216907.97,0,Customer collections on account,COLL-2024-04
+JE-000062,JE-000062-2,2024-04-30,2024-04,1100,Accounts Receivable,0,216907.97,Customer collections on account,COLL-2024-04
+JE-000063,JE-000063-1,2024-04-30,2024-04,2000,Accounts Payable,83558.46,0,Vendor payments on account,PMT-2024-04
+JE-000063,JE-000063-2,2024-04-30,2024-04,1000,Cash,0,83558.46,Vendor payments on account,PMT-2024-04
 JE-000064,JE-000064-1,2024-05-31,2024-05,1100,Accounts Receivable,199795.25,0,Monthly SaaS subscription revenue recognized,SUB-40051
 JE-000064,JE-000064-2,2024-05-31,2024-05,4000,Product Revenue,0,199795.25,Monthly SaaS subscription revenue recognized,SUB-40051
 JE-000065,JE-000065-1,2024-05-31,2024-05,1100,Accounts Receivable,25004.27,0,Professional services revenue recognized,SVC-40052
@@ -151,10 +151,10 @@ JE-000075,JE-000075-1,2024-05-15,2024-05,6800,Office Supplies,1288.99,0,Office s
 JE-000075,JE-000075-2,2024-05-15,2024-05,1000,Cash,0,1288.99,Office supplies,EXP-40061
 JE-000076,JE-000076-1,2024-05-15,2024-05,6900,Utilities,1947.21,0,Utilities,UTIL-40062
 JE-000076,JE-000076-2,2024-05-15,2024-05,1000,Cash,0,1947.21,Utilities,UTIL-40062
-JE-000077,JE-000077-1,2024-05-31,2024-05,1000,Cash,191079.59,0,Customer collections on account,COLL-2024-05
-JE-000077,JE-000077-2,2024-05-31,2024-05,1100,Accounts Receivable,0,191079.59,Customer collections on account,COLL-2024-05
-JE-000078,JE-000078-1,2024-05-31,2024-05,2000,Accounts Payable,67635.86,0,Vendor payments on account,PMT-2024-05
-JE-000078,JE-000078-2,2024-05-31,2024-05,1000,Cash,0,67635.86,Vendor payments on account,PMT-2024-05
+JE-000077,JE-000077-1,2024-05-31,2024-05,1000,Cash,221642.9,0,Customer collections on account,COLL-2024-05
+JE-000077,JE-000077-2,2024-05-31,2024-05,1100,Accounts Receivable,0,221642.9,Customer collections on account,COLL-2024-05
+JE-000078,JE-000078-1,2024-05-31,2024-05,2000,Accounts Payable,84150.28,0,Vendor payments on account,PMT-2024-05
+JE-000078,JE-000078-2,2024-05-31,2024-05,1000,Cash,0,84150.28,Vendor payments on account,PMT-2024-05
 JE-000079,JE-000079-1,2024-06-30,2024-06,1100,Accounts Receivable,208137.27,0,Monthly SaaS subscription revenue recognized,SUB-40063
 JE-000079,JE-000079-2,2024-06-30,2024-06,4000,Product Revenue,0,208137.27,Monthly SaaS subscription revenue recognized,SUB-40063
 JE-000080,JE-000080-1,2024-06-30,2024-06,1100,Accounts Receivable,24923.75,0,Professional services revenue recognized,SVC-40064
@@ -181,10 +181,10 @@ JE-000090,JE-000090-1,2024-06-15,2024-06,6800,Office Supplies,1343.06,0,Office s
 JE-000090,JE-000090-2,2024-06-15,2024-06,1000,Cash,0,1343.06,Office supplies,EXP-40073
 JE-000091,JE-000091-1,2024-06-15,2024-06,6900,Utilities,2135.76,0,Utilities,UTIL-40074
 JE-000091,JE-000091-2,2024-06-15,2024-06,1000,Cash,0,2135.76,Utilities,UTIL-40074
-JE-000092,JE-000092-1,2024-06-30,2024-06,1000,Cash,198101.86,0,Customer collections on account,COLL-2024-06
-JE-000092,JE-000092-2,2024-06-30,2024-06,1100,Accounts Receivable,0,198101.86,Customer collections on account,COLL-2024-06
-JE-000093,JE-000093-1,2024-06-30,2024-06,2000,Accounts Payable,73221.32,0,Vendor payments on account,PMT-2024-06
-JE-000093,JE-000093-2,2024-06-30,2024-06,1000,Cash,0,73221.32,Vendor payments on account,PMT-2024-06
+JE-000092,JE-000092-1,2024-06-30,2024-06,1000,Cash,228493.77,0,Customer collections on account,COLL-2024-06
+JE-000092,JE-000092-2,2024-06-30,2024-06,1100,Accounts Receivable,0,228493.77,Customer collections on account,COLL-2024-06
+JE-000093,JE-000093-1,2024-06-30,2024-06,2000,Accounts Payable,88576.1,0,Vendor payments on account,PMT-2024-06
+JE-000093,JE-000093-2,2024-06-30,2024-06,1000,Cash,0,88576.1,Vendor payments on account,PMT-2024-06
 JE-000094,JE-000094-1,2024-07-31,2024-07,1100,Accounts Receivable,217689.22,0,Monthly SaaS subscription revenue recognized,SUB-40075
 JE-000094,JE-000094-2,2024-07-31,2024-07,4000,Product Revenue,0,217689.22,Monthly SaaS subscription revenue recognized,SUB-40075
 JE-000095,JE-000095-1,2024-07-31,2024-07,1100,Accounts Receivable,26175.93,0,Professional services revenue recognized,SVC-40076
@@ -213,10 +213,10 @@ JE-000106,JE-000106-1,2024-07-15,2024-07,6800,Office Supplies,971.74,0,Office su
 JE-000106,JE-000106-2,2024-07-15,2024-07,1000,Cash,0,971.74,Office supplies,EXP-40086
 JE-000107,JE-000107-1,2024-07-15,2024-07,6900,Utilities,2194.92,0,Utilities,UTIL-40087
 JE-000107,JE-000107-2,2024-07-15,2024-07,1000,Cash,0,2194.92,Utilities,UTIL-40087
-JE-000108,JE-000108-1,2024-07-31,2024-07,1000,Cash,207285.37,0,Customer collections on account,COLL-2024-07
-JE-000108,JE-000108-2,2024-07-31,2024-07,1100,Accounts Receivable,0,207285.37,Customer collections on account,COLL-2024-07
-JE-000109,JE-000109-1,2024-07-31,2024-07,2000,Accounts Payable,70005.94,0,Vendor payments on account,PMT-2024-07
-JE-000109,JE-000109-2,2024-07-31,2024-07,1000,Cash,0,70005.94,Vendor payments on account,PMT-2024-07
+JE-000108,JE-000108-1,2024-07-31,2024-07,1000,Cash,237716.59,0,Customer collections on account,COLL-2024-07
+JE-000108,JE-000108-2,2024-07-31,2024-07,1100,Accounts Receivable,0,237716.59,Customer collections on account,COLL-2024-07
+JE-000109,JE-000109-1,2024-07-31,2024-07,2000,Accounts Payable,87934.89,0,Vendor payments on account,PMT-2024-07
+JE-000109,JE-000109-2,2024-07-31,2024-07,1000,Cash,0,87934.89,Vendor payments on account,PMT-2024-07
 JE-000110,JE-000110-1,2024-08-31,2024-08,1100,Accounts Receivable,221902.09,0,Monthly SaaS subscription revenue recognized,SUB-40088
 JE-000110,JE-000110-2,2024-08-31,2024-08,4000,Product Revenue,0,221902.09,Monthly SaaS subscription revenue recognized,SUB-40088
 JE-000111,JE-000111-1,2024-08-31,2024-08,1100,Accounts Receivable,25192.33,0,Professional services revenue recognized,SVC-40089
@@ -243,10 +243,10 @@ JE-000121,JE-000121-1,2024-08-15,2024-08,6800,Office Supplies,1283.14,0,Office s
 JE-000121,JE-000121-2,2024-08-15,2024-08,1000,Cash,0,1283.14,Office supplies,EXP-40098
 JE-000122,JE-000122-1,2024-08-15,2024-08,6900,Utilities,2133.95,0,Utilities,UTIL-40099
 JE-000122,JE-000122-2,2024-08-15,2024-08,1000,Cash,0,2133.95,Utilities,UTIL-40099
-JE-000123,JE-000123-1,2024-08-31,2024-08,1000,Cash,210030.26,0,Customer collections on account,COLL-2024-08
-JE-000123,JE-000123-2,2024-08-31,2024-08,1100,Accounts Receivable,0,210030.26,Customer collections on account,COLL-2024-08
-JE-000124,JE-000124-1,2024-08-31,2024-08,2000,Accounts Payable,78113.69,0,Vendor payments on account,PMT-2024-08
-JE-000124,JE-000124-2,2024-08-31,2024-08,1000,Cash,0,78113.69,Vendor payments on account,PMT-2024-08
+JE-000123,JE-000123-1,2024-08-31,2024-08,1000,Cash,243343.29,0,Customer collections on account,COLL-2024-08
+JE-000123,JE-000123-2,2024-08-31,2024-08,1100,Accounts Receivable,0,243343.29,Customer collections on account,COLL-2024-08
+JE-000124,JE-000124-1,2024-08-31,2024-08,2000,Accounts Payable,93759.23,0,Vendor payments on account,PMT-2024-08
+JE-000124,JE-000124-2,2024-08-31,2024-08,1000,Cash,0,93759.23,Vendor payments on account,PMT-2024-08
 JE-000125,JE-000125-1,2024-09-30,2024-09,1100,Accounts Receivable,219997.34,0,Monthly SaaS subscription revenue recognized,SUB-40100
 JE-000125,JE-000125-2,2024-09-30,2024-09,4000,Product Revenue,0,219997.34,Monthly SaaS subscription revenue recognized,SUB-40100
 JE-000126,JE-000126-1,2024-09-30,2024-09,1100,Accounts Receivable,26406.67,0,Professional services revenue recognized,SVC-40101
@@ -273,10 +273,10 @@ JE-000136,JE-000136-1,2024-09-15,2024-09,6800,Office Supplies,1075.43,0,Office s
 JE-000136,JE-000136-2,2024-09-15,2024-09,1000,Cash,0,1075.43,Office supplies,EXP-40110
 JE-000137,JE-000137-1,2024-09-15,2024-09,6900,Utilities,1870.96,0,Utilities,UTIL-40111
 JE-000137,JE-000137-2,2024-09-15,2024-09,1000,Cash,0,1870.96,Utilities,UTIL-40111
-JE-000138,JE-000138-1,2024-09-30,2024-09,1000,Cash,209443.41,0,Customer collections on account,COLL-2024-09
-JE-000138,JE-000138-2,2024-09-30,2024-09,1100,Accounts Receivable,0,209443.41,Customer collections on account,COLL-2024-09
-JE-000139,JE-000139-1,2024-09-30,2024-09,2000,Accounts Payable,73248.38,0,Vendor payments on account,PMT-2024-09
-JE-000139,JE-000139-2,2024-09-30,2024-09,1000,Cash,0,73248.38,Vendor payments on account,PMT-2024-09
+JE-000138,JE-000138-1,2024-09-30,2024-09,1000,Cash,245179.72,0,Customer collections on account,COLL-2024-09
+JE-000138,JE-000138-2,2024-09-30,2024-09,1100,Accounts Receivable,0,245179.72,Customer collections on account,COLL-2024-09
+JE-000139,JE-000139-1,2024-09-30,2024-09,2000,Accounts Payable,92439.97,0,Vendor payments on account,PMT-2024-09
+JE-000139,JE-000139-2,2024-09-30,2024-09,1000,Cash,0,92439.97,Vendor payments on account,PMT-2024-09
 JE-000140,JE-000140-1,2024-10-31,2024-10,1100,Accounts Receivable,229262.95,0,Monthly SaaS subscription revenue recognized,SUB-40112
 JE-000140,JE-000140-2,2024-10-31,2024-10,4000,Product Revenue,0,229262.95,Monthly SaaS subscription revenue recognized,SUB-40112
 JE-000141,JE-000141-1,2024-10-31,2024-10,1100,Accounts Receivable,32513.56,0,Professional services revenue recognized,SVC-40113
@@ -305,10 +305,10 @@ JE-000152,JE-000152-1,2024-10-15,2024-10,6800,Office Supplies,1252.18,0,Office s
 JE-000152,JE-000152-2,2024-10-15,2024-10,1000,Cash,0,1252.18,Office supplies,EXP-40123
 JE-000153,JE-000153-1,2024-10-15,2024-10,6900,Utilities,1875.34,0,Utilities,UTIL-40124
 JE-000153,JE-000153-2,2024-10-15,2024-10,1000,Cash,0,1875.34,Utilities,UTIL-40124
-JE-000154,JE-000154-1,2024-10-31,2024-10,1000,Cash,222510.03,0,Customer collections on account,COLL-2024-10
-JE-000154,JE-000154-2,2024-10-31,2024-10,1100,Accounts Receivable,0,222510.03,Customer collections on account,COLL-2024-10
-JE-000155,JE-000155-1,2024-10-31,2024-10,2000,Accounts Payable,85787.41,0,Vendor payments on account,PMT-2024-10
-JE-000155,JE-000155-2,2024-10-31,2024-10,1000,Cash,0,85787.41,Vendor payments on account,PMT-2024-10
+JE-000154,JE-000154-1,2024-10-31,2024-10,1000,Cash,255137.79,0,Customer collections on account,COLL-2024-10
+JE-000154,JE-000154-2,2024-10-31,2024-10,1100,Accounts Receivable,0,255137.79,Customer collections on account,COLL-2024-10
+JE-000155,JE-000155-1,2024-10-31,2024-10,2000,Accounts Payable,101316.55,0,Vendor payments on account,PMT-2024-10
+JE-000155,JE-000155-2,2024-10-31,2024-10,1000,Cash,0,101316.55,Vendor payments on account,PMT-2024-10
 JE-000156,JE-000156-1,2024-11-30,2024-11,1100,Accounts Receivable,233860.53,0,Monthly SaaS subscription revenue recognized,SUB-40125
 JE-000156,JE-000156-2,2024-11-30,2024-11,4000,Product Revenue,0,233860.53,Monthly SaaS subscription revenue recognized,SUB-40125
 JE-000157,JE-000157-1,2024-11-30,2024-11,1100,Accounts Receivable,32934.78,0,Professional services revenue recognized,SVC-40126
@@ -335,10 +335,10 @@ JE-000167,JE-000167-1,2024-11-15,2024-11,6800,Office Supplies,1413.48,0,Office s
 JE-000167,JE-000167-2,2024-11-15,2024-11,1000,Cash,0,1413.48,Office supplies,EXP-40135
 JE-000168,JE-000168-1,2024-11-15,2024-11,6900,Utilities,1812.17,0,Utilities,UTIL-40136
 JE-000168,JE-000168-2,2024-11-15,2024-11,1000,Cash,0,1812.17,Utilities,UTIL-40136
-JE-000169,JE-000169-1,2024-11-30,2024-11,1000,Cash,226776.01,0,Customer collections on account,COLL-2024-11
-JE-000169,JE-000169-2,2024-11-30,2024-11,1100,Accounts Receivable,0,226776.01,Customer collections on account,COLL-2024-11
-JE-000170,JE-000170-1,2024-11-30,2024-11,2000,Accounts Payable,83546.02,0,Vendor payments on account,PMT-2024-11
-JE-000170,JE-000170-2,2024-11-30,2024-11,1000,Cash,0,83546.02,Vendor payments on account,PMT-2024-11
+JE-000169,JE-000169-1,2024-11-30,2024-11,1000,Cash,262132.3,0,Customer collections on account,COLL-2024-11
+JE-000169,JE-000169-2,2024-11-30,2024-11,1100,Accounts Receivable,0,262132.3,Customer collections on account,COLL-2024-11
+JE-000170,JE-000170-1,2024-11-30,2024-11,2000,Accounts Payable,103186.13,0,Vendor payments on account,PMT-2024-11
+JE-000170,JE-000170-2,2024-11-30,2024-11,1000,Cash,0,103186.13,Vendor payments on account,PMT-2024-11
 JE-000171,JE-000171-1,2024-12-31,2024-12,1100,Accounts Receivable,241492.68,0,Monthly SaaS subscription revenue recognized,SUB-40137
 JE-000171,JE-000171-2,2024-12-31,2024-12,4000,Product Revenue,0,241492.68,Monthly SaaS subscription revenue recognized,SUB-40137
 JE-000172,JE-000172-1,2024-12-31,2024-12,1100,Accounts Receivable,29190.79,0,Professional services revenue recognized,SVC-40138
@@ -365,10 +365,10 @@ JE-000182,JE-000182-1,2024-12-15,2024-12,6800,Office Supplies,1080.99,0,Office s
 JE-000182,JE-000182-2,2024-12-15,2024-12,1000,Cash,0,1080.99,Office supplies,EXP-40147
 JE-000183,JE-000183-1,2024-12-15,2024-12,6900,Utilities,2483.78,0,Utilities,UTIL-40148
 JE-000183,JE-000183-2,2024-12-15,2024-12,1000,Cash,0,2483.78,Utilities,UTIL-40148
-JE-000184,JE-000184-1,2024-12-31,2024-12,1000,Cash,230080.94,0,Customer collections on account,COLL-2024-12
-JE-000184,JE-000184-2,2024-12-31,2024-12,1100,Accounts Receivable,0,230080.94,Customer collections on account,COLL-2024-12
-JE-000185,JE-000185-1,2024-12-31,2024-12,2000,Accounts Payable,84821.35,0,Vendor payments on account,PMT-2024-12
-JE-000185,JE-000185-2,2024-12-31,2024-12,1000,Cash,0,84821.35,Vendor payments on account,PMT-2024-12
+JE-000184,JE-000184-1,2024-12-31,2024-12,1000,Cash,267263,0,Customer collections on account,COLL-2024-12
+JE-000184,JE-000184-2,2024-12-31,2024-12,1100,Accounts Receivable,0,267263,Customer collections on account,COLL-2024-12
+JE-000185,JE-000185-1,2024-12-31,2024-12,2000,Accounts Payable,104890.47,0,Vendor payments on account,PMT-2024-12
+JE-000185,JE-000185-2,2024-12-31,2024-12,1000,Cash,0,104890.47,Vendor payments on account,PMT-2024-12
 JE-000186,JE-000186-1,2025-01-31,2025-01,1100,Accounts Receivable,250187.23,0,Monthly SaaS subscription revenue recognized,SUB-40149
 JE-000186,JE-000186-2,2025-01-31,2025-01,4000,Product Revenue,0,250187.23,Monthly SaaS subscription revenue recognized,SUB-40149
 JE-000187,JE-000187-1,2025-01-31,2025-01,1100,Accounts Receivable,30916.12,0,Professional services revenue recognized,SVC-40150
@@ -397,10 +397,10 @@ JE-000198,JE-000198-1,2025-01-15,2025-01,6800,Office Supplies,992.64,0,Office su
 JE-000198,JE-000198-2,2025-01-15,2025-01,1000,Cash,0,992.64,Office supplies,EXP-40160
 JE-000199,JE-000199-1,2025-01-15,2025-01,6900,Utilities,2318.27,0,Utilities,UTIL-40161
 JE-000199,JE-000199-2,2025-01-15,2025-01,1000,Cash,0,2318.27,Utilities,UTIL-40161
-JE-000200,JE-000200-1,2025-01-31,2025-01,1000,Cash,238937.85,0,Customer collections on account,COLL-2025-01
-JE-000200,JE-000200-2,2025-01-31,2025-01,1100,Accounts Receivable,0,238937.85,Customer collections on account,COLL-2025-01
-JE-000201,JE-000201-1,2025-01-31,2025-01,2000,Accounts Payable,88752.03,0,Vendor payments on account,PMT-2025-01
-JE-000201,JE-000201-2,2025-01-31,2025-01,1000,Cash,0,88752.03,Vendor payments on account,PMT-2025-01
+JE-000200,JE-000200-1,2025-01-31,2025-01,1000,Cash,275567.21,0,Customer collections on account,COLL-2025-01
+JE-000200,JE-000200-2,2025-01-31,2025-01,1100,Accounts Receivable,0,275567.21,Customer collections on account,COLL-2025-01
+JE-000201,JE-000201-1,2025-01-31,2025-01,2000,Accounts Payable,108520.21,0,Vendor payments on account,PMT-2025-01
+JE-000201,JE-000201-2,2025-01-31,2025-01,1000,Cash,0,108520.21,Vendor payments on account,PMT-2025-01
 JE-000202,JE-000202-1,2025-02-28,2025-02,1100,Accounts Receivable,253822.16,0,Monthly SaaS subscription revenue recognized,SUB-40162
 JE-000202,JE-000202-2,2025-02-28,2025-02,4000,Product Revenue,0,253822.16,Monthly SaaS subscription revenue recognized,SUB-40162
 JE-000203,JE-000203-1,2025-02-28,2025-02,1100,Accounts Receivable,26736.13,0,Professional services revenue recognized,SVC-40163
@@ -427,10 +427,10 @@ JE-000213,JE-000213-1,2025-02-15,2025-02,6800,Office Supplies,1136.13,0,Office s
 JE-000213,JE-000213-2,2025-02-15,2025-02,1000,Cash,0,1136.13,Office supplies,EXP-40172
 JE-000214,JE-000214-1,2025-02-15,2025-02,6900,Utilities,1916.33,0,Utilities,UTIL-40173
 JE-000214,JE-000214-2,2025-02-15,2025-02,1000,Cash,0,1916.33,Utilities,UTIL-40173
-JE-000215,JE-000215-1,2025-02-28,2025-02,1000,Cash,238474.54,0,Customer collections on account,COLL-2025-02
-JE-000215,JE-000215-2,2025-02-28,2025-02,1100,Accounts Receivable,0,238474.54,Customer collections on account,COLL-2025-02
-JE-000216,JE-000216-1,2025-02-28,2025-02,2000,Accounts Payable,92748.05,0,Vendor payments on account,PMT-2025-02
-JE-000216,JE-000216-2,2025-02-28,2025-02,1000,Cash,0,92748.05,Vendor payments on account,PMT-2025-02
+JE-000215,JE-000215-1,2025-02-28,2025-02,1000,Cash,278561.86,0,Customer collections on account,COLL-2025-02
+JE-000215,JE-000215-2,2025-02-28,2025-02,1100,Accounts Receivable,0,278561.86,Customer collections on account,COLL-2025-02
+JE-000216,JE-000216-1,2025-02-28,2025-02,2000,Accounts Payable,112969.12,0,Vendor payments on account,PMT-2025-02
+JE-000216,JE-000216-2,2025-02-28,2025-02,1000,Cash,0,112969.12,Vendor payments on account,PMT-2025-02
 JE-000217,JE-000217-1,2025-03-31,2025-03,1100,Accounts Receivable,256758.65,0,Monthly SaaS subscription revenue recognized,SUB-40174
 JE-000217,JE-000217-2,2025-03-31,2025-03,4000,Product Revenue,0,256758.65,Monthly SaaS subscription revenue recognized,SUB-40174
 JE-000218,JE-000218-1,2025-03-31,2025-03,1100,Accounts Receivable,28468.23,0,Professional services revenue recognized,SVC-40175
@@ -457,10 +457,10 @@ JE-000228,JE-000228-1,2025-03-15,2025-03,6800,Office Supplies,1179.55,0,Office s
 JE-000228,JE-000228-2,2025-03-15,2025-03,1000,Cash,0,1179.55,Office supplies,EXP-40184
 JE-000229,JE-000229-1,2025-03-15,2025-03,6900,Utilities,2196.9,0,Utilities,UTIL-40185
 JE-000229,JE-000229-2,2025-03-15,2025-03,1000,Cash,0,2196.9,Utilities,UTIL-40185
-JE-000230,JE-000230-1,2025-03-31,2025-03,1000,Cash,242442.84,0,Customer collections on account,COLL-2025-03
-JE-000230,JE-000230-2,2025-03-31,2025-03,1100,Accounts Receivable,0,242442.84,Customer collections on account,COLL-2025-03
-JE-000231,JE-000231-1,2025-03-31,2025-03,2000,Accounts Payable,84234.57,0,Vendor payments on account,PMT-2025-03
-JE-000231,JE-000231-2,2025-03-31,2025-03,1000,Cash,0,84234.57,Vendor payments on account,PMT-2025-03
+JE-000230,JE-000230-1,2025-03-31,2025-03,1000,Cash,282560.87,0,Customer collections on account,COLL-2025-03
+JE-000230,JE-000230-2,2025-03-31,2025-03,1100,Accounts Receivable,0,282560.87,Customer collections on account,COLL-2025-03
+JE-000231,JE-000231-1,2025-03-31,2025-03,2000,Accounts Payable,108363.57,0,Vendor payments on account,PMT-2025-03
+JE-000231,JE-000231-2,2025-03-31,2025-03,1000,Cash,0,108363.57,Vendor payments on account,PMT-2025-03
 JE-000232,JE-000232-1,2025-04-30,2025-04,1100,Accounts Receivable,271314.62,0,Monthly SaaS subscription revenue recognized,SUB-40186
 JE-000232,JE-000232-2,2025-04-30,2025-04,4000,Product Revenue,0,271314.62,Monthly SaaS subscription revenue recognized,SUB-40186
 JE-000233,JE-000233-1,2025-04-30,2025-04,1100,Accounts Receivable,31767.48,0,Professional services revenue recognized,SVC-40187
@@ -489,10 +489,10 @@ JE-000244,JE-000244-1,2025-04-15,2025-04,6800,Office Supplies,965.12,0,Office su
 JE-000244,JE-000244-2,2025-04-15,2025-04,1000,Cash,0,965.12,Office supplies,EXP-40197
 JE-000245,JE-000245-1,2025-04-15,2025-04,6900,Utilities,2012.5,0,Utilities,UTIL-40198
 JE-000245,JE-000245-2,2025-04-15,2025-04,1000,Cash,0,2012.5,Utilities,UTIL-40198
-JE-000246,JE-000246-1,2025-04-30,2025-04,1000,Cash,257619.78,0,Customer collections on account,COLL-2025-04
-JE-000246,JE-000246-2,2025-04-30,2025-04,1100,Accounts Receivable,0,257619.78,Customer collections on account,COLL-2025-04
-JE-000247,JE-000247-1,2025-04-30,2025-04,2000,Accounts Payable,89841.95,0,Vendor payments on account,PMT-2025-04
-JE-000247,JE-000247-2,2025-04-30,2025-04,1000,Cash,0,89841.95,Vendor payments on account,PMT-2025-04
+JE-000246,JE-000246-1,2025-04-30,2025-04,1000,Cash,294873.61,0,Customer collections on account,COLL-2025-04
+JE-000246,JE-000246-2,2025-04-30,2025-04,1100,Accounts Receivable,0,294873.61,Customer collections on account,COLL-2025-04
+JE-000247,JE-000247-1,2025-04-30,2025-04,2000,Accounts Payable,110726.9,0,Vendor payments on account,PMT-2025-04
+JE-000247,JE-000247-2,2025-04-30,2025-04,1000,Cash,0,110726.9,Vendor payments on account,PMT-2025-04
 JE-000248,JE-000248-1,2025-05-31,2025-05,1100,Accounts Receivable,267836.27,0,Monthly SaaS subscription revenue recognized,SUB-40199
 JE-000248,JE-000248-2,2025-05-31,2025-05,4000,Product Revenue,0,267836.27,Monthly SaaS subscription revenue recognized,SUB-40199
 JE-000249,JE-000249-1,2025-05-31,2025-05,1100,Accounts Receivable,30862.59,0,Professional services revenue recognized,SVC-40200
@@ -519,10 +519,10 @@ JE-000259,JE-000259-1,2025-05-15,2025-05,6800,Office Supplies,1111.27,0,Office s
 JE-000259,JE-000259-2,2025-05-15,2025-05,1000,Cash,0,1111.27,Office supplies,EXP-40209
 JE-000260,JE-000260-1,2025-05-15,2025-05,6900,Utilities,2128.06,0,Utilities,UTIL-40210
 JE-000260,JE-000260-2,2025-05-15,2025-05,1000,Cash,0,2128.06,Utilities,UTIL-40210
-JE-000261,JE-000261-1,2025-05-31,2025-05,1000,Cash,253894.03,0,Customer collections on account,COLL-2025-05
-JE-000261,JE-000261-2,2025-05-31,2025-05,1100,Accounts Receivable,0,253894.03,Customer collections on account,COLL-2025-05
-JE-000262,JE-000262-1,2025-05-31,2025-05,2000,Accounts Payable,86979.77,0,Vendor payments on account,PMT-2025-05
-JE-000262,JE-000262-2,2025-05-31,2025-05,1000,Cash,0,86979.77,Vendor payments on account,PMT-2025-05
+JE-000261,JE-000261-1,2025-05-31,2025-05,1000,Cash,297168.76,0,Customer collections on account,COLL-2025-05
+JE-000261,JE-000261-2,2025-05-31,2025-05,1100,Accounts Receivable,0,297168.76,Customer collections on account,COLL-2025-05
+JE-000262,JE-000262-1,2025-05-31,2025-05,2000,Accounts Payable,109525.58,0,Vendor payments on account,PMT-2025-05
+JE-000262,JE-000262-2,2025-05-31,2025-05,1000,Cash,0,109525.58,Vendor payments on account,PMT-2025-05
 JE-000263,JE-000263-1,2025-06-30,2025-06,1100,Accounts Receivable,287561.36,0,Monthly SaaS subscription revenue recognized,SUB-40211
 JE-000263,JE-000263-2,2025-06-30,2025-06,4000,Product Revenue,0,287561.36,Monthly SaaS subscription revenue recognized,SUB-40211
 JE-000264,JE-000264-1,2025-06-30,2025-06,1100,Accounts Receivable,27088.5,0,Professional services revenue recognized,SVC-40212
@@ -549,10 +549,10 @@ JE-000274,JE-000274-1,2025-06-15,2025-06,6800,Office Supplies,972.04,0,Office su
 JE-000274,JE-000274-2,2025-06-15,2025-06,1000,Cash,0,972.04,Office supplies,EXP-40221
 JE-000275,JE-000275-1,2025-06-15,2025-06,6900,Utilities,2339.3,0,Utilities,UTIL-40222
 JE-000275,JE-000275-2,2025-06-15,2025-06,1000,Cash,0,2339.3,Utilities,UTIL-40222
-JE-000276,JE-000276-1,2025-06-30,2025-06,1000,Cash,267452.38,0,Customer collections on account,COLL-2025-06
-JE-000276,JE-000276-2,2025-06-30,2025-06,1100,Accounts Receivable,0,267452.38,Customer collections on account,COLL-2025-06
-JE-000277,JE-000277-1,2025-06-30,2025-06,2000,Accounts Payable,92813.94,0,Vendor payments on account,PMT-2025-06
-JE-000277,JE-000277-2,2025-06-30,2025-06,1000,Cash,0,92813.94,Vendor payments on account,PMT-2025-06
+JE-000276,JE-000276-1,2025-06-30,2025-06,1000,Cash,307657.42,0,Customer collections on account,COLL-2025-06
+JE-000276,JE-000276-2,2025-06-30,2025-06,1100,Accounts Receivable,0,307657.42,Customer collections on account,COLL-2025-06
+JE-000277,JE-000277-1,2025-06-30,2025-06,2000,Accounts Payable,113420.69,0,Vendor payments on account,PMT-2025-06
+JE-000277,JE-000277-2,2025-06-30,2025-06,1000,Cash,0,113420.69,Vendor payments on account,PMT-2025-06
 JE-000278,JE-000278-1,2025-07-31,2025-07,1100,Accounts Receivable,286901.43,0,Monthly SaaS subscription revenue recognized,SUB-40223
 JE-000278,JE-000278-2,2025-07-31,2025-07,4000,Product Revenue,0,286901.43,Monthly SaaS subscription revenue recognized,SUB-40223
 JE-000279,JE-000279-1,2025-07-31,2025-07,1100,Accounts Receivable,28864.18,0,Professional services revenue recognized,SVC-40224
@@ -581,10 +581,10 @@ JE-000290,JE-000290-1,2025-07-15,2025-07,6800,Office Supplies,1010.96,0,Office s
 JE-000290,JE-000290-2,2025-07-15,2025-07,1000,Cash,0,1010.96,Office supplies,EXP-40234
 JE-000291,JE-000291-1,2025-07-15,2025-07,6900,Utilities,2140.4,0,Utilities,UTIL-40235
 JE-000291,JE-000291-2,2025-07-15,2025-07,1000,Cash,0,2140.4,Utilities,UTIL-40235
-JE-000292,JE-000292-1,2025-07-31,2025-07,1000,Cash,268400.77,0,Customer collections on account,COLL-2025-07
-JE-000292,JE-000292-2,2025-07-31,2025-07,1100,Accounts Receivable,0,268400.77,Customer collections on account,COLL-2025-07
-JE-000293,JE-000293-1,2025-07-31,2025-07,2000,Accounts Payable,88881.43,0,Vendor payments on account,PMT-2025-07
-JE-000293,JE-000293-2,2025-07-31,2025-07,1000,Cash,0,88881.43,Vendor payments on account,PMT-2025-07
+JE-000292,JE-000292-1,2025-07-31,2025-07,1000,Cash,312522.34,0,Customer collections on account,COLL-2025-07
+JE-000292,JE-000292-2,2025-07-31,2025-07,1100,Accounts Receivable,0,312522.34,Customer collections on account,COLL-2025-07
+JE-000293,JE-000293-1,2025-07-31,2025-07,2000,Accounts Payable,112029.35,0,Vendor payments on account,PMT-2025-07
+JE-000293,JE-000293-2,2025-07-31,2025-07,1000,Cash,0,112029.35,Vendor payments on account,PMT-2025-07
 JE-000294,JE-000294-1,2025-08-31,2025-08,1100,Accounts Receivable,294047.51,0,Monthly SaaS subscription revenue recognized,SUB-40236
 JE-000294,JE-000294-2,2025-08-31,2025-08,4000,Product Revenue,0,294047.51,Monthly SaaS subscription revenue recognized,SUB-40236
 JE-000295,JE-000295-1,2025-08-31,2025-08,1100,Accounts Receivable,32571.84,0,Professional services revenue recognized,SVC-40237
@@ -611,10 +611,10 @@ JE-000305,JE-000305-1,2025-08-15,2025-08,6800,Office Supplies,1125.53,0,Office s
 JE-000305,JE-000305-2,2025-08-15,2025-08,1000,Cash,0,1125.53,Office supplies,EXP-40246
 JE-000306,JE-000306-1,2025-08-15,2025-08,6900,Utilities,2435.78,0,Utilities,UTIL-40247
 JE-000306,JE-000306-2,2025-08-15,2025-08,1000,Cash,0,2435.78,Utilities,UTIL-40247
-JE-000307,JE-000307-1,2025-08-31,2025-08,1000,Cash,277626.44,0,Customer collections on account,COLL-2025-08
-JE-000307,JE-000307-2,2025-08-31,2025-08,1100,Accounts Receivable,0,277626.44,Customer collections on account,COLL-2025-08
-JE-000308,JE-000308-1,2025-08-31,2025-08,2000,Accounts Payable,93989.8,0,Vendor payments on account,PMT-2025-08
-JE-000308,JE-000308-2,2025-08-31,2025-08,1000,Cash,0,93989.8,Vendor payments on account,PMT-2025-08
+JE-000307,JE-000307-1,2025-08-31,2025-08,1000,Cash,320980.54,0,Customer collections on account,COLL-2025-08
+JE-000307,JE-000307-2,2025-08-31,2025-08,1100,Accounts Receivable,0,320980.54,Customer collections on account,COLL-2025-08
+JE-000308,JE-000308-1,2025-08-31,2025-08,2000,Accounts Payable,115304.09,0,Vendor payments on account,PMT-2025-08
+JE-000308,JE-000308-2,2025-08-31,2025-08,1000,Cash,0,115304.09,Vendor payments on account,PMT-2025-08
 JE-000309,JE-000309-1,2025-09-30,2025-09,1100,Accounts Receivable,309023.69,0,Monthly SaaS subscription revenue recognized,SUB-40248
 JE-000309,JE-000309-2,2025-09-30,2025-09,4000,Product Revenue,0,309023.69,Monthly SaaS subscription revenue recognized,SUB-40248
 JE-000310,JE-000310-1,2025-09-30,2025-09,1100,Accounts Receivable,29432.38,0,Professional services revenue recognized,SVC-40249
@@ -641,10 +641,10 @@ JE-000320,JE-000320-1,2025-09-15,2025-09,6800,Office Supplies,1093.77,0,Office s
 JE-000320,JE-000320-2,2025-09-15,2025-09,1000,Cash,0,1093.77,Office supplies,EXP-40258
 JE-000321,JE-000321-1,2025-09-15,2025-09,6900,Utilities,2189.44,0,Utilities,UTIL-40259
 JE-000321,JE-000321-2,2025-09-15,2025-09,1000,Cash,0,2189.44,Utilities,UTIL-40259
-JE-000322,JE-000322-1,2025-09-30,2025-09,1000,Cash,287687.66,0,Customer collections on account,COLL-2025-09
-JE-000322,JE-000322-2,2025-09-30,2025-09,1100,Accounts Receivable,0,287687.66,Customer collections on account,COLL-2025-09
-JE-000323,JE-000323-1,2025-09-30,2025-09,2000,Accounts Payable,96631.57,0,Vendor payments on account,PMT-2025-09
-JE-000323,JE-000323-2,2025-09-30,2025-09,1000,Cash,0,96631.57,Vendor payments on account,PMT-2025-09
+JE-000322,JE-000322-1,2025-09-30,2025-09,1000,Cash,331465.86,0,Customer collections on account,COLL-2025-09
+JE-000322,JE-000322-2,2025-09-30,2025-09,1100,Accounts Receivable,0,331465.86,Customer collections on account,COLL-2025-09
+JE-000323,JE-000323-1,2025-09-30,2025-09,2000,Accounts Payable,118595.31,0,Vendor payments on account,PMT-2025-09
+JE-000323,JE-000323-2,2025-09-30,2025-09,1000,Cash,0,118595.31,Vendor payments on account,PMT-2025-09
 JE-000324,JE-000324-1,2025-10-31,2025-10,1100,Accounts Receivable,306781.46,0,Monthly SaaS subscription revenue recognized,SUB-40260
 JE-000324,JE-000324-2,2025-10-31,2025-10,4000,Product Revenue,0,306781.46,Monthly SaaS subscription revenue recognized,SUB-40260
 JE-000325,JE-000325-1,2025-10-31,2025-10,1100,Accounts Receivable,37697.54,0,Professional services revenue recognized,SVC-40261
@@ -675,10 +675,10 @@ JE-000337,JE-000337-1,2025-10-15,2025-10,6800,Office Supplies,1392.93,0,Office s
 JE-000337,JE-000337-2,2025-10-15,2025-10,1000,Cash,0,1392.93,Office supplies,EXP-40272
 JE-000338,JE-000338-1,2025-10-15,2025-10,6900,Utilities,2074.64,0,Utilities,UTIL-40273
 JE-000338,JE-000338-2,2025-10-15,2025-10,1000,Cash,0,2074.64,Utilities,UTIL-40273
-JE-000339,JE-000339-1,2025-10-31,2025-10,1000,Cash,292807.15,0,Customer collections on account,COLL-2025-10
-JE-000339,JE-000339-2,2025-10-31,2025-10,1100,Accounts Receivable,0,292807.15,Customer collections on account,COLL-2025-10
-JE-000340,JE-000340-1,2025-10-31,2025-10,2000,Accounts Payable,106766.09,0,Vendor payments on account,PMT-2025-10
-JE-000340,JE-000340-2,2025-10-31,2025-10,1000,Cash,0,106766.09,Vendor payments on account,PMT-2025-10
+JE-000339,JE-000339-1,2025-10-31,2025-10,1000,Cash,339273.74,0,Customer collections on account,COLL-2025-10
+JE-000339,JE-000339-2,2025-10-31,2025-10,1100,Accounts Receivable,0,339273.74,Customer collections on account,COLL-2025-10
+JE-000340,JE-000340-1,2025-10-31,2025-10,2000,Accounts Payable,152712.7,0,Vendor payments on account,PMT-2025-10
+JE-000340,JE-000340-2,2025-10-31,2025-10,1000,Cash,0,152712.7,Vendor payments on account,PMT-2025-10
 JE-000341,JE-000341-1,2025-11-30,2025-11,1100,Accounts Receivable,326057.67,0,Monthly SaaS subscription revenue recognized,SUB-40274
 JE-000341,JE-000341-2,2025-11-30,2025-11,4000,Product Revenue,0,326057.67,Monthly SaaS subscription revenue recognized,SUB-40274
 JE-000342,JE-000342-1,2025-11-30,2025-11,1100,Accounts Receivable,34343.54,0,Professional services revenue recognized,SVC-40275
@@ -707,10 +707,10 @@ JE-000353,JE-000353-1,2025-11-15,2025-11,6800,Office Supplies,1098.43,0,Office s
 JE-000353,JE-000353-2,2025-11-15,2025-11,1000,Cash,0,1098.43,Office supplies,EXP-40285
 JE-000354,JE-000354-1,2025-11-15,2025-11,6900,Utilities,2016.44,0,Utilities,UTIL-40286
 JE-000354,JE-000354-2,2025-11-15,2025-11,1000,Cash,0,2016.44,Utilities,UTIL-40286
-JE-000355,JE-000355-1,2025-11-30,2025-11,1000,Cash,306341.03,0,Customer collections on account,COLL-2025-11
-JE-000355,JE-000355-2,2025-11-30,2025-11,1100,Accounts Receivable,0,306341.03,Customer collections on account,COLL-2025-11
-JE-000356,JE-000356-1,2025-11-30,2025-11,2000,Accounts Payable,115107.94,0,Vendor payments on account,PMT-2025-11
-JE-000356,JE-000356-2,2025-11-30,2025-11,1000,Cash,0,115107.94,Vendor payments on account,PMT-2025-11
+JE-000355,JE-000355-1,2025-11-30,2025-11,1000,Cash,351950.22,0,Customer collections on account,COLL-2025-11
+JE-000355,JE-000355-2,2025-11-30,2025-11,1100,Accounts Receivable,0,351950.22,Customer collections on account,COLL-2025-11
+JE-000356,JE-000356-1,2025-11-30,2025-11,2000,Accounts Payable,170216.03,0,Vendor payments on account,PMT-2025-11
+JE-000356,JE-000356-2,2025-11-30,2025-11,1000,Cash,0,170216.03,Vendor payments on account,PMT-2025-11
 JE-000357,JE-000357-1,2025-12-31,2025-12,1100,Accounts Receivable,319665.37,0,Monthly SaaS subscription revenue recognized,SUB-40287
 JE-000357,JE-000357-2,2025-12-31,2025-12,4000,Product Revenue,0,319665.37,Monthly SaaS subscription revenue recognized,SUB-40287
 JE-000358,JE-000358-1,2025-12-31,2025-12,1100,Accounts Receivable,36210.91,0,Professional services revenue recognized,SVC-40288
@@ -737,7 +737,7 @@ JE-000368,JE-000368-1,2025-12-15,2025-12,6800,Office Supplies,1200.28,0,Office s
 JE-000368,JE-000368-2,2025-12-15,2025-12,1000,Cash,0,1200.28,Office supplies,EXP-40297
 JE-000369,JE-000369-1,2025-12-15,2025-12,6900,Utilities,2214.72,0,Utilities,UTIL-40298
 JE-000369,JE-000369-2,2025-12-15,2025-12,1000,Cash,0,2214.72,Utilities,UTIL-40298
-JE-000370,JE-000370-1,2025-12-31,2025-12,1000,Cash,302494.83,0,Customer collections on account,COLL-2025-12
-JE-000370,JE-000370-2,2025-12-31,2025-12,1100,Accounts Receivable,0,302494.83,Customer collections on account,COLL-2025-12
-JE-000371,JE-000371-1,2025-12-31,2025-12,2000,Accounts Payable,109324.24,0,Vendor payments on account,PMT-2025-12
-JE-000371,JE-000371-2,2025-12-31,2025-12,1000,Cash,0,109324.24,Vendor payments on account,PMT-2025-12
+JE-000370,JE-000370-1,2025-12-31,2025-12,1000,Cash,354305.85,0,Customer collections on account,COLL-2025-12
+JE-000370,JE-000370-2,2025-12-31,2025-12,1100,Accounts Receivable,0,354305.85,Customer collections on account,COLL-2025-12
+JE-000371,JE-000371-1,2025-12-31,2025-12,2000,Accounts Payable,150079.59,0,Vendor payments on account,PMT-2025-12
+JE-000371,JE-000371-2,2025-12-31,2025-12,1000,Cash,0,150079.59,Vendor payments on account,PMT-2025-12

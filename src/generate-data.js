@@ -88,12 +88,16 @@ function post(date, period, debitAcct, creditAcct, amount, description, sourceDo
 }
 
 // Opening equity injection
-post('2024-01-02', '2024-01', '1000', '3000', 500000, 'Founding equity contribution', 'JE-OPEN-0001');
+post('2024-01-02', '2024-01', '1000', '3000', 650000, 'Founding equity contribution', 'JE-OPEN-0001');
 
 let productRevBase = 180000;
 let serviceRevBase = 25000;
 let salaries = 95000;
 let fixedAssets = 0;
+let arBalance = 0; // running outstanding receivables (debit-normal)
+let apBalance = 0; // running outstanding payables (credit-normal)
+const COLLECTION_RATE = 0.6; // fraction of outstanding AR collected each month (~DSO of ~1.7 months)
+const PAYMENT_RATE = 0.6; // fraction of outstanding AP paid each month
 
 for (let i = 0; i < PERIODS.length; i++) {
   const period = PERIODS[i];
@@ -125,16 +129,20 @@ for (let i = 0; i < PERIODS.length; i++) {
 
   // ---- Software & Subscriptions (with Oct-2025 anomaly) ----
   let software = 8000 * Math.pow(1.015, i) * jitter(0.08);
+  let softwareAnomalyAmt = 0;
   if (period === ANOMALIES.software_spike) {
-    post(dateMid, period, '6200', '2000', 42000, 'One-time ERP/finance-system implementation — vendor SOW', nextInv('INV'));
+    softwareAnomalyAmt = 42000;
+    post(dateMid, period, '6200', '2000', softwareAnomalyAmt, 'One-time ERP/finance-system implementation — vendor SOW', nextInv('INV'));
   }
   post(dateMid, period, '6200', '1000', software, 'Recurring SaaS tooling subscriptions', nextInv('SUB'));
 
   // ---- Marketing (Q4 seasonality + Nov-2025 anomaly) ----
   let marketing = 15000 * Math.pow(1.01, i) * jitter(0.10);
   if (isQ4) marketing *= 1.6;
+  let marketingAnomalyAmt = 0;
   if (period === ANOMALIES.marketing_spike) {
-    post(dateMid, period, '6300', '2000', 38000, 'One-off brand awareness campaign — outside normal Q4 plan', nextInv('INV'));
+    marketingAnomalyAmt = 38000;
+    post(dateMid, period, '6300', '2000', marketingAnomalyAmt, 'One-off brand awareness campaign — outside normal Q4 plan', nextInv('INV'));
   }
   post(dateMid, period, '6300', '2000', marketing, 'Digital advertising & agency fees', nextInv('INV'));
 
@@ -167,9 +175,19 @@ for (let i = 0; i < PERIODS.length; i++) {
   if (['06','07','08','12','01'].includes(m)) utilities *= 1.15; // seasonal HVAC
   post(dateMid, period, '6900', '1000', utilities, 'Utilities', nextInv('UTIL'));
 
-  // ---- Cash collections / payments (partial working-capital cycling) ----
-  post(dateLate, period, '1000', '1100', (productRev + serviceRev) * 0.85, 'Customer collections on account', `COLL-${period}`);
-  post(dateLate, period, '2000', '1000', (cogs + marketing + profFees) * 0.80, 'Vendor payments on account', `PMT-${period}`);
+  // ---- Cash collections / payments (working-capital cycling against the
+  // running AR/AP balance, not just this month's new activity — otherwise
+  // the uncollected/unpaid tail from every prior month stacks up forever) ----
+  arBalance += productRev + serviceRev;
+  apBalance += cogs + marketing + marketingAnomalyAmt + profFees + softwareAnomalyAmt;
+
+  const collection = arBalance * COLLECTION_RATE;
+  post(dateLate, period, '1000', '1100', collection, 'Customer collections on account', `COLL-${period}`);
+  arBalance -= collection;
+
+  const payment = apBalance * PAYMENT_RATE;
+  post(dateLate, period, '2000', '1000', payment, 'Vendor payments on account', `PMT-${period}`);
+  apBalance -= payment;
 }
 
 // ---- aggregate trial balance per period per account ----

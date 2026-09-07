@@ -1,0 +1,730 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Meridian Ledger Console</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Spectral:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&family=IBM+Plex+Sans:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+:root{
+  --ink:#172033; --ink-soft:#4c5a6e; --ink-faint:#7c8798;
+  --paper:#f2f3ef; --surface:#ffffff; --surface-sunken:#eceee9;
+  --rule:#d9dcd4; --rule-strong:#c3c7bd;
+  --accent:#a3332b; --accent-soft:#f4e3e0; --accent-soft-ink:#7a2620;
+  --good:#2e7d5b; --good-bg:#e3f0e9;
+  --flag:#97701f; --flag-bg:#f5ecd8;
+  --plug:#4f5d7a; --plug-bg:#e7eaf1;
+  --serif:"Spectral",Georgia,"Times New Roman",serif;
+  --sans:"IBM Plex Sans",-apple-system,"Segoe UI",sans-serif;
+  --mono:"IBM Plex Mono","SFMono-Regular",Consolas,monospace;
+}
+@media (prefers-color-scheme: dark){
+  :root:not([data-theme="light"]){
+    --ink:#e7e9e2; --ink-soft:#aab2ba; --ink-faint:#7c8798;
+    --paper:#12161d; --surface:#1a1f28; --surface-sunken:#10141a;
+    --rule:#2b323d; --rule-strong:#3a4250;
+    --accent:#e08278; --accent-soft:#382220; --accent-soft-ink:#f0a89f;
+    --good:#5fbb92; --good-bg:#17281f;
+    --flag:#d3ab5a; --flag-bg:#2c2515;
+    --plug:#93a2c4; --plug-bg:#1c2230;
+  }
+}
+:root[data-theme="dark"]{
+  --ink:#e7e9e2; --ink-soft:#aab2ba; --ink-faint:#7c8798;
+  --paper:#12161d; --surface:#1a1f28; --surface-sunken:#10141a;
+  --rule:#2b323d; --rule-strong:#3a4250;
+  --accent:#e08278; --accent-soft:#382220; --accent-soft-ink:#f0a89f;
+  --good:#5fbb92; --good-bg:#17281f;
+  --flag:#d3ab5a; --flag-bg:#2c2515;
+  --plug:#93a2c4; --plug-bg:#1c2230;
+}
+*{box-sizing:border-box;}
+body{
+  background:var(--paper); color:var(--ink); font-family:var(--sans);
+  font-size:14px; line-height:1.5; margin:0;
+}
+::selection{ background:var(--accent-soft); color:var(--accent-soft-ink); }
+.wrap{ max-width:980px; margin:0 auto; padding:28px 20px 60px; }
+
+/* ---------- masthead ---------- */
+.masthead{ margin-bottom:22px; }
+.eyebrow{
+  font-family:var(--mono); font-size:10.5px; letter-spacing:.12em; text-transform:uppercase;
+  color:var(--ink-faint); display:flex; align-items:center; gap:8px; margin-bottom:8px;
+}
+.eyebrow .dot{ width:5px; height:5px; border-radius:50%; background:var(--accent); flex:none; }
+h1{
+  font-family:var(--serif); font-weight:600; font-size:clamp(24px,4vw,32px);
+  margin:0 0 6px; text-wrap:balance; letter-spacing:-.01em;
+}
+.dek{ color:var(--ink-soft); max-width:62ch; margin:0 0 16px; font-size:14.5px; }
+.stat-row{ display:flex; flex-wrap:wrap; gap:10px; }
+.stat-chip{
+  display:flex; align-items:baseline; gap:6px; background:var(--surface);
+  border:1px solid var(--rule); border-radius:7px; padding:7px 12px;
+}
+.stat-chip b{ font-family:var(--mono); font-size:15px; font-variant-numeric:tabular-nums; }
+.stat-chip span{ font-size:11.5px; color:var(--ink-faint); text-transform:uppercase; letter-spacing:.04em; }
+.tool-pills{ display:flex; flex-wrap:wrap; gap:6px; margin-top:14px; }
+.tool-pill{
+  font-family:var(--mono); font-size:11px; color:var(--ink-soft); background:var(--surface-sunken);
+  border:1px solid var(--rule); border-radius:20px; padding:3px 10px;
+}
+
+/* ---------- tabs ---------- */
+.tabbar{ display:flex; gap:2px; border-bottom:1px solid var(--rule-strong); margin:26px 0 18px; overflow-x:auto; }
+.tab{
+  font-family:var(--sans); font-weight:600; font-size:13px; color:var(--ink-faint);
+  background:none; border:none; padding:9px 16px; cursor:pointer; white-space:nowrap;
+  border-bottom:2px solid transparent; margin-bottom:-1px; transition:color .15s;
+}
+.tab:hover{ color:var(--ink); }
+.tab[aria-selected="true"]{ color:var(--accent); border-bottom-color:var(--accent); }
+
+/* ---------- controls ---------- */
+.controls{
+  display:flex; flex-wrap:wrap; gap:12px; align-items:flex-end; margin-bottom:20px;
+  background:var(--surface); border:1px solid var(--rule); border-radius:10px; padding:14px 16px;
+}
+.field{ display:flex; flex-direction:column; gap:4px; }
+.field label{ font-size:11px; text-transform:uppercase; letter-spacing:.05em; color:var(--ink-faint); }
+select, input[type="number"]{
+  font-family:var(--sans); font-size:13.5px; color:var(--ink); background:var(--surface);
+  border:1px solid var(--rule-strong); border-radius:6px; padding:7px 9px; min-width:150px;
+}
+input[type="number"]{ min-width:70px; }
+select:focus, input:focus, button:focus-visible{ outline:2px solid var(--accent); outline-offset:1px; }
+.chipset{ display:flex; gap:6px; flex-wrap:wrap; }
+.chip{
+  font-family:var(--sans); font-size:12.5px; font-weight:600; color:var(--ink-soft);
+  background:var(--surface-sunken); border:1px solid var(--rule); border-radius:20px;
+  padding:5px 12px; cursor:pointer;
+}
+.chip[aria-pressed="true"]{ background:var(--ink); color:var(--paper); border-color:var(--ink); }
+
+/* ---------- panel ---------- */
+.panel{ display:flex; flex-direction:column; gap:18px; }
+.card{
+  background:var(--surface); border:1px solid var(--rule); border-radius:10px; padding:18px 20px;
+}
+.card h2{ font-family:var(--serif); font-size:17px; font-weight:600; margin:0 0 4px; }
+.card .sub{ color:var(--ink-faint); font-size:12.5px; margin:0 0 14px; }
+
+.tablewrap{ overflow-x:auto; border:1px solid var(--rule); border-radius:8px; }
+table{ width:100%; border-collapse:collapse; font-size:13px; }
+th{
+  text-align:left; font-size:11px; text-transform:uppercase; letter-spacing:.04em; color:var(--ink-faint);
+  background:var(--surface-sunken); padding:8px 12px; border-bottom:1px solid var(--rule); white-space:nowrap;
+  position:sticky; top:0;
+}
+td{ padding:8px 12px; border-bottom:1px solid var(--rule); vertical-align:top; }
+tr:last-child td{ border-bottom:none; }
+tr.flagged td:first-child{ box-shadow:inset 3px 0 0 var(--flag); }
+.num{ font-family:var(--mono); font-variant-numeric:tabular-nums; text-align:right; white-space:nowrap; }
+.mono{ font-family:var(--mono); font-size:12px; color:var(--ink-soft); }
+tfoot td{ font-weight:600; background:var(--surface-sunken); border-top:1px solid var(--rule-strong); }
+
+.badge{
+  display:inline-flex; align-items:center; gap:5px; font-size:11px; font-weight:600;
+  padding:2px 8px; border-radius:20px; white-space:nowrap;
+}
+.badge.gl{ background:var(--good-bg); color:var(--good); }
+.badge.plug{ background:var(--plug-bg); color:var(--plug); }
+.badge.flag{ background:var(--flag-bg); color:var(--flag); }
+.tick{
+  display:inline-block; font-family:var(--mono); font-size:10px; font-weight:700; color:var(--accent);
+  background:var(--accent-soft); border-radius:4px; padding:1px 5px; margin-left:5px; cursor:default;
+}
+
+/* ---------- stat tiles ---------- */
+.tiles{ display:grid; grid-template-columns:repeat(auto-fit,minmax(160px,1fr)); gap:1px; background:var(--rule); border:1px solid var(--rule); border-radius:10px; overflow:hidden; }
+.tile{ background:var(--surface); padding:16px 18px; }
+.tile .label{ font-size:11px; text-transform:uppercase; letter-spacing:.04em; color:var(--ink-faint); margin-bottom:6px; }
+.tile .value{ font-family:var(--serif); font-size:22px; font-weight:600; font-variant-numeric:tabular-nums; }
+.tile .value.accent{ color:var(--accent); }
+.tile .delta{ font-family:var(--mono); font-size:12px; color:var(--ink-soft); margin-top:3px; }
+
+.note{
+  background:var(--plug-bg); border:1px solid var(--rule); border-left:3px solid var(--plug);
+  border-radius:6px; padding:12px 14px; font-size:13px; color:var(--ink-soft);
+}
+.caveat{
+  background:var(--flag-bg); border-left:3px solid var(--flag); border-radius:6px;
+  padding:12px 14px; font-size:12.5px; color:var(--ink-soft); display:flex; gap:10px;
+}
+.caveat b{ color:var(--ink); }
+
+.driver-row{
+  display:flex; gap:12px; align-items:flex-start; padding:10px 0; border-bottom:1px solid var(--rule);
+}
+.driver-row:last-child{ border-bottom:none; }
+.driver-amt{ font-family:var(--mono); font-variant-numeric:tabular-nums; font-weight:600; white-space:nowrap; margin-left:auto; padding-left:12px; }
+.driver-desc{ font-size:13px; }
+.driver-meta{ font-size:11.5px; color:var(--ink-faint); margin-top:2px; }
+
+/* ---------- charts ---------- */
+.chart-card svg{ display:block; width:100%; height:auto; overflow:visible; }
+.chart-container{ position:relative; }
+.chart-tooltip{
+  position:absolute; pointer-events:none; background:var(--ink); color:var(--paper);
+  font-family:var(--mono); font-size:11.5px; padding:6px 9px; border-radius:6px; white-space:nowrap;
+  transform:translate(-50%,-115%); opacity:0; transition:opacity .1s; z-index:5;
+}
+.chart-tooltip.show{ opacity:1; }
+.axis-label{ font-family:var(--mono); font-size:10px; fill:var(--ink-faint); }
+.gridline{ stroke:var(--rule); stroke-width:1; }
+.hidden{ display:none !important; }
+
+/* ---------- audit log ---------- */
+.audit{
+  margin-top:26px; border:1px solid var(--rule); border-radius:10px; overflow:hidden;
+}
+.audit-head{
+  display:flex; align-items:center; justify-content:space-between; padding:10px 16px;
+  background:var(--surface-sunken); border-bottom:1px solid var(--rule);
+}
+.audit-head h3{ font-family:var(--sans); font-size:12.5px; text-transform:uppercase; letter-spacing:.05em; margin:0; color:var(--ink-soft); }
+.audit-head .count{ font-family:var(--mono); font-size:11.5px; color:var(--ink-faint); }
+.audit-body{ background:var(--surface); max-height:220px; overflow-y:auto; }
+.audit-row{
+  display:flex; gap:10px; padding:8px 16px; border-bottom:1px solid var(--rule);
+  font-family:var(--mono); font-size:11.5px; align-items:baseline;
+}
+.audit-row:last-child{ border-bottom:none; }
+.audit-row .ts{ color:var(--ink-faint); flex:none; }
+.audit-row .tool{ color:var(--accent); font-weight:600; flex:none; }
+.audit-row .summary{ color:var(--ink-soft); overflow:hidden; text-overflow:ellipsis; white-space:nowrap; }
+.audit-row .cites{ margin-left:auto; color:var(--ink-faint); flex:none; }
+.audit-foot{ padding:8px 16px; font-size:11px; color:var(--ink-faint); border-top:1px solid var(--rule); }
+
+@media (max-width:640px){
+  .controls{ padding:12px; }
+  select, input[type="number"]{ min-width:120px; flex:1; }
+  .driver-amt{ margin-left:0; padding-left:0; }
+  .driver-row{ flex-wrap:wrap; }
+}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <div class="masthead">
+    <div class="eyebrow"><span class="dot"></span>MODEL CONTEXT PROTOCOL &middot; READ-ONLY QUERY CONSOLE</div>
+    <h1>Meridian Analytics — Ledger Console</h1>
+    <p class="dek">An in-browser replay of the <code>finance-gl-server</code> MCP tools against Meridian's real synthetic ledger — every figure below is computed live from the same trial balance &amp; GL data the actual server reads, and every query is logged the same way.</p>
+    <div class="stat-row" id="statRow"></div>
+    <div class="tool-pills">
+      <span class="tool-pill">list_accounts</span>
+      <span class="tool-pill">get_trial_balance</span>
+      <span class="tool-pill">get_account_detail</span>
+      <span class="tool-pill">compute_variance</span>
+      <span class="tool-pill">forecast_account</span>
+    </div>
+  </div>
+
+  <div class="tabbar" role="tablist" id="tabbar">
+    <button class="tab" role="tab" data-tab="variance">Variance</button>
+    <button class="tab" role="tab" data-tab="forecast">Forecast</button>
+    <button class="tab" role="tab" data-tab="trial_balance">Trial Balance</button>
+    <button class="tab" role="tab" data-tab="account_detail">Account Detail</button>
+  </div>
+
+  <div class="controls" id="controls">
+    <div class="field" data-ctl="account">
+      <label for="accountSelect">Account</label>
+      <select id="accountSelect"></select>
+    </div>
+    <div class="field" data-ctl="period">
+      <label for="periodSelect">Period</label>
+      <select id="periodSelect"></select>
+    </div>
+    <div class="field" data-ctl="compare">
+      <label for="compareSelect">Compare to</label>
+      <select id="compareSelect">
+        <option value="prior_month">Prior month</option>
+        <option value="prior_year">Prior year</option>
+        <option value="custom">Custom period&hellip;</option>
+      </select>
+    </div>
+    <div class="field hidden" data-ctl="customPeriod">
+      <label for="customPeriodSelect">Custom period</label>
+      <select id="customPeriodSelect"></select>
+    </div>
+    <div class="field" data-ctl="method">
+      <label for="methodSelect">Method</label>
+      <select id="methodSelect">
+        <option value="linear_trend">Linear trend</option>
+        <option value="moving_average">Moving average</option>
+      </select>
+    </div>
+    <div class="field" data-ctl="periodsAhead">
+      <label for="periodsAheadInput">Periods ahead</label>
+      <input type="number" id="periodsAheadInput" min="1" max="12" value="3">
+    </div>
+    <div class="field" data-ctl="typeFilter">
+      <label>Account type</label>
+      <div class="chipset" id="typeChips"></div>
+    </div>
+  </div>
+
+  <div class="panel" id="panel"></div>
+
+  <div class="audit">
+    <div class="audit-head">
+      <h3>Audit log</h3>
+      <span class="count" id="auditCount">0 calls</span>
+    </div>
+    <div class="audit-body" id="auditBody"></div>
+    <div class="audit-foot">Every interaction above triggers one of the five tool calls, logged here exactly as the real server appends to <span class="mono">data/audit_log.jsonl</span>.</div>
+  </div>
+
+</div>
+
+<script>
+const DATA = {"accounts":[["1000","Cash","Asset","BS","debit"],["1100","Accounts Receivable","Asset","BS","debit"],["1500","Fixed Assets","Asset","BS","debit"],["1600","Accumulated Depreciation","Asset","BS","credit"],["2000","Accounts Payable","Liability","BS","credit"],["3000","Common Stock","Equity","BS","credit"],["3900","Retained Earnings","Equity","BS","credit"],["4000","Product Revenue","Revenue","IS","credit"],["4100","Service Revenue","Revenue","IS","credit"],["5000","Cost of Goods Sold","Expense","IS","debit"],["6000","Salaries & Wages","Expense","IS","debit"],["6100","Employee Benefits","Expense","IS","debit"],["6200","Software & Subscriptions","Expense","IS","debit"],["6300","Marketing & Advertising","Expense","IS","debit"],["6400","Travel & Entertainment","Expense","IS","debit"],["6500","Professional Fees","Expense","IS","debit"],["6600","Rent & Facilities","Expense","IS","debit"],["6700","Depreciation","Expense","IS","debit"],["6800","Office Supplies","Expense","IS","debit"],["6900","Utilities","Expense","IS","debit"]],"glRows":[["JE-000001","2024-01-02","2024-01","1000",650000,0,"Founding equity contribution","JE-OPEN-0001"],["JE-000001","2024-01-02","2024-01","3000",0,650000,"Founding equity contribution","JE-OPEN-0001"],["JE-000002","2024-01-31","2024-01","1100",184552.55,0,"Monthly SaaS subscription revenue recognized","SUB-40001"],["JE-000002","2024-01-31","2024-01","4000",0,184552.55,"Monthly SaaS subscription revenue recognized","SUB-40001"],["JE-000003","2024-01-31","2024-01","1100",24710.26,0,"Professional services revenue recognized","SVC-40002"],["JE-000003","2024-01-31","2024-01","4100",0,24710.26,"Professional services revenue recognized","SVC-40002"],["JE-000004","2024-01-31","2024-01","5000",58874.54,0,"Hosting infrastructure & customer support costs","INV-40003"],["JE-000004","2024-01-31","2024-01","2000",0,58874.54,"Hosting infrastructure & customer support costs","INV-40003"],["JE-000005","2024-01-05","2024-01","6000",104550.87,0,"Payroll run","PR-40004"],["JE-000005","2024-01-05","2024-01","1000",0,104550.87,"Payroll run","PR-40004"],["JE-000006","2024-01-05","2024-01","6100",22396.62,0,"Employee benefits & payroll taxes","PR-40005"],["JE-000006","2024-01-05","2024-01","1000",0,22396.62,"Employee benefits & payroll taxes","PR-40005"],["JE-000007","2024-01-15","2024-01","6200",8625.75,0,"Recurring SaaS tooling subscriptions","SUB-40006"],["JE-000007","2024-01-15","2024-01","1000",0,8625.75,"Recurring SaaS tooling subscriptions","SUB-40006"],["JE-000008","2024-01-15","2024-01","6300",16339.63,0,"Digital advertising & agency fees","INV-40007"],["JE-000008","2024-01-15","2024-01","2000",0,16339.63,"Digital advertising & agency fees","INV-40007"],["JE-000009","2024-01-15","2024-01","6400",4107.46,0,"Employee travel & client entertainment","EXP-40008"],["JE-000009","2024-01-15","2024-01","1000",0,4107.46,"Employee travel & client entertainment","EXP-40008"],["JE-000010","2024-01-15","2024-01","6500",14950.26,0,"Legal, audit & advisory fees","INV-40009"],["JE-000010","2024-01-15","2024-01","2000",0,14950.26,"Legal, audit & advisory fees","INV-40009"],["JE-000011","2024-01-05","2024-01","6600",12000,0,"Office lease payment","LEASE-40010"],["JE-000011","2024-01-05","2024-01","1000",0,12000,"Office lease payment","LEASE-40010"],["JE-000012","2024-01-05","2024-01","1500",6682.81,0,"Capital expenditure — equipment & software capitalization","CAPEX-40011"],["JE-000012","2024-01-05","2024-01","1000",0,6682.81,"Capital expenditure — equipment & software capitalization","CAPEX-40011"],["JE-000013","2024-01-31","2024-01","6700",2000,0,"Monthly depreciation expense","DEP-2024-01"],["JE-000013","2024-01-31","2024-01","1600",0,2000,"Monthly depreciation expense","DEP-2024-01"],["JE-000014","2024-01-15","2024-01","6800",969.04,0,"Office supplies","EXP-40012"],["JE-000014","2024-01-15","2024-01","1000",0,969.04,"Office supplies","EXP-40012"],["JE-000015","2024-01-15","2024-01","6900",2499.27,0,"Utilities","UTIL-40013"],["JE-000015","2024-01-15","2024-01","1000",0,2499.27,"Utilities","UTIL-40013"],["JE-000016","2024-01-31","2024-01","1000",125557.68,0,"Customer collections on account","COLL-2024-01"],["JE-000016","2024-01-31","2024-01","1100",0,125557.68,"Customer collections on account","COLL-2024-01"],["JE-000017","2024-01-31","2024-01","2000",54098.66,0,"Vendor payments on account","PMT-2024-01"],["JE-000017","2024-01-31","2024-01","1000",0,54098.66,"Vendor payments on account","PMT-2024-01"],["JE-000018","2024-02-29","2024-02","1100",192923.18,0,"Monthly SaaS subscription revenue recognized","SUB-40014"],["JE-000018","2024-02-29","2024-02","4000",0,192923.18,"Monthly SaaS subscription revenue recognized","SUB-40014"],["JE-000019","2024-02-29","2024-02","1100",22967.78,0,"Professional services revenue recognized","SVC-40015"],["JE-000019","2024-02-29","2024-02","4100",0,22967.78,"Professional services revenue recognized","SVC-40015"],["JE-000020","2024-02-29","2024-02","5000",61741.71,0,"Hosting infrastructure & customer support costs","INV-40016"],["JE-000020","2024-02-29","2024-02","2000",0,61741.71,"Hosting infrastructure & customer support costs","INV-40016"],["JE-000021","2024-02-05","2024-02","6000",104490.61,0,"Payroll run","PR-40017"],["JE-000021","2024-02-05","2024-02","1000",0,104490.61,"Payroll run","PR-40017"],["JE-000022","2024-02-05","2024-02","6100",23040.7,0,"Employee benefits & payroll taxes","PR-40018"],["JE-000022","2024-02-05","2024-02","1000",0,23040.7,"Employee benefits & payroll taxes","PR-40018"],["JE-000023","2024-02-15","2024-02","6200",7862.26,0,"Recurring SaaS tooling subscriptions","SUB-40019"],["JE-000023","2024-02-15","2024-02","1000",0,7862.26,"Recurring SaaS tooling subscriptions","SUB-40019"],["JE-000024","2024-02-15","2024-02","6300",15242.26,0,"Digital advertising & agency fees","INV-40020"],["JE-000024","2024-02-15","2024-02","2000",0,15242.26,"Digital advertising & agency fees","INV-40020"],["JE-000025","2024-02-15","2024-02","6400",3411.57,0,"Employee travel & client entertainment","EXP-40021"],["JE-000025","2024-02-15","2024-02","1000",0,3411.57,"Employee travel & client entertainment","EXP-40021"],["JE-000026","2024-02-15","2024-02","6500",15159.33,0,"Legal, audit & advisory fees","INV-40022"],["JE-000026","2024-02-15","2024-02","2000",0,15159.33,"Legal, audit & advisory fees","INV-40022"],["JE-000027","2024-02-05","2024-02","6600",12000,0,"Office lease payment","LEASE-40023"],["JE-000027","2024-02-05","2024-02","1000",0,12000,"Office lease payment","LEASE-40023"],["JE-000028","2024-02-29","2024-02","6700",2000,0,"Monthly depreciation expense","DEP-2024-02"],["JE-000028","2024-02-29","2024-02","1600",0,2000,"Monthly depreciation expense","DEP-2024-02"],["JE-000029","2024-02-15","2024-02","6800",1185.38,0,"Office supplies","EXP-40024"],["JE-000029","2024-02-15","2024-02","1000",0,1185.38,"Office supplies","EXP-40024"],["JE-000030","2024-02-15","2024-02","6900",1881.82,0,"Utilities","UTIL-40025"],["JE-000030","2024-02-15","2024-02","1000",0,1881.82,"Utilities","UTIL-40025"],["JE-000031","2024-02-29","2024-02","1000",179757.65,0,"Customer collections on account","COLL-2024-02"],["JE-000031","2024-02-29","2024-02","1100",0,179757.65,"Customer collections on account","COLL-2024-02"],["JE-000032","2024-02-29","2024-02","2000",76925.44,0,"Vendor payments on account","PMT-2024-02"],["JE-000032","2024-02-29","2024-02","1000",0,76925.44,"Vendor payments on account","PMT-2024-02"],["JE-000033","2024-03-31","2024-03","1100",188494.09,0,"Monthly SaaS subscription revenue recognized","SUB-40026"],["JE-000033","2024-03-31","2024-03","4000",0,188494.09,"Monthly SaaS subscription revenue recognized","SUB-40026"],["JE-000034","2024-03-31","2024-03","1100",26324.88,0,"Professional services revenue recognized","SVC-40027"],["JE-000034","2024-03-31","2024-03","4100",0,26324.88,"Professional services revenue recognized","SVC-40027"],["JE-000035","2024-03-31","2024-03","5000",61923.4,0,"Hosting infrastructure & customer support costs","INV-40028"],["JE-000035","2024-03-31","2024-03","2000",0,61923.4,"Hosting infrastructure & customer support costs","INV-40028"],["JE-000036","2024-03-05","2024-03","6000",100846.26,0,"Payroll run","PR-40029"],["JE-000036","2024-03-05","2024-03","1000",0,100846.26,"Payroll run","PR-40029"],["JE-000037","2024-03-05","2024-03","6100",22122.58,0,"Employee benefits & payroll taxes","PR-40030"],["JE-000037","2024-03-05","2024-03","1000",0,22122.58,"Employee benefits & payroll taxes","PR-40030"],["JE-000038","2024-03-15","2024-03","6200",7948.28,0,"Recurring SaaS tooling subscriptions","SUB-40031"],["JE-000038","2024-03-15","2024-03","1000",0,7948.28,"Recurring SaaS tooling subscriptions","SUB-40031"],["JE-000039","2024-03-15","2024-03","6300",15362.53,0,"Digital advertising & agency fees","INV-40032"],["JE-000039","2024-03-15","2024-03","2000",0,15362.53,"Digital advertising & agency fees","INV-40032"],["JE-000040","2024-03-15","2024-03","6400",3961.91,0,"Employee travel & client entertainment","EXP-40033"],["JE-000040","2024-03-15","2024-03","1000",0,3961.91,"Employee travel & client entertainment","EXP-40033"],["JE-000041","2024-03-15","2024-03","6500",5643.82,0,"Legal, audit & advisory fees","INV-40034"],["JE-000041","2024-03-15","2024-03","2000",0,5643.82,"Legal, audit & advisory fees","INV-40034"],["JE-000042","2024-03-05","2024-03","6600",12000,0,"Office lease payment","LEASE-40035"],["JE-000042","2024-03-05","2024-03","1000",0,12000,"Office lease payment","LEASE-40035"],["JE-000043","2024-03-31","2024-03","6700",2000,0,"Monthly depreciation expense","DEP-2024-03"],["JE-000043","2024-03-31","2024-03","1600",0,2000,"Monthly depreciation expense","DEP-2024-03"],["JE-000044","2024-03-15","2024-03","6800",1349.54,0,"Office supplies","EXP-40036"],["JE-000044","2024-03-15","2024-03","1000",0,1349.54,"Office supplies","EXP-40036"],["JE-000045","2024-03-15","2024-03","6900",1826.65,0,"Utilities","UTIL-40037"],["JE-000045","2024-03-15","2024-03","1000",0,1826.65,"Utilities","UTIL-40037"],["JE-000046","2024-03-31","2024-03","1000",200794.44,0,"Customer collections on account","COLL-2024-03"],["JE-000046","2024-03-31","2024-03","1100",0,200794.44,"Customer collections on account","COLL-2024-03"],["JE-000047","2024-03-31","2024-03","2000",80528.03,0,"Vendor payments on account","PMT-2024-03"],["JE-000047","2024-03-31","2024-03","1000",0,80528.03,"Vendor payments on account","PMT-2024-03"],["JE-000048","2024-04-30","2024-04","1100",199369.85,0,"Monthly SaaS subscription revenue recognized","SUB-40038"],["JE-000048","2024-04-30","2024-04","4000",0,199369.85,"Monthly SaaS subscription revenue recognized","SUB-40038"],["JE-000049","2024-04-30","2024-04","1100",28280.48,0,"Professional services revenue recognized","SVC-40039"],["JE-000049","2024-04-30","2024-04","4100",0,28280.48,"Professional services revenue recognized","SVC-40039"],["JE-000050","2024-04-30","2024-04","5000",65798.51,0,"Hosting infrastructure & customer support costs","INV-40040"],["JE-000050","2024-04-30","2024-04","2000",0,65798.51,"Hosting infrastructure & customer support costs","INV-40040"],["JE-000051","2024-04-05","2024-04","6000",103757.11,0,"Payroll run","PR-40041"],["JE-000051","2024-04-05","2024-04","1000",0,103757.11,"Payroll run","PR-40041"],["JE-000052","2024-04-05","2024-04","6100",23580.89,0,"Employee benefits & payroll taxes","PR-40042"],["JE-000052","2024-04-05","2024-04","1000",0,23580.89,"Employee benefits & payroll taxes","PR-40042"],["JE-000053","2024-04-15","2024-04","6200",8580.53,0,"Recurring SaaS tooling subscriptions","SUB-40043"],["JE-000053","2024-04-15","2024-04","1000",0,8580.53,"Recurring SaaS tooling subscriptions","SUB-40043"],["JE-000054","2024-04-15","2024-04","6300",14355.6,0,"Digital advertising & agency fees","INV-40044"],["JE-000054","2024-04-15","2024-04","2000",0,14355.6,"Digital advertising & agency fees","INV-40044"],["JE-000055","2024-04-15","2024-04","6400",4370.69,0,"Employee travel & client entertainment","EXP-40045"],["JE-000055","2024-04-15","2024-04","1000",0,4370.69,"Employee travel & client entertainment","EXP-40045"],["JE-000056","2024-04-15","2024-04","6500",5424.65,0,"Legal, audit & advisory fees","INV-40046"],["JE-000056","2024-04-15","2024-04","2000",0,5424.65,"Legal, audit & advisory fees","INV-40046"],["JE-000057","2024-04-05","2024-04","6600",12000,0,"Office lease payment","LEASE-40047"],["JE-000057","2024-04-05","2024-04","1000",0,12000,"Office lease payment","LEASE-40047"],["JE-000058","2024-04-05","2024-04","1500",8188.49,0,"Capital expenditure — equipment & software capitalization","CAPEX-40048"],["JE-000058","2024-04-05","2024-04","1000",0,8188.49,"Capital expenditure — equipment & software capitalization","CAPEX-40048"],["JE-000059","2024-04-30","2024-04","6700",2000,0,"Monthly depreciation expense","DEP-2024-04"],["JE-000059","2024-04-30","2024-04","1600",0,2000,"Monthly depreciation expense","DEP-2024-04"],["JE-000060","2024-04-15","2024-04","6800",1044.68,0,"Office supplies","EXP-40049"],["JE-000060","2024-04-15","2024-04","1000",0,1044.68,"Office supplies","EXP-40049"],["JE-000061","2024-04-15","2024-04","6900",1823.99,0,"Utilities","UTIL-40050"],["JE-000061","2024-04-15","2024-04","1000",0,1823.99,"Utilities","UTIL-40050"],["JE-000062","2024-04-30","2024-04","1000",216907.97,0,"Customer collections on account","COLL-2024-04"],["JE-000062","2024-04-30","2024-04","1100",0,216907.97,"Customer collections on account","COLL-2024-04"],["JE-000063","2024-04-30","2024-04","2000",83558.46,0,"Vendor payments on account","PMT-2024-04"],["JE-000063","2024-04-30","2024-04","1000",0,83558.46,"Vendor payments on account","PMT-2024-04"],["JE-000064","2024-05-31","2024-05","1100",199795.25,0,"Monthly SaaS subscription revenue recognized","SUB-40051"],["JE-000064","2024-05-31","2024-05","4000",0,199795.25,"Monthly SaaS subscription revenue recognized","SUB-40051"],["JE-000065","2024-05-31","2024-05","1100",25004.27,0,"Professional services revenue recognized","SVC-40052"],["JE-000065","2024-05-31","2024-05","4100",0,25004.27,"Professional services revenue recognized","SVC-40052"],["JE-000066","2024-05-31","2024-05","5000",62810.2,0,"Hosting infrastructure & customer support costs","INV-40053"],["JE-000066","2024-05-31","2024-05","2000",0,62810.2,"Hosting infrastructure & customer support costs","INV-40053"],["JE-000067","2024-05-05","2024-05","6000",103686.03,0,"Payroll run","PR-40054"],["JE-000067","2024-05-05","2024-05","1000",0,103686.03,"Payroll run","PR-40054"],["JE-000068","2024-05-05","2024-05","6100",21739.06,0,"Employee benefits & payroll taxes","PR-40055"],["JE-000068","2024-05-05","2024-05","1000",0,21739.06,"Employee benefits & payroll taxes","PR-40055"],["JE-000069","2024-05-15","2024-05","6200",8419.76,0,"Recurring SaaS tooling subscriptions","SUB-40056"],["JE-000069","2024-05-15","2024-05","1000",0,8419.76,"Recurring SaaS tooling subscriptions","SUB-40056"],["JE-000070","2024-05-15","2024-05","6300",15181.35,0,"Digital advertising & agency fees","INV-40057"],["JE-000070","2024-05-15","2024-05","2000",0,15181.35,"Digital advertising & agency fees","INV-40057"],["JE-000071","2024-05-15","2024-05","6400",4078.79,0,"Employee travel & client entertainment","EXP-40058"],["JE-000071","2024-05-15","2024-05","1000",0,4078.79,"Employee travel & client entertainment","EXP-40058"],["JE-000072","2024-05-15","2024-05","6500",6553.28,0,"Legal, audit & advisory fees","INV-40059"],["JE-000072","2024-05-15","2024-05","2000",0,6553.28,"Legal, audit & advisory fees","INV-40059"],["JE-000073","2024-05-05","2024-05","6600",12000,0,"Office lease payment","LEASE-40060"],["JE-000073","2024-05-05","2024-05","1000",0,12000,"Office lease payment","LEASE-40060"],["JE-000074","2024-05-31","2024-05","6700",2000,0,"Monthly depreciation expense","DEP-2024-05"],["JE-000074","2024-05-31","2024-05","1600",0,2000,"Monthly depreciation expense","DEP-2024-05"],["JE-000075","2024-05-15","2024-05","6800",1288.99,0,"Office supplies","EXP-40061"],["JE-000075","2024-05-15","2024-05","1000",0,1288.99,"Office supplies","EXP-40061"],["JE-000076","2024-05-15","2024-05","6900",1947.21,0,"Utilities","UTIL-40062"],["JE-000076","2024-05-15","2024-05","1000",0,1947.21,"Utilities","UTIL-40062"],["JE-000077","2024-05-31","2024-05","1000",221642.9,0,"Customer collections on account","COLL-2024-05"],["JE-000077","2024-05-31","2024-05","1100",0,221642.9,"Customer collections on account","COLL-2024-05"],["JE-000078","2024-05-31","2024-05","2000",84150.28,0,"Vendor payments on account","PMT-2024-05"],["JE-000078","2024-05-31","2024-05","1000",0,84150.28,"Vendor payments on account","PMT-2024-05"],["JE-000079","2024-06-30","2024-06","1100",208137.27,0,"Monthly SaaS subscription revenue recognized","SUB-40063"],["JE-000079","2024-06-30","2024-06","4000",0,208137.27,"Monthly SaaS subscription revenue recognized","SUB-40063"],["JE-000080","2024-06-30","2024-06","1100",24923.75,0,"Professional services revenue recognized","SVC-40064"],["JE-000080","2024-06-30","2024-06","4100",0,24923.75,"Professional services revenue recognized","SVC-40064"],["JE-000081","2024-06-30","2024-06","5000",68844.14,0,"Hosting infrastructure & customer support costs","INV-40065"],["JE-000081","2024-06-30","2024-06","2000",0,68844.14,"Hosting infrastructure & customer support costs","INV-40065"],["JE-000082","2024-06-05","2024-06","6000",102389.81,0,"Payroll run","PR-40066"],["JE-000082","2024-06-05","2024-06","1000",0,102389.81,"Payroll run","PR-40066"],["JE-000083","2024-06-05","2024-06","6100",21786.72,0,"Employee benefits & payroll taxes","PR-40067"],["JE-000083","2024-06-05","2024-06","1000",0,21786.72,"Employee benefits & payroll taxes","PR-40067"],["JE-000084","2024-06-15","2024-06","6200",8845.99,0,"Recurring SaaS tooling subscriptions","SUB-40068"],["JE-000084","2024-06-15","2024-06","1000",0,8845.99,"Recurring SaaS tooling subscriptions","SUB-40068"],["JE-000085","2024-06-15","2024-06","6300",17029.1,0,"Digital advertising & agency fees","INV-40069"],["JE-000085","2024-06-15","2024-06","2000",0,17029.1,"Digital advertising & agency fees","INV-40069"],["JE-000086","2024-06-15","2024-06","6400",4563.05,0,"Employee travel & client entertainment","EXP-40070"],["JE-000086","2024-06-15","2024-06","1000",0,4563.05,"Employee travel & client entertainment","EXP-40070"],["JE-000087","2024-06-15","2024-06","6500",5653.42,0,"Legal, audit & advisory fees","INV-40071"],["JE-000087","2024-06-15","2024-06","2000",0,5653.42,"Legal, audit & advisory fees","INV-40071"],["JE-000088","2024-06-05","2024-06","6600",12000,0,"Office lease payment","LEASE-40072"],["JE-000088","2024-06-05","2024-06","1000",0,12000,"Office lease payment","LEASE-40072"],["JE-000089","2024-06-30","2024-06","6700",2000,0,"Monthly depreciation expense","DEP-2024-06"],["JE-000089","2024-06-30","2024-06","1600",0,2000,"Monthly depreciation expense","DEP-2024-06"],["JE-000090","2024-06-15","2024-06","6800",1343.06,0,"Office supplies","EXP-40073"],["JE-000090","2024-06-15","2024-06","1000",0,1343.06,"Office supplies","EXP-40073"],["JE-000091","2024-06-15","2024-06","6900",2135.76,0,"Utilities","UTIL-40074"],["JE-000091","2024-06-15","2024-06","1000",0,2135.76,"Utilities","UTIL-40074"],["JE-000092","2024-06-30","2024-06","1000",228493.77,0,"Customer collections on account","COLL-2024-06"],["JE-000092","2024-06-30","2024-06","1100",0,228493.77,"Customer collections on account","COLL-2024-06"],["JE-000093","2024-06-30","2024-06","2000",88576.1,0,"Vendor payments on account","PMT-2024-06"],["JE-000093","2024-06-30","2024-06","1000",0,88576.1,"Vendor payments on account","PMT-2024-06"],["JE-000094","2024-07-31","2024-07","1100",217689.22,0,"Monthly SaaS subscription revenue recognized","SUB-40075"],["JE-000094","2024-07-31","2024-07","4000",0,217689.22,"Monthly SaaS subscription revenue recognized","SUB-40075"],["JE-000095","2024-07-31","2024-07","1100",26175.93,0,"Professional services revenue recognized","SVC-40076"],["JE-000095","2024-07-31","2024-07","4100",0,26175.93,"Professional services revenue recognized","SVC-40076"],["JE-000096","2024-07-31","2024-07","5000",66178.98,0,"Hosting infrastructure & customer support costs","INV-40077"],["JE-000096","2024-07-31","2024-07","2000",0,66178.98,"Hosting infrastructure & customer support costs","INV-40077"],["JE-000097","2024-07-05","2024-07","6000",109992.84,0,"Payroll run","PR-40078"],["JE-000097","2024-07-05","2024-07","1000",0,109992.84,"Payroll run","PR-40078"],["JE-000098","2024-07-05","2024-07","6100",23798.11,0,"Employee benefits & payroll taxes","PR-40079"],["JE-000098","2024-07-05","2024-07","1000",0,23798.11,"Employee benefits & payroll taxes","PR-40079"],["JE-000099","2024-07-15","2024-07","6200",8334.6,0,"Recurring SaaS tooling subscriptions","SUB-40080"],["JE-000099","2024-07-15","2024-07","1000",0,8334.6,"Recurring SaaS tooling subscriptions","SUB-40080"],["JE-000100","2024-07-15","2024-07","6300",15389.06,0,"Digital advertising & agency fees","INV-40081"],["JE-000100","2024-07-15","2024-07","2000",0,15389.06,"Digital advertising & agency fees","INV-40081"],["JE-000101","2024-07-15","2024-07","6400",4557.79,0,"Employee travel & client entertainment","EXP-40082"],["JE-000101","2024-07-15","2024-07","1000",0,4557.79,"Employee travel & client entertainment","EXP-40082"],["JE-000102","2024-07-15","2024-07","6500",5939.39,0,"Legal, audit & advisory fees","INV-40083"],["JE-000102","2024-07-15","2024-07","2000",0,5939.39,"Legal, audit & advisory fees","INV-40083"],["JE-000103","2024-07-05","2024-07","6600",12000,0,"Office lease payment","LEASE-40084"],["JE-000103","2024-07-05","2024-07","1000",0,12000,"Office lease payment","LEASE-40084"],["JE-000104","2024-07-05","2024-07","1500",7499.87,0,"Capital expenditure — equipment & software capitalization","CAPEX-40085"],["JE-000104","2024-07-05","2024-07","1000",0,7499.87,"Capital expenditure — equipment & software capitalization","CAPEX-40085"],["JE-000105","2024-07-31","2024-07","6700",2000,0,"Monthly depreciation expense","DEP-2024-07"],["JE-000105","2024-07-31","2024-07","1600",0,2000,"Monthly depreciation expense","DEP-2024-07"],["JE-000106","2024-07-15","2024-07","6800",971.74,0,"Office supplies","EXP-40086"],["JE-000106","2024-07-15","2024-07","1000",0,971.74,"Office supplies","EXP-40086"],["JE-000107","2024-07-15","2024-07","6900",2194.92,0,"Utilities","UTIL-40087"],["JE-000107","2024-07-15","2024-07","1000",0,2194.92,"Utilities","UTIL-40087"],["JE-000108","2024-07-31","2024-07","1000",237716.59,0,"Customer collections on account","COLL-2024-07"],["JE-000108","2024-07-31","2024-07","1100",0,237716.59,"Customer collections on account","COLL-2024-07"],["JE-000109","2024-07-31","2024-07","2000",87934.89,0,"Vendor payments on account","PMT-2024-07"],["JE-000109","2024-07-31","2024-07","1000",0,87934.89,"Vendor payments on account","PMT-2024-07"],["JE-000110","2024-08-31","2024-08","1100",221902.09,0,"Monthly SaaS subscription revenue recognized","SUB-40088"],["JE-000110","2024-08-31","2024-08","4000",0,221902.09,"Monthly SaaS subscription revenue recognized","SUB-40088"],["JE-000111","2024-08-31","2024-08","1100",25192.33,0,"Professional services revenue recognized","SVC-40089"],["JE-000111","2024-08-31","2024-08","4100",0,25192.33,"Professional services revenue recognized","SVC-40089"],["JE-000112","2024-08-31","2024-08","5000",74274.33,0,"Hosting infrastructure & customer support costs","INV-40090"],["JE-000112","2024-08-31","2024-08","2000",0,74274.33,"Hosting infrastructure & customer support costs","INV-40090"],["JE-000113","2024-08-05","2024-08","6000",109281.08,0,"Payroll run","PR-40091"],["JE-000113","2024-08-05","2024-08","1000",0,109281.08,"Payroll run","PR-40091"],["JE-000114","2024-08-05","2024-08","6100",22901.59,0,"Employee benefits & payroll taxes","PR-40092"],["JE-000114","2024-08-05","2024-08","1000",0,22901.59,"Employee benefits & payroll taxes","PR-40092"],["JE-000115","2024-08-15","2024-08","6200",8523.16,0,"Recurring SaaS tooling subscriptions","SUB-40093"],["JE-000115","2024-08-15","2024-08","1000",0,8523.16,"Recurring SaaS tooling subscriptions","SUB-40093"],["JE-000116","2024-08-15","2024-08","6300",17358.55,0,"Digital advertising & agency fees","INV-40094"],["JE-000116","2024-08-15","2024-08","2000",0,17358.55,"Digital advertising & agency fees","INV-40094"],["JE-000117","2024-08-15","2024-08","6400",4348.66,0,"Employee travel & client entertainment","EXP-40095"],["JE-000117","2024-08-15","2024-08","1000",0,4348.66,"Employee travel & client entertainment","EXP-40095"],["JE-000118","2024-08-15","2024-08","6500",6009.23,0,"Legal, audit & advisory fees","INV-40096"],["JE-000118","2024-08-15","2024-08","2000",0,6009.23,"Legal, audit & advisory fees","INV-40096"],["JE-000119","2024-08-05","2024-08","6600",12000,0,"Office lease payment","LEASE-40097"],["JE-000119","2024-08-05","2024-08","1000",0,12000,"Office lease payment","LEASE-40097"],["JE-000120","2024-08-31","2024-08","6700",2000,0,"Monthly depreciation expense","DEP-2024-08"],["JE-000120","2024-08-31","2024-08","1600",0,2000,"Monthly depreciation expense","DEP-2024-08"],["JE-000121","2024-08-15","2024-08","6800",1283.14,0,"Office supplies","EXP-40098"],["JE-000121","2024-08-15","2024-08","1000",0,1283.14,"Office supplies","EXP-40098"],["JE-000122","2024-08-15","2024-08","6900",2133.95,0,"Utilities","UTIL-40099"],["JE-000122","2024-08-15","2024-08","1000",0,2133.95,"Utilities","UTIL-40099"],["JE-000123","2024-08-31","2024-08","1000",243343.29,0,"Customer collections on account","COLL-2024-08"],["JE-000123","2024-08-31","2024-08","1100",0,243343.29,"Customer collections on account","COLL-2024-08"],["JE-000124","2024-08-31","2024-08","2000",93759.23,0,"Vendor payments on account","PMT-2024-08"],["JE-000124","2024-08-31","2024-08","1000",0,93759.23,"Vendor payments on account","PMT-2024-08"],["JE-000125","2024-09-30","2024-09","1100",219997.34,0,"Monthly SaaS subscription revenue recognized","SUB-40100"],["JE-000125","2024-09-30","2024-09","4000",0,219997.34,"Monthly SaaS subscription revenue recognized","SUB-40100"],["JE-000126","2024-09-30","2024-09","1100",26406.67,0,"Professional services revenue recognized","SVC-40101"],["JE-000126","2024-09-30","2024-09","4100",0,26406.67,"Professional services revenue recognized","SVC-40101"],["JE-000127","2024-09-30","2024-09","5000",71385.73,0,"Hosting infrastructure & customer support costs","INV-40102"],["JE-000127","2024-09-30","2024-09","2000",0,71385.73,"Hosting infrastructure & customer support costs","INV-40102"],["JE-000128","2024-09-05","2024-09","6000",111511.96,0,"Payroll run","PR-40103"],["JE-000128","2024-09-05","2024-09","1000",0,111511.96,"Payroll run","PR-40103"],["JE-000129","2024-09-05","2024-09","6100",24034.81,0,"Employee benefits & payroll taxes","PR-40104"],["JE-000129","2024-09-05","2024-09","1000",0,24034.81,"Employee benefits & payroll taxes","PR-40104"],["JE-000130","2024-09-15","2024-09","6200",9115.27,0,"Recurring SaaS tooling subscriptions","SUB-40105"],["JE-000130","2024-09-15","2024-09","1000",0,9115.27,"Recurring SaaS tooling subscriptions","SUB-40105"],["JE-000131","2024-09-15","2024-09","6300",14716.2,0,"Digital advertising & agency fees","INV-40106"],["JE-000131","2024-09-15","2024-09","2000",0,14716.2,"Digital advertising & agency fees","INV-40106"],["JE-000132","2024-09-15","2024-09","6400",4547.72,0,"Employee travel & client entertainment","EXP-40107"],["JE-000132","2024-09-15","2024-09","1000",0,4547.72,"Employee travel & client entertainment","EXP-40107"],["JE-000133","2024-09-15","2024-09","6500",5458.54,0,"Legal, audit & advisory fees","INV-40108"],["JE-000133","2024-09-15","2024-09","2000",0,5458.54,"Legal, audit & advisory fees","INV-40108"],["JE-000134","2024-09-05","2024-09","6600",12000,0,"Office lease payment","LEASE-40109"],["JE-000134","2024-09-05","2024-09","1000",0,12000,"Office lease payment","LEASE-40109"],["JE-000135","2024-09-30","2024-09","6700",2000,0,"Monthly depreciation expense","DEP-2024-09"],["JE-000135","2024-09-30","2024-09","1600",0,2000,"Monthly depreciation expense","DEP-2024-09"],["JE-000136","2024-09-15","2024-09","6800",1075.43,0,"Office supplies","EXP-40110"],["JE-000136","2024-09-15","2024-09","1000",0,1075.43,"Office supplies","EXP-40110"],["JE-000137","2024-09-15","2024-09","6900",1870.96,0,"Utilities","UTIL-40111"],["JE-000137","2024-09-15","2024-09","1000",0,1870.96,"Utilities","UTIL-40111"],["JE-000138","2024-09-30","2024-09","1000",245179.72,0,"Customer collections on account","COLL-2024-09"],["JE-000138","2024-09-30","2024-09","1100",0,245179.72,"Customer collections on account","COLL-2024-09"],["JE-000139","2024-09-30","2024-09","2000",92439.97,0,"Vendor payments on account","PMT-2024-09"],["JE-000139","2024-09-30","2024-09","1000",0,92439.97,"Vendor payments on account","PMT-2024-09"],["JE-000140","2024-10-31","2024-10","1100",229262.95,0,"Monthly SaaS subscription revenue recognized","SUB-40112"],["JE-000140","2024-10-31","2024-10","4000",0,229262.95,"Monthly SaaS subscription revenue recognized","SUB-40112"],["JE-000141","2024-10-31","2024-10","1100",32513.56,0,"Professional services revenue recognized","SVC-40113"],["JE-000141","2024-10-31","2024-10","4100",0,32513.56,"Professional services revenue recognized","SVC-40113"],["JE-000142","2024-10-31","2024-10","5000",75171.92,0,"Hosting infrastructure & customer support costs","INV-40114"],["JE-000142","2024-10-31","2024-10","2000",0,75171.92,"Hosting infrastructure & customer support costs","INV-40114"],["JE-000143","2024-10-05","2024-10","6000",111829.37,0,"Payroll run","PR-40115"],["JE-000143","2024-10-05","2024-10","1000",0,111829.37,"Payroll run","PR-40115"],["JE-000144","2024-10-05","2024-10","6100",23958.06,0,"Employee benefits & payroll taxes","PR-40116"],["JE-000144","2024-10-05","2024-10","1000",0,23958.06,"Employee benefits & payroll taxes","PR-40116"],["JE-000145","2024-10-15","2024-10","6200",8511,0,"Recurring SaaS tooling subscriptions","SUB-40117"],["JE-000145","2024-10-15","2024-10","1000",0,8511,"Recurring SaaS tooling subscriptions","SUB-40117"],["JE-000146","2024-10-15","2024-10","6300",26611.06,0,"Digital advertising & agency fees","INV-40118"],["JE-000146","2024-10-15","2024-10","2000",0,26611.06,"Digital advertising & agency fees","INV-40118"],["JE-000147","2024-10-15","2024-10","6400",4240.44,0,"Employee travel & client entertainment","EXP-40119"],["JE-000147","2024-10-15","2024-10","1000",0,4240.44,"Employee travel & client entertainment","EXP-40119"],["JE-000148","2024-10-15","2024-10","6500",5451.29,0,"Legal, audit & advisory fees","INV-40120"],["JE-000148","2024-10-15","2024-10","2000",0,5451.29,"Legal, audit & advisory fees","INV-40120"],["JE-000149","2024-10-05","2024-10","6600",12000,0,"Office lease payment","LEASE-40121"],["JE-000149","2024-10-05","2024-10","1000",0,12000,"Office lease payment","LEASE-40121"],["JE-000150","2024-10-05","2024-10","1500",7734.77,0,"Capital expenditure — equipment & software capitalization","CAPEX-40122"],["JE-000150","2024-10-05","2024-10","1000",0,7734.77,"Capital expenditure — equipment & software capitalization","CAPEX-40122"],["JE-000151","2024-10-31","2024-10","6700",2000,0,"Monthly depreciation expense","DEP-2024-10"],["JE-000151","2024-10-31","2024-10","1600",0,2000,"Monthly depreciation expense","DEP-2024-10"],["JE-000152","2024-10-15","2024-10","6800",1252.18,0,"Office supplies","EXP-40123"],["JE-000152","2024-10-15","2024-10","1000",0,1252.18,"Office supplies","EXP-40123"],["JE-000153","2024-10-15","2024-10","6900",1875.34,0,"Utilities","UTIL-40124"],["JE-000153","2024-10-15","2024-10","1000",0,1875.34,"Utilities","UTIL-40124"],["JE-000154","2024-10-31","2024-10","1000",255137.79,0,"Customer collections on account","COLL-2024-10"],["JE-000154","2024-10-31","2024-10","1100",0,255137.79,"Customer collections on account","COLL-2024-10"],["JE-000155","2024-10-31","2024-10","2000",101316.55,0,"Vendor payments on account","PMT-2024-10"],["JE-000155","2024-10-31","2024-10","1000",0,101316.55,"Vendor payments on account","PMT-2024-10"],["JE-000156","2024-11-30","2024-11","1100",233860.53,0,"Monthly SaaS subscription revenue recognized","SUB-40125"],["JE-000156","2024-11-30","2024-11","4000",0,233860.53,"Monthly SaaS subscription revenue recognized","SUB-40125"],["JE-000157","2024-11-30","2024-11","1100",32934.78,0,"Professional services revenue recognized","SVC-40126"],["JE-000157","2024-11-30","2024-11","4100",0,32934.78,"Professional services revenue recognized","SVC-40126"],["JE-000158","2024-11-30","2024-11","5000",73081.22,0,"Hosting infrastructure & customer support costs","INV-40127"],["JE-000158","2024-11-30","2024-11","2000",0,73081.22,"Hosting infrastructure & customer support costs","INV-40127"],["JE-000159","2024-11-05","2024-11","6000",111027.45,0,"Payroll run","PR-40128"],["JE-000159","2024-11-05","2024-11","1000",0,111027.45,"Payroll run","PR-40128"],["JE-000160","2024-11-05","2024-11","6100",25295.37,0,"Employee benefits & payroll taxes","PR-40129"],["JE-000160","2024-11-05","2024-11","1000",0,25295.37,"Employee benefits & payroll taxes","PR-40129"],["JE-000161","2024-11-15","2024-11","6200",8784.47,0,"Recurring SaaS tooling subscriptions","SUB-40130"],["JE-000161","2024-11-15","2024-11","1000",0,8784.47,"Recurring SaaS tooling subscriptions","SUB-40130"],["JE-000162","2024-11-15","2024-11","6300",25669.14,0,"Digital advertising & agency fees","INV-40131"],["JE-000162","2024-11-15","2024-11","2000",0,25669.14,"Digital advertising & agency fees","INV-40131"],["JE-000163","2024-11-15","2024-11","6400",4135.96,0,"Employee travel & client entertainment","EXP-40132"],["JE-000163","2024-11-15","2024-11","1000",0,4135.96,"Employee travel & client entertainment","EXP-40132"],["JE-000164","2024-11-15","2024-11","6500",5682.17,0,"Legal, audit & advisory fees","INV-40133"],["JE-000164","2024-11-15","2024-11","2000",0,5682.17,"Legal, audit & advisory fees","INV-40133"],["JE-000165","2024-11-05","2024-11","6600",12000,0,"Office lease payment","LEASE-40134"],["JE-000165","2024-11-05","2024-11","1000",0,12000,"Office lease payment","LEASE-40134"],["JE-000166","2024-11-30","2024-11","6700",2000,0,"Monthly depreciation expense","DEP-2024-11"],["JE-000166","2024-11-30","2024-11","1600",0,2000,"Monthly depreciation expense","DEP-2024-11"],["JE-000167","2024-11-15","2024-11","6800",1413.48,0,"Office supplies","EXP-40135"],["JE-000167","2024-11-15","2024-11","1000",0,1413.48,"Office supplies","EXP-40135"],["JE-000168","2024-11-15","2024-11","6900",1812.17,0,"Utilities","UTIL-40136"],["JE-000168","2024-11-15","2024-11","1000",0,1812.17,"Utilities","UTIL-40136"],["JE-000169","2024-11-30","2024-11","1000",262132.3,0,"Customer collections on account","COLL-2024-11"],["JE-000169","2024-11-30","2024-11","1100",0,262132.3,"Customer collections on account","COLL-2024-11"],["JE-000170","2024-11-30","2024-11","2000",103186.13,0,"Vendor payments on account","PMT-2024-11"],["JE-000170","2024-11-30","2024-11","1000",0,103186.13,"Vendor payments on account","PMT-2024-11"],["JE-000171","2024-12-31","2024-12","1100",241492.68,0,"Monthly SaaS subscription revenue recognized","SUB-40137"],["JE-000171","2024-12-31","2024-12","4000",0,241492.68,"Monthly SaaS subscription revenue recognized","SUB-40137"],["JE-000172","2024-12-31","2024-12","1100",29190.79,0,"Professional services revenue recognized","SVC-40138"],["JE-000172","2024-12-31","2024-12","4100",0,29190.79,"Professional services revenue recognized","SVC-40138"],["JE-000173","2024-12-31","2024-12","5000",73917.9,0,"Hosting infrastructure & customer support costs","INV-40139"],["JE-000173","2024-12-31","2024-12","2000",0,73917.9,"Hosting infrastructure & customer support costs","INV-40139"],["JE-000174","2024-12-05","2024-12","6000",109295.84,0,"Payroll run","PR-40140"],["JE-000174","2024-12-05","2024-12","1000",0,109295.84,"Payroll run","PR-40140"],["JE-000175","2024-12-05","2024-12","6100",24954.09,0,"Employee benefits & payroll taxes","PR-40141"],["JE-000175","2024-12-05","2024-12","1000",0,24954.09,"Employee benefits & payroll taxes","PR-40141"],["JE-000176","2024-12-15","2024-12","6200",9619.34,0,"Recurring SaaS tooling subscriptions","SUB-40142"],["JE-000176","2024-12-15","2024-12","1000",0,9619.34,"Recurring SaaS tooling subscriptions","SUB-40142"],["JE-000177","2024-12-15","2024-12","6300",26125.08,0,"Digital advertising & agency fees","INV-40143"],["JE-000177","2024-12-15","2024-12","2000",0,26125.08,"Digital advertising & agency fees","INV-40143"],["JE-000178","2024-12-15","2024-12","6400",4299.05,0,"Employee travel & client entertainment","EXP-40144"],["JE-000178","2024-12-15","2024-12","1000",0,4299.05,"Employee travel & client entertainment","EXP-40144"],["JE-000179","2024-12-15","2024-12","6500",5983.71,0,"Legal, audit & advisory fees","INV-40145"],["JE-000179","2024-12-15","2024-12","2000",0,5983.71,"Legal, audit & advisory fees","INV-40145"],["JE-000180","2024-12-05","2024-12","6600",12000,0,"Office lease payment","LEASE-40146"],["JE-000180","2024-12-05","2024-12","1000",0,12000,"Office lease payment","LEASE-40146"],["JE-000181","2024-12-31","2024-12","6700",2000,0,"Monthly depreciation expense","DEP-2024-12"],["JE-000181","2024-12-31","2024-12","1600",0,2000,"Monthly depreciation expense","DEP-2024-12"],["JE-000182","2024-12-15","2024-12","6800",1080.99,0,"Office supplies","EXP-40147"],["JE-000182","2024-12-15","2024-12","1000",0,1080.99,"Office supplies","EXP-40147"],["JE-000183","2024-12-15","2024-12","6900",2483.78,0,"Utilities","UTIL-40148"],["JE-000183","2024-12-15","2024-12","1000",0,2483.78,"Utilities","UTIL-40148"],["JE-000184","2024-12-31","2024-12","1000",267263,0,"Customer collections on account","COLL-2024-12"],["JE-000184","2024-12-31","2024-12","1100",0,267263,"Customer collections on account","COLL-2024-12"],["JE-000185","2024-12-31","2024-12","2000",104890.47,0,"Vendor payments on account","PMT-2024-12"],["JE-000185","2024-12-31","2024-12","1000",0,104890.47,"Vendor payments on account","PMT-2024-12"],["JE-000186","2025-01-31","2025-01","1100",250187.23,0,"Monthly SaaS subscription revenue recognized","SUB-40149"],["JE-000186","2025-01-31","2025-01","4000",0,250187.23,"Monthly SaaS subscription revenue recognized","SUB-40149"],["JE-000187","2025-01-31","2025-01","1100",30916.12,0,"Professional services revenue recognized","SVC-40150"],["JE-000187","2025-01-31","2025-01","4100",0,30916.12,"Professional services revenue recognized","SVC-40150"],["JE-000188","2025-01-31","2025-01","5000",77884.27,0,"Hosting infrastructure & customer support costs","INV-40151"],["JE-000188","2025-01-31","2025-01","2000",0,77884.27,"Hosting infrastructure & customer support costs","INV-40151"],["JE-000189","2025-01-05","2025-01","6000",121828.6,0,"Payroll run","PR-40152"],["JE-000189","2025-01-05","2025-01","1000",0,121828.6,"Payroll run","PR-40152"],["JE-000190","2025-01-05","2025-01","6100",27146.86,0,"Employee benefits & payroll taxes","PR-40153"],["JE-000190","2025-01-05","2025-01","1000",0,27146.86,"Employee benefits & payroll taxes","PR-40153"],["JE-000191","2025-01-15","2025-01","6200",10298.82,0,"Recurring SaaS tooling subscriptions","SUB-40154"],["JE-000191","2025-01-15","2025-01","1000",0,10298.82,"Recurring SaaS tooling subscriptions","SUB-40154"],["JE-000192","2025-01-15","2025-01","6300",18321.23,0,"Digital advertising & agency fees","INV-40155"],["JE-000192","2025-01-15","2025-01","2000",0,18321.23,"Digital advertising & agency fees","INV-40155"],["JE-000193","2025-01-15","2025-01","6400",4286.84,0,"Employee travel & client entertainment","EXP-40156"],["JE-000193","2025-01-15","2025-01","1000",0,4286.84,"Employee travel & client entertainment","EXP-40156"],["JE-000194","2025-01-15","2025-01","6500",14734.53,0,"Legal, audit & advisory fees","INV-40157"],["JE-000194","2025-01-15","2025-01","2000",0,14734.53,"Legal, audit & advisory fees","INV-40157"],["JE-000195","2025-01-05","2025-01","6600",12000,0,"Office lease payment","LEASE-40158"],["JE-000195","2025-01-05","2025-01","1000",0,12000,"Office lease payment","LEASE-40158"],["JE-000196","2025-01-05","2025-01","1500",6739.34,0,"Capital expenditure — equipment & software capitalization","CAPEX-40159"],["JE-000196","2025-01-05","2025-01","1000",0,6739.34,"Capital expenditure — equipment & software capitalization","CAPEX-40159"],["JE-000197","2025-01-31","2025-01","6700",2000,0,"Monthly depreciation expense","DEP-2025-01"],["JE-000197","2025-01-31","2025-01","1600",0,2000,"Monthly depreciation expense","DEP-2025-01"],["JE-000198","2025-01-15","2025-01","6800",992.64,0,"Office supplies","EXP-40160"],["JE-000198","2025-01-15","2025-01","1000",0,992.64,"Office supplies","EXP-40160"],["JE-000199","2025-01-15","2025-01","6900",2318.27,0,"Utilities","UTIL-40161"],["JE-000199","2025-01-15","2025-01","1000",0,2318.27,"Utilities","UTIL-40161"],["JE-000200","2025-01-31","2025-01","1000",275567.21,0,"Customer collections on account","COLL-2025-01"],["JE-000200","2025-01-31","2025-01","1100",0,275567.21,"Customer collections on account","COLL-2025-01"],["JE-000201","2025-01-31","2025-01","2000",108520.21,0,"Vendor payments on account","PMT-2025-01"],["JE-000201","2025-01-31","2025-01","1000",0,108520.21,"Vendor payments on account","PMT-2025-01"],["JE-000202","2025-02-28","2025-02","1100",253822.16,0,"Monthly SaaS subscription revenue recognized","SUB-40162"],["JE-000202","2025-02-28","2025-02","4000",0,253822.16,"Monthly SaaS subscription revenue recognized","SUB-40162"],["JE-000203","2025-02-28","2025-02","1100",26736.13,0,"Professional services revenue recognized","SVC-40163"],["JE-000203","2025-02-28","2025-02","4100",0,26736.13,"Professional services revenue recognized","SVC-40163"],["JE-000204","2025-02-28","2025-02","5000",81967.7,0,"Hosting infrastructure & customer support costs","INV-40164"],["JE-000204","2025-02-28","2025-02","2000",0,81967.7,"Hosting infrastructure & customer support costs","INV-40164"],["JE-000205","2025-02-05","2025-02","6000",120240.78,0,"Payroll run","PR-40165"],["JE-000205","2025-02-05","2025-02","1000",0,120240.78,"Payroll run","PR-40165"],["JE-000206","2025-02-05","2025-02","6100",27083.93,0,"Employee benefits & payroll taxes","PR-40166"],["JE-000206","2025-02-05","2025-02","1000",0,27083.93,"Employee benefits & payroll taxes","PR-40166"],["JE-000207","2025-02-15","2025-02","6200",10306.84,0,"Recurring SaaS tooling subscriptions","SUB-40167"],["JE-000207","2025-02-15","2025-02","1000",0,10306.84,"Recurring SaaS tooling subscriptions","SUB-40167"],["JE-000208","2025-02-15","2025-02","6300",18663.49,0,"Digital advertising & agency fees","INV-40168"],["JE-000208","2025-02-15","2025-02","2000",0,18663.49,"Digital advertising & agency fees","INV-40168"],["JE-000209","2025-02-15","2025-02","6400",3702.27,0,"Employee travel & client entertainment","EXP-40169"],["JE-000209","2025-02-15","2025-02","1000",0,3702.27,"Employee travel & client entertainment","EXP-40169"],["JE-000210","2025-02-15","2025-02","6500",15303.87,0,"Legal, audit & advisory fees","INV-40170"],["JE-000210","2025-02-15","2025-02","2000",0,15303.87,"Legal, audit & advisory fees","INV-40170"],["JE-000211","2025-02-05","2025-02","6600",12000,0,"Office lease payment","LEASE-40171"],["JE-000211","2025-02-05","2025-02","1000",0,12000,"Office lease payment","LEASE-40171"],["JE-000212","2025-02-28","2025-02","6700",2000,0,"Monthly depreciation expense","DEP-2025-02"],["JE-000212","2025-02-28","2025-02","1600",0,2000,"Monthly depreciation expense","DEP-2025-02"],["JE-000213","2025-02-15","2025-02","6800",1136.13,0,"Office supplies","EXP-40172"],["JE-000213","2025-02-15","2025-02","1000",0,1136.13,"Office supplies","EXP-40172"],["JE-000214","2025-02-15","2025-02","6900",1916.33,0,"Utilities","UTIL-40173"],["JE-000214","2025-02-15","2025-02","1000",0,1916.33,"Utilities","UTIL-40173"],["JE-000215","2025-02-28","2025-02","1000",278561.86,0,"Customer collections on account","COLL-2025-02"],["JE-000215","2025-02-28","2025-02","1100",0,278561.86,"Customer collections on account","COLL-2025-02"],["JE-000216","2025-02-28","2025-02","2000",112969.12,0,"Vendor payments on account","PMT-2025-02"],["JE-000216","2025-02-28","2025-02","1000",0,112969.12,"Vendor payments on account","PMT-2025-02"],["JE-000217","2025-03-31","2025-03","1100",256758.65,0,"Monthly SaaS subscription revenue recognized","SUB-40174"],["JE-000217","2025-03-31","2025-03","4000",0,256758.65,"Monthly SaaS subscription revenue recognized","SUB-40174"],["JE-000218","2025-03-31","2025-03","1100",28468.23,0,"Professional services revenue recognized","SVC-40175"],["JE-000218","2025-03-31","2025-03","4100",0,28468.23,"Professional services revenue recognized","SVC-40175"],["JE-000219","2025-03-31","2025-03","5000",80981.55,0,"Hosting infrastructure & customer support costs","INV-40176"],["JE-000219","2025-03-31","2025-03","2000",0,80981.55,"Hosting infrastructure & customer support costs","INV-40176"],["JE-000220","2025-03-05","2025-03","6000",121524.57,0,"Payroll run","PR-40177"],["JE-000220","2025-03-05","2025-03","1000",0,121524.57,"Payroll run","PR-40177"],["JE-000221","2025-03-05","2025-03","6100",26647.98,0,"Employee benefits & payroll taxes","PR-40178"],["JE-000221","2025-03-05","2025-03","1000",0,26647.98,"Employee benefits & payroll taxes","PR-40178"],["JE-000222","2025-03-15","2025-03","6200",9179.95,0,"Recurring SaaS tooling subscriptions","SUB-40179"],["JE-000222","2025-03-15","2025-03","1000",0,9179.95,"Recurring SaaS tooling subscriptions","SUB-40179"],["JE-000223","2025-03-15","2025-03","6300",17833.93,0,"Digital advertising & agency fees","INV-40180"],["JE-000223","2025-03-15","2025-03","2000",0,17833.93,"Digital advertising & agency fees","INV-40180"],["JE-000224","2025-03-15","2025-03","6400",4462.32,0,"Employee travel & client entertainment","EXP-40181"],["JE-000224","2025-03-15","2025-03","1000",0,4462.32,"Employee travel & client entertainment","EXP-40181"],["JE-000225","2025-03-15","2025-03","6500",6477.73,0,"Legal, audit & advisory fees","INV-40182"],["JE-000225","2025-03-15","2025-03","2000",0,6477.73,"Legal, audit & advisory fees","INV-40182"],["JE-000226","2025-03-05","2025-03","6600",12000,0,"Office lease payment","LEASE-40183"],["JE-000226","2025-03-05","2025-03","1000",0,12000,"Office lease payment","LEASE-40183"],["JE-000227","2025-03-31","2025-03","6700",2000,0,"Monthly depreciation expense","DEP-2025-03"],["JE-000227","2025-03-31","2025-03","1600",0,2000,"Monthly depreciation expense","DEP-2025-03"],["JE-000228","2025-03-15","2025-03","6800",1179.55,0,"Office supplies","EXP-40184"],["JE-000228","2025-03-15","2025-03","1000",0,1179.55,"Office supplies","EXP-40184"],["JE-000229","2025-03-15","2025-03","6900",2196.9,0,"Utilities","UTIL-40185"],["JE-000229","2025-03-15","2025-03","1000",0,2196.9,"Utilities","UTIL-40185"],["JE-000230","2025-03-31","2025-03","1000",282560.87,0,"Customer collections on account","COLL-2025-03"],["JE-000230","2025-03-31","2025-03","1100",0,282560.87,"Customer collections on account","COLL-2025-03"],["JE-000231","2025-03-31","2025-03","2000",108363.57,0,"Vendor payments on account","PMT-2025-03"],["JE-000231","2025-03-31","2025-03","1000",0,108363.57,"Vendor payments on account","PMT-2025-03"],["JE-000232","2025-04-30","2025-04","1100",271314.62,0,"Monthly SaaS subscription revenue recognized","SUB-40186"],["JE-000232","2025-04-30","2025-04","4000",0,271314.62,"Monthly SaaS subscription revenue recognized","SUB-40186"],["JE-000233","2025-04-30","2025-04","1100",31767.48,0,"Professional services revenue recognized","SVC-40187"],["JE-000233","2025-04-30","2025-04","4100",0,31767.48,"Professional services revenue recognized","SVC-40187"],["JE-000234","2025-04-30","2025-04","5000",87309.78,0,"Hosting infrastructure & customer support costs","INV-40188"],["JE-000234","2025-04-30","2025-04","2000",0,87309.78,"Hosting infrastructure & customer support costs","INV-40188"],["JE-000235","2025-04-05","2025-04","6000",121583.77,0,"Payroll run","PR-40189"],["JE-000235","2025-04-05","2025-04","1000",0,121583.77,"Payroll run","PR-40189"],["JE-000236","2025-04-05","2025-04","6100",25733.57,0,"Employee benefits & payroll taxes","PR-40190"],["JE-000236","2025-04-05","2025-04","1000",0,25733.57,"Employee benefits & payroll taxes","PR-40190"],["JE-000237","2025-04-15","2025-04","6200",9223.19,0,"Recurring SaaS tooling subscriptions","SUB-40191"],["JE-000237","2025-04-15","2025-04","1000",0,9223.19,"Recurring SaaS tooling subscriptions","SUB-40191"],["JE-000238","2025-04-15","2025-04","6300",18592.75,0,"Digital advertising & agency fees","INV-40192"],["JE-000238","2025-04-15","2025-04","2000",0,18592.75,"Digital advertising & agency fees","INV-40192"],["JE-000239","2025-04-15","2025-04","6400",4353.17,0,"Employee travel & client entertainment","EXP-40193"],["JE-000239","2025-04-15","2025-04","1000",0,4353.17,"Employee travel & client entertainment","EXP-40193"],["JE-000240","2025-04-15","2025-04","6500",6399.92,0,"Legal, audit & advisory fees","INV-40194"],["JE-000240","2025-04-15","2025-04","2000",0,6399.92,"Legal, audit & advisory fees","INV-40194"],["JE-000241","2025-04-05","2025-04","6600",12000,0,"Office lease payment","LEASE-40195"],["JE-000241","2025-04-05","2025-04","1000",0,12000,"Office lease payment","LEASE-40195"],["JE-000242","2025-04-05","2025-04","1500",8584.15,0,"Capital expenditure — equipment & software capitalization","CAPEX-40196"],["JE-000242","2025-04-05","2025-04","1000",0,8584.15,"Capital expenditure — equipment & software capitalization","CAPEX-40196"],["JE-000243","2025-04-30","2025-04","6700",2000,0,"Monthly depreciation expense","DEP-2025-04"],["JE-000243","2025-04-30","2025-04","1600",0,2000,"Monthly depreciation expense","DEP-2025-04"],["JE-000244","2025-04-15","2025-04","6800",965.12,0,"Office supplies","EXP-40197"],["JE-000244","2025-04-15","2025-04","1000",0,965.12,"Office supplies","EXP-40197"],["JE-000245","2025-04-15","2025-04","6900",2012.5,0,"Utilities","UTIL-40198"],["JE-000245","2025-04-15","2025-04","1000",0,2012.5,"Utilities","UTIL-40198"],["JE-000246","2025-04-30","2025-04","1000",294873.61,0,"Customer collections on account","COLL-2025-04"],["JE-000246","2025-04-30","2025-04","1100",0,294873.61,"Customer collections on account","COLL-2025-04"],["JE-000247","2025-04-30","2025-04","2000",110726.9,0,"Vendor payments on account","PMT-2025-04"],["JE-000247","2025-04-30","2025-04","1000",0,110726.9,"Vendor payments on account","PMT-2025-04"],["JE-000248","2025-05-31","2025-05","1100",267836.27,0,"Monthly SaaS subscription revenue recognized","SUB-40199"],["JE-000248","2025-05-31","2025-05","4000",0,267836.27,"Monthly SaaS subscription revenue recognized","SUB-40199"],["JE-000249","2025-05-31","2025-05","1100",30862.59,0,"Professional services revenue recognized","SVC-40200"],["JE-000249","2025-05-31","2025-05","4100",0,30862.59,"Professional services revenue recognized","SVC-40200"],["JE-000250","2025-05-31","2025-05","5000",85924.47,0,"Hosting infrastructure & customer support costs","INV-40201"],["JE-000250","2025-05-31","2025-05","2000",0,85924.47,"Hosting infrastructure & customer support costs","INV-40201"],["JE-000251","2025-05-05","2025-05","6000",118000.29,0,"Payroll run","PR-40202"],["JE-000251","2025-05-05","2025-05","1000",0,118000.29,"Payroll run","PR-40202"],["JE-000252","2025-05-05","2025-05","6100",24851.49,0,"Employee benefits & payroll taxes","PR-40203"],["JE-000252","2025-05-05","2025-05","1000",0,24851.49,"Employee benefits & payroll taxes","PR-40203"],["JE-000253","2025-05-15","2025-05","6200",10684.45,0,"Recurring SaaS tooling subscriptions","SUB-40204"],["JE-000253","2025-05-15","2025-05","1000",0,10684.45,"Recurring SaaS tooling subscriptions","SUB-40204"],["JE-000254","2025-05-15","2025-05","6300",17315.46,0,"Digital advertising & agency fees","INV-40205"],["JE-000254","2025-05-15","2025-05","2000",0,17315.46,"Digital advertising & agency fees","INV-40205"],["JE-000255","2025-05-15","2025-05","6400",3995.37,0,"Employee travel & client entertainment","EXP-40206"],["JE-000255","2025-05-15","2025-05","1000",0,3995.37,"Employee travel & client entertainment","EXP-40206"],["JE-000256","2025-05-15","2025-05","6500",5484.77,0,"Legal, audit & advisory fees","INV-40207"],["JE-000256","2025-05-15","2025-05","2000",0,5484.77,"Legal, audit & advisory fees","INV-40207"],["JE-000257","2025-05-05","2025-05","6600",12000,0,"Office lease payment","LEASE-40208"],["JE-000257","2025-05-05","2025-05","1000",0,12000,"Office lease payment","LEASE-40208"],["JE-000258","2025-05-31","2025-05","6700",2000,0,"Monthly depreciation expense","DEP-2025-05"],["JE-000258","2025-05-31","2025-05","1600",0,2000,"Monthly depreciation expense","DEP-2025-05"],["JE-000259","2025-05-15","2025-05","6800",1111.27,0,"Office supplies","EXP-40209"],["JE-000259","2025-05-15","2025-05","1000",0,1111.27,"Office supplies","EXP-40209"],["JE-000260","2025-05-15","2025-05","6900",2128.06,0,"Utilities","UTIL-40210"],["JE-000260","2025-05-15","2025-05","1000",0,2128.06,"Utilities","UTIL-40210"],["JE-000261","2025-05-31","2025-05","1000",297168.76,0,"Customer collections on account","COLL-2025-05"],["JE-000261","2025-05-31","2025-05","1100",0,297168.76,"Customer collections on account","COLL-2025-05"],["JE-000262","2025-05-31","2025-05","2000",109525.58,0,"Vendor payments on account","PMT-2025-05"],["JE-000262","2025-05-31","2025-05","1000",0,109525.58,"Vendor payments on account","PMT-2025-05"],["JE-000263","2025-06-30","2025-06","1100",287561.36,0,"Monthly SaaS subscription revenue recognized","SUB-40211"],["JE-000263","2025-06-30","2025-06","4000",0,287561.36,"Monthly SaaS subscription revenue recognized","SUB-40211"],["JE-000264","2025-06-30","2025-06","1100",27088.5,0,"Professional services revenue recognized","SVC-40212"],["JE-000264","2025-06-30","2025-06","4100",0,27088.5,"Professional services revenue recognized","SVC-40212"],["JE-000265","2025-06-30","2025-06","5000",92897.67,0,"Hosting infrastructure & customer support costs","INV-40213"],["JE-000265","2025-06-30","2025-06","2000",0,92897.67,"Hosting infrastructure & customer support costs","INV-40213"],["JE-000266","2025-06-05","2025-06","6000",119999.02,0,"Payroll run","PR-40214"],["JE-000266","2025-06-05","2025-06","1000",0,119999.02,"Payroll run","PR-40214"],["JE-000267","2025-06-05","2025-06","6100",25278.91,0,"Employee benefits & payroll taxes","PR-40215"],["JE-000267","2025-06-05","2025-06","1000",0,25278.91,"Employee benefits & payroll taxes","PR-40215"],["JE-000268","2025-06-15","2025-06","6200",9638.21,0,"Recurring SaaS tooling subscriptions","SUB-40216"],["JE-000268","2025-06-15","2025-06","1000",0,9638.21,"Recurring SaaS tooling subscriptions","SUB-40216"],["JE-000269","2025-06-15","2025-06","6300",17396.19,0,"Digital advertising & agency fees","INV-40217"],["JE-000269","2025-06-15","2025-06","2000",0,17396.19,"Digital advertising & agency fees","INV-40217"],["JE-000270","2025-06-15","2025-06","6400",3676.52,0,"Employee travel & client entertainment","EXP-40218"],["JE-000270","2025-06-15","2025-06","1000",0,3676.52,"Employee travel & client entertainment","EXP-40218"],["JE-000271","2025-06-15","2025-06","6500",5723.56,0,"Legal, audit & advisory fees","INV-40219"],["JE-000271","2025-06-15","2025-06","2000",0,5723.56,"Legal, audit & advisory fees","INV-40219"],["JE-000272","2025-06-05","2025-06","6600",12000,0,"Office lease payment","LEASE-40220"],["JE-000272","2025-06-05","2025-06","1000",0,12000,"Office lease payment","LEASE-40220"],["JE-000273","2025-06-30","2025-06","6700",2000,0,"Monthly depreciation expense","DEP-2025-06"],["JE-000273","2025-06-30","2025-06","1600",0,2000,"Monthly depreciation expense","DEP-2025-06"],["JE-000274","2025-06-15","2025-06","6800",972.04,0,"Office supplies","EXP-40221"],["JE-000274","2025-06-15","2025-06","1000",0,972.04,"Office supplies","EXP-40221"],["JE-000275","2025-06-15","2025-06","6900",2339.3,0,"Utilities","UTIL-40222"],["JE-000275","2025-06-15","2025-06","1000",0,2339.3,"Utilities","UTIL-40222"],["JE-000276","2025-06-30","2025-06","1000",307657.42,0,"Customer collections on account","COLL-2025-06"],["JE-000276","2025-06-30","2025-06","1100",0,307657.42,"Customer collections on account","COLL-2025-06"],["JE-000277","2025-06-30","2025-06","2000",113420.69,0,"Vendor payments on account","PMT-2025-06"],["JE-000277","2025-06-30","2025-06","1000",0,113420.69,"Vendor payments on account","PMT-2025-06"],["JE-000278","2025-07-31","2025-07","1100",286901.43,0,"Monthly SaaS subscription revenue recognized","SUB-40223"],["JE-000278","2025-07-31","2025-07","4000",0,286901.43,"Monthly SaaS subscription revenue recognized","SUB-40223"],["JE-000279","2025-07-31","2025-07","1100",28864.18,0,"Professional services revenue recognized","SVC-40224"],["JE-000279","2025-07-31","2025-07","4100",0,28864.18,"Professional services revenue recognized","SVC-40224"],["JE-000280","2025-07-31","2025-07","5000",87295,0,"Hosting infrastructure & customer support costs","INV-40225"],["JE-000280","2025-07-31","2025-07","2000",0,87295,"Hosting infrastructure & customer support costs","INV-40225"],["JE-000281","2025-07-05","2025-07","6000",130995.57,0,"Payroll run","PR-40226"],["JE-000281","2025-07-05","2025-07","1000",0,130995.57,"Payroll run","PR-40226"],["JE-000282","2025-07-05","2025-07","6100",27968.58,0,"Employee benefits & payroll taxes","PR-40227"],["JE-000282","2025-07-05","2025-07","1000",0,27968.58,"Employee benefits & payroll taxes","PR-40227"],["JE-000283","2025-07-15","2025-07","6200",11166.13,0,"Recurring SaaS tooling subscriptions","SUB-40228"],["JE-000283","2025-07-15","2025-07","1000",0,11166.13,"Recurring SaaS tooling subscriptions","SUB-40228"],["JE-000284","2025-07-15","2025-07","6300",17972.92,0,"Digital advertising & agency fees","INV-40229"],["JE-000284","2025-07-15","2025-07","2000",0,17972.92,"Digital advertising & agency fees","INV-40229"],["JE-000285","2025-07-15","2025-07","6400",4028.82,0,"Employee travel & client entertainment","EXP-40230"],["JE-000285","2025-07-15","2025-07","1000",0,4028.82,"Employee travel & client entertainment","EXP-40230"],["JE-000286","2025-07-15","2025-07","6500",5833.86,0,"Legal, audit & advisory fees","INV-40231"],["JE-000286","2025-07-15","2025-07","2000",0,5833.86,"Legal, audit & advisory fees","INV-40231"],["JE-000287","2025-07-05","2025-07","6600",13200,0,"Office lease payment","LEASE-40232"],["JE-000287","2025-07-05","2025-07","1000",0,13200,"Office lease payment","LEASE-40232"],["JE-000288","2025-07-05","2025-07","1500",8490.71,0,"Capital expenditure — equipment & software capitalization","CAPEX-40233"],["JE-000288","2025-07-05","2025-07","1000",0,8490.71,"Capital expenditure — equipment & software capitalization","CAPEX-40233"],["JE-000289","2025-07-31","2025-07","6700",2000,0,"Monthly depreciation expense","DEP-2025-07"],["JE-000289","2025-07-31","2025-07","1600",0,2000,"Monthly depreciation expense","DEP-2025-07"],["JE-000290","2025-07-15","2025-07","6800",1010.96,0,"Office supplies","EXP-40234"],["JE-000290","2025-07-15","2025-07","1000",0,1010.96,"Office supplies","EXP-40234"],["JE-000291","2025-07-15","2025-07","6900",2140.4,0,"Utilities","UTIL-40235"],["JE-000291","2025-07-15","2025-07","1000",0,2140.4,"Utilities","UTIL-40235"],["JE-000292","2025-07-31","2025-07","1000",312522.34,0,"Customer collections on account","COLL-2025-07"],["JE-000292","2025-07-31","2025-07","1100",0,312522.34,"Customer collections on account","COLL-2025-07"],["JE-000293","2025-07-31","2025-07","2000",112029.35,0,"Vendor payments on account","PMT-2025-07"],["JE-000293","2025-07-31","2025-07","1000",0,112029.35,"Vendor payments on account","PMT-2025-07"],["JE-000294","2025-08-31","2025-08","1100",294047.51,0,"Monthly SaaS subscription revenue recognized","SUB-40236"],["JE-000294","2025-08-31","2025-08","4000",0,294047.51,"Monthly SaaS subscription revenue recognized","SUB-40236"],["JE-000295","2025-08-31","2025-08","1100",32571.84,0,"Professional services revenue recognized","SVC-40237"],["JE-000295","2025-08-31","2025-08","4100",0,32571.84,"Professional services revenue recognized","SVC-40237"],["JE-000296","2025-08-31","2025-08","5000",91778.18,0,"Hosting infrastructure & customer support costs","INV-40238"],["JE-000296","2025-08-31","2025-08","2000",0,91778.18,"Hosting infrastructure & customer support costs","INV-40238"],["JE-000297","2025-08-05","2025-08","6000",130693.07,0,"Payroll run","PR-40239"],["JE-000297","2025-08-05","2025-08","1000",0,130693.07,"Payroll run","PR-40239"],["JE-000298","2025-08-05","2025-08","6100",28057.61,0,"Employee benefits & payroll taxes","PR-40240"],["JE-000298","2025-08-05","2025-08","1000",0,28057.61,"Employee benefits & payroll taxes","PR-40240"],["JE-000299","2025-08-15","2025-08","6200",9800.91,0,"Recurring SaaS tooling subscriptions","SUB-40241"],["JE-000299","2025-08-15","2025-08","1000",0,9800.91,"Recurring SaaS tooling subscriptions","SUB-40241"],["JE-000300","2025-08-15","2025-08","6300",19503.76,0,"Digital advertising & agency fees","INV-40242"],["JE-000300","2025-08-15","2025-08","2000",0,19503.76,"Digital advertising & agency fees","INV-40242"],["JE-000301","2025-08-15","2025-08","6400",3440.06,0,"Employee travel & client entertainment","EXP-40243"],["JE-000301","2025-08-15","2025-08","1000",0,3440.06,"Employee travel & client entertainment","EXP-40243"],["JE-000302","2025-08-15","2025-08","6500",6205.32,0,"Legal, audit & advisory fees","INV-40244"],["JE-000302","2025-08-15","2025-08","2000",0,6205.32,"Legal, audit & advisory fees","INV-40244"],["JE-000303","2025-08-05","2025-08","6600",13200,0,"Office lease payment","LEASE-40245"],["JE-000303","2025-08-05","2025-08","1000",0,13200,"Office lease payment","LEASE-40245"],["JE-000304","2025-08-31","2025-08","6700",2000,0,"Monthly depreciation expense","DEP-2025-08"],["JE-000304","2025-08-31","2025-08","1600",0,2000,"Monthly depreciation expense","DEP-2025-08"],["JE-000305","2025-08-15","2025-08","6800",1125.53,0,"Office supplies","EXP-40246"],["JE-000305","2025-08-15","2025-08","1000",0,1125.53,"Office supplies","EXP-40246"],["JE-000306","2025-08-15","2025-08","6900",2435.78,0,"Utilities","UTIL-40247"],["JE-000306","2025-08-15","2025-08","1000",0,2435.78,"Utilities","UTIL-40247"],["JE-000307","2025-08-31","2025-08","1000",320980.54,0,"Customer collections on account","COLL-2025-08"],["JE-000307","2025-08-31","2025-08","1100",0,320980.54,"Customer collections on account","COLL-2025-08"],["JE-000308","2025-08-31","2025-08","2000",115304.09,0,"Vendor payments on account","PMT-2025-08"],["JE-000308","2025-08-31","2025-08","1000",0,115304.09,"Vendor payments on account","PMT-2025-08"],["JE-000309","2025-09-30","2025-09","1100",309023.69,0,"Monthly SaaS subscription revenue recognized","SUB-40248"],["JE-000309","2025-09-30","2025-09","4000",0,309023.69,"Monthly SaaS subscription revenue recognized","SUB-40248"],["JE-000310","2025-09-30","2025-09","1100",29432.38,0,"Professional services revenue recognized","SVC-40249"],["JE-000310","2025-09-30","2025-09","4100",0,29432.38,"Professional services revenue recognized","SVC-40249"],["JE-000311","2025-09-30","2025-09","5000",94822.41,0,"Hosting infrastructure & customer support costs","INV-40250"],["JE-000311","2025-09-30","2025-09","2000",0,94822.41,"Hosting infrastructure & customer support costs","INV-40250"],["JE-000312","2025-09-05","2025-09","6000",127371.3,0,"Payroll run","PR-40251"],["JE-000312","2025-09-05","2025-09","1000",0,127371.3,"Payroll run","PR-40251"],["JE-000313","2025-09-05","2025-09","6100",28705.46,0,"Employee benefits & payroll taxes","PR-40252"],["JE-000313","2025-09-05","2025-09","1000",0,28705.46,"Employee benefits & payroll taxes","PR-40252"],["JE-000314","2025-09-15","2025-09","6200",10194.04,0,"Recurring SaaS tooling subscriptions","SUB-40253"],["JE-000314","2025-09-15","2025-09","1000",0,10194.04,"Recurring SaaS tooling subscriptions","SUB-40253"],["JE-000315","2025-09-15","2025-09","6300",19372.96,0,"Digital advertising & agency fees","INV-40254"],["JE-000315","2025-09-15","2025-09","2000",0,19372.96,"Digital advertising & agency fees","INV-40254"],["JE-000316","2025-09-15","2025-09","6400",15519.54,0,"Employee travel & client entertainment","EXP-40255"],["JE-000316","2025-09-15","2025-09","1000",0,15519.54,"Employee travel & client entertainment","EXP-40255"],["JE-000317","2025-09-15","2025-09","6500",6594.09,0,"Legal, audit & advisory fees","INV-40256"],["JE-000317","2025-09-15","2025-09","2000",0,6594.09,"Legal, audit & advisory fees","INV-40256"],["JE-000318","2025-09-05","2025-09","6600",13200,0,"Office lease payment","LEASE-40257"],["JE-000318","2025-09-05","2025-09","1000",0,13200,"Office lease payment","LEASE-40257"],["JE-000319","2025-09-30","2025-09","6700",2000,0,"Monthly depreciation expense","DEP-2025-09"],["JE-000319","2025-09-30","2025-09","1600",0,2000,"Monthly depreciation expense","DEP-2025-09"],["JE-000320","2025-09-15","2025-09","6800",1093.77,0,"Office supplies","EXP-40258"],["JE-000320","2025-09-15","2025-09","1000",0,1093.77,"Office supplies","EXP-40258"],["JE-000321","2025-09-15","2025-09","6900",2189.44,0,"Utilities","UTIL-40259"],["JE-000321","2025-09-15","2025-09","1000",0,2189.44,"Utilities","UTIL-40259"],["JE-000322","2025-09-30","2025-09","1000",331465.86,0,"Customer collections on account","COLL-2025-09"],["JE-000322","2025-09-30","2025-09","1100",0,331465.86,"Customer collections on account","COLL-2025-09"],["JE-000323","2025-09-30","2025-09","2000",118595.31,0,"Vendor payments on account","PMT-2025-09"],["JE-000323","2025-09-30","2025-09","1000",0,118595.31,"Vendor payments on account","PMT-2025-09"],["JE-000324","2025-10-31","2025-10","1100",306781.46,0,"Monthly SaaS subscription revenue recognized","SUB-40260"],["JE-000324","2025-10-31","2025-10","4000",0,306781.46,"Monthly SaaS subscription revenue recognized","SUB-40260"],["JE-000325","2025-10-31","2025-10","1100",37697.54,0,"Professional services revenue recognized","SVC-40261"],["JE-000325","2025-10-31","2025-10","4100",0,37697.54,"Professional services revenue recognized","SVC-40261"],["JE-000326","2025-10-31","2025-10","5000",98273.22,0,"Hosting infrastructure & customer support costs","INV-40262"],["JE-000326","2025-10-31","2025-10","2000",0,98273.22,"Hosting infrastructure & customer support costs","INV-40262"],["JE-000327","2025-10-05","2025-10","6000",130815.35,0,"Payroll run","PR-40263"],["JE-000327","2025-10-05","2025-10","1000",0,130815.35,"Payroll run","PR-40263"],["JE-000328","2025-10-05","2025-10","6100",29614.84,0,"Employee benefits & payroll taxes","PR-40264"],["JE-000328","2025-10-05","2025-10","1000",0,29614.84,"Employee benefits & payroll taxes","PR-40264"],["JE-000329","2025-10-15","2025-10","6200",42000,0,"One-time ERP/finance-system implementation — vendor SOW","INV-40265"],["JE-000329","2025-10-15","2025-10","2000",0,42000,"One-time ERP/finance-system implementation — vendor SOW","INV-40265"],["JE-000330","2025-10-15","2025-10","6200",10544.97,0,"Recurring SaaS tooling subscriptions","SUB-40266"],["JE-000330","2025-10-15","2025-10","1000",0,10544.97,"Recurring SaaS tooling subscriptions","SUB-40266"],["JE-000331","2025-10-15","2025-10","6300",29073.16,0,"Digital advertising & agency fees","INV-40267"],["JE-000331","2025-10-15","2025-10","2000",0,29073.16,"Digital advertising & agency fees","INV-40267"],["JE-000332","2025-10-15","2025-10","6400",4286.76,0,"Employee travel & client entertainment","EXP-40268"],["JE-000332","2025-10-15","2025-10","1000",0,4286.76,"Employee travel & client entertainment","EXP-40268"],["JE-000333","2025-10-15","2025-10","6500",6111.24,0,"Legal, audit & advisory fees","INV-40269"],["JE-000333","2025-10-15","2025-10","2000",0,6111.24,"Legal, audit & advisory fees","INV-40269"],["JE-000334","2025-10-05","2025-10","6600",13200,0,"Office lease payment","LEASE-40270"],["JE-000334","2025-10-05","2025-10","1000",0,13200,"Office lease payment","LEASE-40270"],["JE-000335","2025-10-05","2025-10","1500",9513.81,0,"Capital expenditure — equipment & software capitalization","CAPEX-40271"],["JE-000335","2025-10-05","2025-10","1000",0,9513.81,"Capital expenditure — equipment & software capitalization","CAPEX-40271"],["JE-000336","2025-10-31","2025-10","6700",2000,0,"Monthly depreciation expense","DEP-2025-10"],["JE-000336","2025-10-31","2025-10","1600",0,2000,"Monthly depreciation expense","DEP-2025-10"],["JE-000337","2025-10-15","2025-10","6800",1392.93,0,"Office supplies","EXP-40272"],["JE-000337","2025-10-15","2025-10","1000",0,1392.93,"Office supplies","EXP-40272"],["JE-000338","2025-10-15","2025-10","6900",2074.64,0,"Utilities","UTIL-40273"],["JE-000338","2025-10-15","2025-10","1000",0,2074.64,"Utilities","UTIL-40273"],["JE-000339","2025-10-31","2025-10","1000",339273.74,0,"Customer collections on account","COLL-2025-10"],["JE-000339","2025-10-31","2025-10","1100",0,339273.74,"Customer collections on account","COLL-2025-10"],["JE-000340","2025-10-31","2025-10","2000",152712.7,0,"Vendor payments on account","PMT-2025-10"],["JE-000340","2025-10-31","2025-10","1000",0,152712.7,"Vendor payments on account","PMT-2025-10"],["JE-000341","2025-11-30","2025-11","1100",326057.67,0,"Monthly SaaS subscription revenue recognized","SUB-40274"],["JE-000341","2025-11-30","2025-11","4000",0,326057.67,"Monthly SaaS subscription revenue recognized","SUB-40274"],["JE-000342","2025-11-30","2025-11","1100",34343.54,0,"Professional services revenue recognized","SVC-40275"],["JE-000342","2025-11-30","2025-11","4100",0,34343.54,"Professional services revenue recognized","SVC-40275"],["JE-000343","2025-11-30","2025-11","5000",109397.69,0,"Hosting infrastructure & customer support costs","INV-40276"],["JE-000343","2025-11-30","2025-11","2000",0,109397.69,"Hosting infrastructure & customer support costs","INV-40276"],["JE-000344","2025-11-05","2025-11","6000",129735.61,0,"Payroll run","PR-40277"],["JE-000344","2025-11-05","2025-11","1000",0,129735.61,"Payroll run","PR-40277"],["JE-000345","2025-11-05","2025-11","6100",29124.66,0,"Employee benefits & payroll taxes","PR-40278"],["JE-000345","2025-11-05","2025-11","1000",0,29124.66,"Employee benefits & payroll taxes","PR-40278"],["JE-000346","2025-11-15","2025-11","6200",10311.07,0,"Recurring SaaS tooling subscriptions","SUB-40279"],["JE-000346","2025-11-15","2025-11","1000",0,10311.07,"Recurring SaaS tooling subscriptions","SUB-40279"],["JE-000347","2025-11-15","2025-11","6300",38000,0,"One-off brand awareness campaign — outside normal Q4 plan","INV-40280"],["JE-000347","2025-11-15","2025-11","2000",0,38000,"One-off brand awareness campaign — outside normal Q4 plan","INV-40280"],["JE-000348","2025-11-15","2025-11","6300",28691.92,0,"Digital advertising & agency fees","INV-40281"],["JE-000348","2025-11-15","2025-11","2000",0,28691.92,"Digital advertising & agency fees","INV-40281"],["JE-000349","2025-11-15","2025-11","6400",4210.88,0,"Employee travel & client entertainment","EXP-40282"],["JE-000349","2025-11-15","2025-11","1000",0,4210.88,"Employee travel & client entertainment","EXP-40282"],["JE-000350","2025-11-15","2025-11","6500",5795.31,0,"Legal, audit & advisory fees","INV-40283"],["JE-000350","2025-11-15","2025-11","2000",0,5795.31,"Legal, audit & advisory fees","INV-40283"],["JE-000351","2025-11-05","2025-11","6600",13200,0,"Office lease payment","LEASE-40284"],["JE-000351","2025-11-05","2025-11","1000",0,13200,"Office lease payment","LEASE-40284"],["JE-000352","2025-11-30","2025-11","6700",2000,0,"Monthly depreciation expense","DEP-2025-11"],["JE-000352","2025-11-30","2025-11","1600",0,2000,"Monthly depreciation expense","DEP-2025-11"],["JE-000353","2025-11-15","2025-11","6800",1098.43,0,"Office supplies","EXP-40285"],["JE-000353","2025-11-15","2025-11","1000",0,1098.43,"Office supplies","EXP-40285"],["JE-000354","2025-11-15","2025-11","6900",2016.44,0,"Utilities","UTIL-40286"],["JE-000354","2025-11-15","2025-11","1000",0,2016.44,"Utilities","UTIL-40286"],["JE-000355","2025-11-30","2025-11","1000",351950.22,0,"Customer collections on account","COLL-2025-11"],["JE-000355","2025-11-30","2025-11","1100",0,351950.22,"Customer collections on account","COLL-2025-11"],["JE-000356","2025-11-30","2025-11","2000",170216.03,0,"Vendor payments on account","PMT-2025-11"],["JE-000356","2025-11-30","2025-11","1000",0,170216.03,"Vendor payments on account","PMT-2025-11"],["JE-000357","2025-12-31","2025-12","1100",319665.37,0,"Monthly SaaS subscription revenue recognized","SUB-40287"],["JE-000357","2025-12-31","2025-12","4000",0,319665.37,"Monthly SaaS subscription revenue recognized","SUB-40287"],["JE-000358","2025-12-31","2025-12","1100",36210.91,0,"Professional services revenue recognized","SVC-40288"],["JE-000358","2025-12-31","2025-12","4100",0,36210.91,"Professional services revenue recognized","SVC-40288"],["JE-000359","2025-12-31","2025-12","5000",102205.4,0,"Hosting infrastructure & customer support costs","INV-40289"],["JE-000359","2025-12-31","2025-12","2000",0,102205.4,"Hosting infrastructure & customer support costs","INV-40289"],["JE-000360","2025-12-05","2025-12","6000",129982.08,0,"Payroll run","PR-40290"],["JE-000360","2025-12-05","2025-12","1000",0,129982.08,"Payroll run","PR-40290"],["JE-000361","2025-12-05","2025-12","6100",27654.15,0,"Employee benefits & payroll taxes","PR-40291"],["JE-000361","2025-12-05","2025-12","1000",0,27654.15,"Employee benefits & payroll taxes","PR-40291"],["JE-000362","2025-12-15","2025-12","6200",11658.41,0,"Recurring SaaS tooling subscriptions","SUB-40292"],["JE-000362","2025-12-15","2025-12","1000",0,11658.41,"Recurring SaaS tooling subscriptions","SUB-40292"],["JE-000363","2025-12-15","2025-12","6300",28910.98,0,"Digital advertising & agency fees","INV-40293"],["JE-000363","2025-12-15","2025-12","2000",0,28910.98,"Digital advertising & agency fees","INV-40293"],["JE-000364","2025-12-15","2025-12","6400",4164.39,0,"Employee travel & client entertainment","EXP-40294"],["JE-000364","2025-12-15","2025-12","1000",0,4164.39,"Employee travel & client entertainment","EXP-40294"],["JE-000365","2025-12-15","2025-12","6500",5538.91,0,"Legal, audit & advisory fees","INV-40295"],["JE-000365","2025-12-15","2025-12","2000",0,5538.91,"Legal, audit & advisory fees","INV-40295"],["JE-000366","2025-12-05","2025-12","6600",13200,0,"Office lease payment","LEASE-40296"],["JE-000366","2025-12-05","2025-12","1000",0,13200,"Office lease payment","LEASE-40296"],["JE-000367","2025-12-31","2025-12","6700",2000,0,"Monthly depreciation expense","DEP-2025-12"],["JE-000367","2025-12-31","2025-12","1600",0,2000,"Monthly depreciation expense","DEP-2025-12"],["JE-000368","2025-12-15","2025-12","6800",1200.28,0,"Office supplies","EXP-40297"],["JE-000368","2025-12-15","2025-12","1000",0,1200.28,"Office supplies","EXP-40297"],["JE-000369","2025-12-15","2025-12","6900",2214.72,0,"Utilities","UTIL-40298"],["JE-000369","2025-12-15","2025-12","1000",0,2214.72,"Utilities","UTIL-40298"],["JE-000370","2025-12-31","2025-12","1000",354305.85,0,"Customer collections on account","COLL-2025-12"],["JE-000370","2025-12-31","2025-12","1100",0,354305.85,"Customer collections on account","COLL-2025-12"],["JE-000371","2025-12-31","2025-12","2000",150079.59,0,"Vendor payments on account","PMT-2025-12"],["JE-000371","2025-12-31","2025-12","1000",0,150079.59,"Vendor payments on account","PMT-2025-12"]],"tbRows":[["2024-01","1000",775557.68,215930.48,559627.2,"GL"],["2024-01","1100",209262.81,125557.68,83705.13,"GL"],["2024-01","1500",6682.81,0,6682.81,"GL"],["2024-01","1600",0,2000,2000,"GL"],["2024-01","2000",54098.66,90164.43,36065.76999999999,"GL"],["2024-01","3000",0,650000,650000,"GL"],["2024-01","3900",0,0,-38050.63,"derived_plug"],["2024-01","4000",0,184552.55,184552.55,"GL"],["2024-01","4100",0,24710.26,24710.26,"GL"],["2024-01","5000",58874.54,0,58874.54,"GL"],["2024-01","6000",104550.87,0,104550.87,"GL"],["2024-01","6100",22396.62,0,22396.62,"GL"],["2024-01","6200",8625.75,0,8625.75,"GL"],["2024-01","6300",16339.63,0,16339.63,"GL"],["2024-01","6400",4107.46,0,4107.46,"GL"],["2024-01","6500",14950.26,0,14950.26,"GL"],["2024-01","6600",12000,0,12000,"GL"],["2024-01","6700",2000,0,2000,"GL"],["2024-01","6800",969.04,0,969.04,"GL"],["2024-01","6900",2499.27,0,2499.27,"GL"],["2024-02","1000",179757.65,230797.78,508587.06999999995,"GL"],["2024-02","1100",215890.96,179757.65,119838.44,"GL"],["2024-02","1500",0,0,6682.81,"GL"],["2024-02","1600",0,2000,4000,"GL"],["2024-02","2000",76925.44,92143.3,51283.62999999999,"GL"],["2024-02","3000",0,0,650000,"GL"],["2024-02","3900",0,0,-70175.31,"derived_plug"],["2024-02","4000",0,192923.18,192923.18,"GL"],["2024-02","4100",0,22967.78,22967.78,"GL"],["2024-02","5000",61741.71,0,61741.71,"GL"],["2024-02","6000",104490.61,0,104490.61,"GL"],["2024-02","6100",23040.7,0,23040.7,"GL"],["2024-02","6200",7862.26,0,7862.26,"GL"],["2024-02","6300",15242.26,0,15242.26,"GL"],["2024-02","6400",3411.57,0,3411.57,"GL"],["2024-02","6500",15159.33,0,15159.33,"GL"],["2024-02","6600",12000,0,12000,"GL"],["2024-02","6700",2000,0,2000,"GL"],["2024-02","6800",1185.38,0,1185.38,"GL"],["2024-02","6900",1881.82,0,1881.82,"GL"],["2024-03","1000",200794.44,230583.25,478798.25999999995,"GL"],["2024-03","1100",214818.97,200794.44,133862.97,"GL"],["2024-03","1500",0,0,6682.81,"GL"],["2024-03","1600",0,2000,6000,"GL"],["2024-03","2000",80528.03,82929.75,53685.34999999999,"GL"],["2024-03","3000",0,0,650000,"GL"],["2024-03","3900",0,0,-90341.31,"derived_plug"],["2024-03","4000",0,188494.09,188494.09,"GL"],["2024-03","4100",0,26324.88,26324.88,"GL"],["2024-03","5000",61923.4,0,61923.4,"GL"],["2024-03","6000",100846.26,0,100846.26,"GL"],["2024-03","6100",22122.58,0,22122.58,"GL"],["2024-03","6200",7948.28,0,7948.28,"GL"],["2024-03","6300",15362.53,0,15362.53,"GL"],["2024-03","6400",3961.91,0,3961.91,"GL"],["2024-03","6500",5643.82,0,5643.82,"GL"],["2024-03","6600",12000,0,12000,"GL"],["2024-03","6700",2000,0,2000,"GL"],["2024-03","6800",1349.54,0,1349.54,"GL"],["2024-03","6900",1826.65,0,1826.65,"GL"],["2024-04","1000",216907.97,246904.84,448801.39,"GL"],["2024-04","1100",227650.33,216907.97,144605.33000000002,"GL"],["2024-04","1500",8188.49,0,14871.3,"GL"],["2024-04","1600",0,2000,8000,"GL"],["2024-04","2000",83558.46,85578.76,55705.64999999998,"GL"],["2024-04","3000",0,0,650000,"GL"],["2024-04","3900",0,0,-105427.63,"derived_plug"],["2024-04","4000",0,199369.85,199369.85,"GL"],["2024-04","4100",0,28280.48,28280.48,"GL"],["2024-04","5000",65798.51,0,65798.51,"GL"],["2024-04","6000",103757.11,0,103757.11,"GL"],["2024-04","6100",23580.89,0,23580.89,"GL"],["2024-04","6200",8580.53,0,8580.53,"GL"],["2024-04","6300",14355.6,0,14355.6,"GL"],["2024-04","6400",4370.69,0,4370.69,"GL"],["2024-04","6500",5424.65,0,5424.65,"GL"],["2024-04","6600",12000,0,12000,"GL"],["2024-04","6700",2000,0,2000,"GL"],["2024-04","6800",1044.68,0,1044.68,"GL"],["2024-04","6900",1823.99,0,1823.99,"GL"],["2024-05","1000",221642.9,237310.12,433134.17000000004,"GL"],["2024-05","1100",224799.52,221642.9,147761.95,"GL"],["2024-05","1500",0,0,14871.3,"GL"],["2024-05","1600",0,2000,10000,"GL"],["2024-05","2000",84150.28,84544.83,56100.19999999998,"GL"],["2024-05","3000",0,0,650000,"GL"],["2024-05","3900",0,0,-120332.78,"derived_plug"],["2024-05","4000",0,199795.25,199795.25,"GL"],["2024-05","4100",0,25004.27,25004.27,"GL"],["2024-05","5000",62810.2,0,62810.2,"GL"],["2024-05","6000",103686.03,0,103686.03,"GL"],["2024-05","6100",21739.06,0,21739.06,"GL"],["2024-05","6200",8419.76,0,8419.76,"GL"],["2024-05","6300",15181.35,0,15181.35,"GL"],["2024-05","6400",4078.79,0,4078.79,"GL"],["2024-05","6500",6553.28,0,6553.28,"GL"],["2024-05","6600",12000,0,12000,"GL"],["2024-05","6700",2000,0,2000,"GL"],["2024-05","6800",1288.99,0,1288.99,"GL"],["2024-05","6900",1947.21,0,1947.21,"GL"],["2024-06","1000",228493.77,241640.49,419987.45000000007,"GL"],["2024-06","1100",233061.02,228493.77,152329.2,"GL"],["2024-06","1500",0,0,14871.3,"GL"],["2024-06","1600",0,2000,12000,"GL"],["2024-06","2000",88576.1,91526.66,59050.759999999966,"GL"],["2024-06","3000",0,0,650000,"GL"],["2024-06","3900",0,0,-133862.81,"derived_plug"],["2024-06","4000",0,208137.27,208137.27,"GL"],["2024-06","4100",0,24923.75,24923.75,"GL"],["2024-06","5000",68844.14,0,68844.14,"GL"],["2024-06","6000",102389.81,0,102389.81,"GL"],["2024-06","6100",21786.72,0,21786.72,"GL"],["2024-06","6200",8845.99,0,8845.99,"GL"],["2024-06","6300",17029.1,0,17029.1,"GL"],["2024-06","6400",4563.05,0,4563.05,"GL"],["2024-06","6500",5653.42,0,5653.42,"GL"],["2024-06","6600",12000,0,12000,"GL"],["2024-06","6700",2000,0,2000,"GL"],["2024-06","6800",1343.06,0,1343.06,"GL"],["2024-06","6900",2135.76,0,2135.76,"GL"],["2024-07","1000",237716.59,257284.76,400419.28,"GL"],["2024-07","1100",243865.15,237716.59,158477.76,"GL"],["2024-07","1500",7499.87,0,22371.17,"GL"],["2024-07","1600",0,2000,14000,"GL"],["2024-07","2000",87934.89,87507.43,58623.29999999996,"GL"],["2024-07","3000",0,0,650000,"GL"],["2024-07","3900",0,0,-141355.09,"derived_plug"],["2024-07","4000",0,217689.22,217689.22,"GL"],["2024-07","4100",0,26175.93,26175.93,"GL"],["2024-07","5000",66178.98,0,66178.98,"GL"],["2024-07","6000",109992.84,0,109992.84,"GL"],["2024-07","6100",23798.11,0,23798.11,"GL"],["2024-07","6200",8334.6,0,8334.6,"GL"],["2024-07","6300",15389.06,0,15389.06,"GL"],["2024-07","6400",4557.79,0,4557.79,"GL"],["2024-07","6500",5939.39,0,5939.39,"GL"],["2024-07","6600",12000,0,12000,"GL"],["2024-07","6700",2000,0,2000,"GL"],["2024-07","6800",971.74,0,971.74,"GL"],["2024-07","6900",2194.92,0,2194.92,"GL"],["2024-08","1000",243343.29,254230.81,389531.76,"GL"],["2024-08","1100",247094.42,243343.29,162228.88999999998,"GL"],["2024-08","1500",0,0,22371.17,"GL"],["2024-08","1600",0,2000,16000,"GL"],["2024-08","2000",93759.23,97642.11,62506.179999999964,"GL"],["2024-08","3000",0,0,650000,"GL"],["2024-08","3900",0,0,-154374.36,"derived_plug"],["2024-08","4000",0,221902.09,221902.09,"GL"],["2024-08","4100",0,25192.33,25192.33,"GL"],["2024-08","5000",74274.33,0,74274.33,"GL"],["2024-08","6000",109281.08,0,109281.08,"GL"],["2024-08","6100",22901.59,0,22901.59,"GL"],["2024-08","6200",8523.16,0,8523.16,"GL"],["2024-08","6300",17358.55,0,17358.55,"GL"],["2024-08","6400",4348.66,0,4348.66,"GL"],["2024-08","6500",6009.23,0,6009.23,"GL"],["2024-08","6600",12000,0,12000,"GL"],["2024-08","6700",2000,0,2000,"GL"],["2024-08","6800",1283.14,0,1283.14,"GL"],["2024-08","6900",2133.95,0,2133.95,"GL"],["2024-09","1000",245179.72,256596.12,378115.36,"GL"],["2024-09","1100",246404.01,245179.72,163453.18,"GL"],["2024-09","1500",0,0,22371.17,"GL"],["2024-09","1600",0,2000,18000,"GL"],["2024-09","2000",92439.97,91560.47,61626.67999999995,"GL"],["2024-09","3000",0,0,650000,"GL"],["2024-09","3900",0,0,-165686.97,"derived_plug"],["2024-09","4000",0,219997.34,219997.34,"GL"],["2024-09","4100",0,26406.67,26406.67,"GL"],["2024-09","5000",71385.73,0,71385.73,"GL"],["2024-09","6000",111511.96,0,111511.96,"GL"],["2024-09","6100",24034.81,0,24034.81,"GL"],["2024-09","6200",9115.27,0,9115.27,"GL"],["2024-09","6300",14716.2,0,14716.2,"GL"],["2024-09","6400",4547.72,0,4547.72,"GL"],["2024-09","6500",5458.54,0,5458.54,"GL"],["2024-09","6600",12000,0,12000,"GL"],["2024-09","6700",2000,0,2000,"GL"],["2024-09","6800",1075.43,0,1075.43,"GL"],["2024-09","6900",1870.96,0,1870.96,"GL"],["2024-10","1000",255137.79,272717.71,360535.44000000006,"GL"],["2024-10","1100",261776.51,255137.79,170091.9,"GL"],["2024-10","1500",7734.77,0,30105.94,"GL"],["2024-10","1600",0,2000,20000,"GL"],["2024-10","2000",101316.55,107234.27,67544.39999999994,"GL"],["2024-10","3000",0,0,650000,"GL"],["2024-10","3900",0,0,-176811.12,"derived_plug"],["2024-10","4000",0,229262.95,229262.95,"GL"],["2024-10","4100",0,32513.56,32513.56,"GL"],["2024-10","5000",75171.92,0,75171.92,"GL"],["2024-10","6000",111829.37,0,111829.37,"GL"],["2024-10","6100",23958.06,0,23958.06,"GL"],["2024-10","6200",8511,0,8511,"GL"],["2024-10","6300",26611.06,0,26611.06,"GL"],["2024-10","6400",4240.44,0,4240.44,"GL"],["2024-10","6500",5451.29,0,5451.29,"GL"],["2024-10","6600",12000,0,12000,"GL"],["2024-10","6700",2000,0,2000,"GL"],["2024-10","6800",1252.18,0,1252.18,"GL"],["2024-10","6900",1875.34,0,1875.34,"GL"],["2024-11","1000",262132.3,267655.03,355012.71,"GL"],["2024-11","1100",266795.31,262132.3,174754.91,"GL"],["2024-11","1500",0,0,30105.94,"GL"],["2024-11","1600",0,2000,22000,"GL"],["2024-11","2000",103186.13,104432.53,68790.79999999993,"GL"],["2024-11","3000",0,0,650000,"GL"],["2024-11","3900",0,0,-180917.24,"derived_plug"],["2024-11","4000",0,233860.53,233860.53,"GL"],["2024-11","4100",0,32934.78,32934.78,"GL"],["2024-11","5000",73081.22,0,73081.22,"GL"],["2024-11","6000",111027.45,0,111027.45,"GL"],["2024-11","6100",25295.37,0,25295.37,"GL"],["2024-11","6200",8784.47,0,8784.47,"GL"],["2024-11","6300",25669.14,0,25669.14,"GL"],["2024-11","6400",4135.96,0,4135.96,"GL"],["2024-11","6500",5682.17,0,5682.17,"GL"],["2024-11","6600",12000,0,12000,"GL"],["2024-11","6700",2000,0,2000,"GL"],["2024-11","6800",1413.48,0,1413.48,"GL"],["2024-11","6900",1812.17,0,1812.17,"GL"],["2024-12","1000",267263,268623.56,353652.1500000001,"GL"],["2024-12","1100",270683.47,267263,178175.37999999998,"GL"],["2024-12","1500",0,0,30105.94,"GL"],["2024-12","1600",0,2000,24000,"GL"],["2024-12","2000",104890.47,106026.69,69927.01999999993,"GL"],["2024-12","3000",0,0,650000,"GL"],["2024-12","3900",0,0,-181993.55,"derived_plug"],["2024-12","4000",0,241492.68,241492.68,"GL"],["2024-12","4100",0,29190.79,29190.79,"GL"],["2024-12","5000",73917.9,0,73917.9,"GL"],["2024-12","6000",109295.84,0,109295.84,"GL"],["2024-12","6100",24954.09,0,24954.09,"GL"],["2024-12","6200",9619.34,0,9619.34,"GL"],["2024-12","6300",26125.08,0,26125.08,"GL"],["2024-12","6400",4299.05,0,4299.05,"GL"],["2024-12","6500",5983.71,0,5983.71,"GL"],["2024-12","6600",12000,0,12000,"GL"],["2024-12","6700",2000,0,2000,"GL"],["2024-12","6800",1080.99,0,1080.99,"GL"],["2024-12","6900",2483.78,0,2483.78,"GL"],["2025-01","1000",275567.21,294131.58,335087.7800000001,"GL"],["2025-01","1100",281103.35,275567.21,183711.52,"GL"],["2025-01","1500",6739.34,0,36845.28,"GL"],["2025-01","1600",0,2000,26000,"GL"],["2025-01","2000",108520.21,110940.03,72346.83999999992,"GL"],["2025-01","3000",0,0,650000,"GL"],["2025-01","3900",0,0,-192702.26,"derived_plug"],["2025-01","4000",0,250187.23,250187.23,"GL"],["2025-01","4100",0,30916.12,30916.12,"GL"],["2025-01","5000",77884.27,0,77884.27,"GL"],["2025-01","6000",121828.6,0,121828.6,"GL"],["2025-01","6100",27146.86,0,27146.86,"GL"],["2025-01","6200",10298.82,0,10298.82,"GL"],["2025-01","6300",18321.23,0,18321.23,"GL"],["2025-01","6400",4286.84,0,4286.84,"GL"],["2025-01","6500",14734.53,0,14734.53,"GL"],["2025-01","6600",12000,0,12000,"GL"],["2025-01","6700",2000,0,2000,"GL"],["2025-01","6800",992.64,0,992.64,"GL"],["2025-01","6900",2318.27,0,2318.27,"GL"],["2025-02","1000",278561.86,289355.4,324294.2400000001,"GL"],["2025-02","1100",280558.29,278561.86,185707.94999999998,"GL"],["2025-02","1500",0,0,36845.28,"GL"],["2025-02","1600",0,2000,28000,"GL"],["2025-02","2000",112969.12,115935.06,75312.77999999993,"GL"],["2025-02","3000",0,0,650000,"GL"],["2025-02","3900",0,0,-206465.31,"derived_plug"],["2025-02","4000",0,253822.16,253822.16,"GL"],["2025-02","4100",0,26736.13,26736.13,"GL"],["2025-02","5000",81967.7,0,81967.7,"GL"],["2025-02","6000",120240.78,0,120240.78,"GL"],["2025-02","6100",27083.93,0,27083.93,"GL"],["2025-02","6200",10306.84,0,10306.84,"GL"],["2025-02","6300",18663.49,0,18663.49,"GL"],["2025-02","6400",3702.27,0,3702.27,"GL"],["2025-02","6500",15303.87,0,15303.87,"GL"],["2025-02","6600",12000,0,12000,"GL"],["2025-02","6700",2000,0,2000,"GL"],["2025-02","6800",1136.13,0,1136.13,"GL"],["2025-02","6900",1916.33,0,1916.33,"GL"],["2025-03","1000",282560.87,285554.84,321300.2700000001,"GL"],["2025-03","1100",285226.88,282560.87,188373.96,"GL"],["2025-03","1500",0,0,36845.28,"GL"],["2025-03","1600",0,2000,30000,"GL"],["2025-03","2000",108363.57,105293.21,72242.41999999993,"GL"],["2025-03","3000",0,0,650000,"GL"],["2025-03","3900",0,0,-205722.91,"derived_plug"],["2025-03","4000",0,256758.65,256758.65,"GL"],["2025-03","4100",0,28468.23,28468.23,"GL"],["2025-03","5000",80981.55,0,80981.55,"GL"],["2025-03","6000",121524.57,0,121524.57,"GL"],["2025-03","6100",26647.98,0,26647.98,"GL"],["2025-03","6200",9179.95,0,9179.95,"GL"],["2025-03","6300",17833.93,0,17833.93,"GL"],["2025-03","6400",4462.32,0,4462.32,"GL"],["2025-03","6500",6477.73,0,6477.73,"GL"],["2025-03","6600",12000,0,12000,"GL"],["2025-03","6700",2000,0,2000,"GL"],["2025-03","6800",1179.55,0,1179.55,"GL"],["2025-03","6900",2196.9,0,2196.9,"GL"],["2025-04","1000",294873.61,295182.37,320991.51000000007,"GL"],["2025-04","1100",303082.1,294873.61,196582.44999999998,"GL"],["2025-04","1500",8584.15,0,45429.43,"GL"],["2025-04","1600",0,2000,32000,"GL"],["2025-04","2000",110726.9,112302.45,73817.96999999993,"GL"],["2025-04","3000",0,0,650000,"GL"],["2025-04","3900",0,0,-192814.58,"derived_plug"],["2025-04","4000",0,271314.62,271314.62,"GL"],["2025-04","4100",0,31767.48,31767.48,"GL"],["2025-04","5000",87309.78,0,87309.78,"GL"],["2025-04","6000",121583.77,0,121583.77,"GL"],["2025-04","6100",25733.57,0,25733.57,"GL"],["2025-04","6200",9223.19,0,9223.19,"GL"],["2025-04","6300",18592.75,0,18592.75,"GL"],["2025-04","6400",4353.17,0,4353.17,"GL"],["2025-04","6500",6399.92,0,6399.92,"GL"],["2025-04","6600",12000,0,12000,"GL"],["2025-04","6700",2000,0,2000,"GL"],["2025-04","6800",965.12,0,965.12,"GL"],["2025-04","6900",2012.5,0,2012.5,"GL"],["2025-05","1000",297168.76,282296.51,335863.76000000007,"GL"],["2025-05","1100",298698.86,297168.76,198112.55000000002,"GL"],["2025-05","1500",0,0,45429.43,"GL"],["2025-05","1600",0,2000,34000,"GL"],["2025-05","2000",109525.58,108724.7,73017.08999999992,"GL"],["2025-05","3000",0,0,650000,"GL"],["2025-05","3900",0,0,-177611.35,"derived_plug"],["2025-05","4000",0,267836.27,267836.27,"GL"],["2025-05","4100",0,30862.59,30862.59,"GL"],["2025-05","5000",85924.47,0,85924.47,"GL"],["2025-05","6000",118000.29,0,118000.29,"GL"],["2025-05","6100",24851.49,0,24851.49,"GL"],["2025-05","6200",10684.45,0,10684.45,"GL"],["2025-05","6300",17315.46,0,17315.46,"GL"],["2025-05","6400",3995.37,0,3995.37,"GL"],["2025-05","6500",5484.77,0,5484.77,"GL"],["2025-05","6600",12000,0,12000,"GL"],["2025-05","6700",2000,0,2000,"GL"],["2025-05","6800",1111.27,0,1111.27,"GL"],["2025-05","6900",2128.06,0,2128.06,"GL"],["2025-06","1000",307657.42,287324.69,356196.4900000001,"GL"],["2025-06","1100",314649.86,307657.42,205104.99000000002,"GL"],["2025-06","1500",0,0,45429.43,"GL"],["2025-06","1600",0,2000,36000,"GL"],["2025-06","2000",113420.69,116017.42,75613.81999999992,"GL"],["2025-06","3000",0,0,650000,"GL"],["2025-06","3900",0,0,-154882.91,"derived_plug"],["2025-06","4000",0,287561.36,287561.36,"GL"],["2025-06","4100",0,27088.5,27088.5,"GL"],["2025-06","5000",92897.67,0,92897.67,"GL"],["2025-06","6000",119999.02,0,119999.02,"GL"],["2025-06","6100",25278.91,0,25278.91,"GL"],["2025-06","6200",9638.21,0,9638.21,"GL"],["2025-06","6300",17396.19,0,17396.19,"GL"],["2025-06","6400",3676.52,0,3676.52,"GL"],["2025-06","6500",5723.56,0,5723.56,"GL"],["2025-06","6600",12000,0,12000,"GL"],["2025-06","6700",2000,0,2000,"GL"],["2025-06","6800",972.04,0,972.04,"GL"],["2025-06","6900",2339.3,0,2339.3,"GL"],["2025-07","1000",312522.34,311030.52,357688.3100000001,"GL"],["2025-07","1100",315765.61,312522.34,208348.25999999998,"GL"],["2025-07","1500",8490.71,0,53920.14,"GL"],["2025-07","1600",0,2000,38000,"GL"],["2025-07","2000",112029.35,111101.78,74686.24999999991,"GL"],["2025-07","3000",0,0,650000,"GL"],["2025-07","3900",0,0,-142729.54,"derived_plug"],["2025-07","4000",0,286901.43,286901.43,"GL"],["2025-07","4100",0,28864.18,28864.18,"GL"],["2025-07","5000",87295,0,87295,"GL"],["2025-07","6000",130995.57,0,130995.57,"GL"],["2025-07","6100",27968.58,0,27968.58,"GL"],["2025-07","6200",11166.13,0,11166.13,"GL"],["2025-07","6300",17972.92,0,17972.92,"GL"],["2025-07","6400",4028.82,0,4028.82,"GL"],["2025-07","6500",5833.86,0,5833.86,"GL"],["2025-07","6600",13200,0,13200,"GL"],["2025-07","6700",2000,0,2000,"GL"],["2025-07","6800",1010.96,0,1010.96,"GL"],["2025-07","6900",2140.4,0,2140.4,"GL"],["2025-08","1000",320980.54,304057.05,374611.8000000001,"GL"],["2025-08","1100",326619.35,320980.54,213987.07000000004,"GL"],["2025-08","1500",0,0,53920.14,"GL"],["2025-08","1600",0,2000,40000,"GL"],["2025-08","2000",115304.09,117487.26,76869.4199999999,"GL"],["2025-08","3000",0,0,650000,"GL"],["2025-08","3900",0,0,-124350.41,"derived_plug"],["2025-08","4000",0,294047.51,294047.51,"GL"],["2025-08","4100",0,32571.84,32571.84,"GL"],["2025-08","5000",91778.18,0,91778.18,"GL"],["2025-08","6000",130693.07,0,130693.07,"GL"],["2025-08","6100",28057.61,0,28057.61,"GL"],["2025-08","6200",9800.91,0,9800.91,"GL"],["2025-08","6300",19503.76,0,19503.76,"GL"],["2025-08","6400",3440.06,0,3440.06,"GL"],["2025-08","6500",6205.32,0,6205.32,"GL"],["2025-08","6600",13200,0,13200,"GL"],["2025-08","6700",2000,0,2000,"GL"],["2025-08","6800",1125.53,0,1125.53,"GL"],["2025-08","6900",2435.78,0,2435.78,"GL"],["2025-09","1000",331465.86,316868.86,389208.8000000001,"GL"],["2025-09","1100",338456.07,331465.86,220977.28000000006,"GL"],["2025-09","1500",0,0,53920.14,"GL"],["2025-09","1600",0,2000,42000,"GL"],["2025-09","2000",118595.31,120789.46,79063.56999999989,"GL"],["2025-09","3000",0,0,650000,"GL"],["2025-09","3900",0,0,-106957.35,"derived_plug"],["2025-09","4000",0,309023.69,309023.69,"GL"],["2025-09","4100",0,29432.38,29432.38,"GL"],["2025-09","5000",94822.41,0,94822.41,"GL"],["2025-09","6000",127371.3,0,127371.3,"GL"],["2025-09","6100",28705.46,0,28705.46,"GL"],["2025-09","6200",10194.04,0,10194.04,"GL"],["2025-09","6300",19372.96,0,19372.96,"GL"],["2025-09","6400",15519.54,0,15519.54,"GL"],["2025-09","6500",6594.09,0,6594.09,"GL"],["2025-09","6600",13200,0,13200,"GL"],["2025-09","6700",2000,0,2000,"GL"],["2025-09","6800",1093.77,0,1093.77,"GL"],["2025-09","6900",2189.44,0,2189.44,"GL"],["2025-10","1000",339273.74,354156,374326.5400000001,"GL"],["2025-10","1100",344479,339273.74,226182.54000000007,"GL"],["2025-10","1500",9513.81,0,63433.95,"GL"],["2025-10","1600",0,2000,44000,"GL"],["2025-10","2000",152712.7,175457.62,101808.48999999987,"GL"],["2025-10","3000",0,0,650000,"GL"],["2025-10","3900",0,0,-131865.46,"derived_plug"],["2025-10","4000",0,306781.46,306781.46,"GL"],["2025-10","4100",0,37697.54,37697.54,"GL"],["2025-10","5000",98273.22,0,98273.22,"GL"],["2025-10","6000",130815.35,0,130815.35,"GL"],["2025-10","6100",29614.84,0,29614.84,"GL"],["2025-10","6200",52544.97,0,52544.97,"GL"],["2025-10","6300",29073.16,0,29073.16,"GL"],["2025-10","6400",4286.76,0,4286.76,"GL"],["2025-10","6500",6111.24,0,6111.24,"GL"],["2025-10","6600",13200,0,13200,"GL"],["2025-10","6700",2000,0,2000,"GL"],["2025-10","6800",1392.93,0,1392.93,"GL"],["2025-10","6900",2074.64,0,2074.64,"GL"],["2025-11","1000",351950.22,359913.12,366363.6400000001,"GL"],["2025-11","1100",360401.21,351950.22,234633.53000000006,"GL"],["2025-11","1500",0,0,63433.95,"GL"],["2025-11","1600",0,2000,46000,"GL"],["2025-11","2000",170216.03,181884.92,113477.37999999986,"GL"],["2025-11","3000",0,0,650000,"GL"],["2025-11","3900",0,0,-145046.26,"derived_plug"],["2025-11","4000",0,326057.67,326057.67,"GL"],["2025-11","4100",0,34343.54,34343.54,"GL"],["2025-11","5000",109397.69,0,109397.69,"GL"],["2025-11","6000",129735.61,0,129735.61,"GL"],["2025-11","6100",29124.66,0,29124.66,"GL"],["2025-11","6200",10311.07,0,10311.07,"GL"],["2025-11","6300",66691.92,0,66691.92,"GL"],["2025-11","6400",4210.88,0,4210.88,"GL"],["2025-11","6500",5795.31,0,5795.31,"GL"],["2025-11","6600",13200,0,13200,"GL"],["2025-11","6700",2000,0,2000,"GL"],["2025-11","6800",1098.43,0,1098.43,"GL"],["2025-11","6900",2016.44,0,2016.44,"GL"],["2025-12","1000",354305.85,340153.62,380515.87000000005,"GL"],["2025-12","1100",355876.28,354305.85,236203.9600000001,"GL"],["2025-12","1500",0,0,63433.95,"GL"],["2025-12","1600",0,2000,48000,"GL"],["2025-12","2000",150079.59,136655.29,100053.07999999987,"GL"],["2025-12","3000",0,0,650000,"GL"],["2025-12","3900",0,0,-117899.3,"derived_plug"],["2025-12","4000",0,319665.37,319665.37,"GL"],["2025-12","4100",0,36210.91,36210.91,"GL"],["2025-12","5000",102205.4,0,102205.4,"GL"],["2025-12","6000",129982.08,0,129982.08,"GL"],["2025-12","6100",27654.15,0,27654.15,"GL"],["2025-12","6200",11658.41,0,11658.41,"GL"],["2025-12","6300",28910.98,0,28910.98,"GL"],["2025-12","6400",4164.39,0,4164.39,"GL"],["2025-12","6500",5538.91,0,5538.91,"GL"],["2025-12","6600",13200,0,13200,"GL"],["2025-12","6700",2000,0,2000,"GL"],["2025-12","6800",1200.28,0,1200.28,"GL"],["2025-12","6900",2214.72,0,2214.72,"GL"]]};
+</script>
+<script>
+(function(){
+"use strict";
+
+const MONTHS = ["Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec"];
+function periodLabel(p){ const [y,m]=p.split("-"); return MONTHS[Number(m)-1]+" "+y; }
+function fmtUSD(n){
+  if (n===null || n===undefined) return "—";
+  const sign = n<0 ? "-" : "";
+  return sign+"$"+Math.abs(n).toLocaleString("en-US",{minimumFractionDigits:2,maximumFractionDigits:2});
+}
+function fmtPct(n){ if(n===null||n===undefined) return "—"; return (n>=0?"+":"")+n.toFixed(1)+"%"; }
+function esc(s){ return String(s).replace(/[&<>"]/g, c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c])); }
+
+/* ---------------- data layer (mirrors src/lib/data.js) ---------------- */
+const ACCOUNTS = DATA.accounts.map(([code,name,type,statement,nb])=>({code,name,type,statement,nb}));
+const ACCOUNT_BY_CODE = Object.fromEntries(ACCOUNTS.map(a=>[a.code,a]));
+const GL = DATA.glRows.map(([txn,date,period,code,debit,credit,description,source_doc])=>({txn,date,period,code,debit,credit,description,source_doc}));
+const TB = DATA.tbRows.map(([period,code,debit,credit,ending_balance,source])=>({period,code,debit,credit,ending_balance,source}));
+const PERIODS = [...new Set(TB.map(r=>r.period))].sort();
+
+function findAccount(ref){
+  const needle = String(ref).trim().toLowerCase();
+  return ACCOUNTS.find(a=>a.code===needle || a.name.toLowerCase()===needle)
+    || ACCOUNTS.find(a=>a.name.toLowerCase().includes(needle));
+}
+function tbRow(code,period){ return TB.find(r=>r.code===code && r.period===period) || null; }
+function tbFor(period, type){ return TB.filter(r=>r.period===period && (!type || ACCOUNT_BY_CODE[r.code].type===type)); }
+function glDetail(code,period){ return GL.filter(r=>r.code===code && r.period===period).sort((a,b)=>a.date.localeCompare(b.date)); }
+function priorPeriod(period){ const i=PERIODS.indexOf(period); return i>0?PERIODS[i-1]:null; }
+function priorYearPeriod(period){ const [y,m]=period.split("-"); const c=(Number(y)-1)+"-"+m; return PERIODS.includes(c)?c:null; }
+function signedAmount(row,account){ return account.nb==="debit" ? row.debit-row.credit : row.credit-row.debit; }
+
+/* ---------------- analysis layer (mirrors src/lib/analysis.js) ---------------- */
+function resolveComparisonPeriod(period, compareTo){
+  if (compareTo==="prior_month") return priorPeriod(period);
+  if (compareTo==="prior_year") return priorYearPeriod(period);
+  return compareTo;
+}
+function computeVariance(account, period, compareTo){
+  const comparisonPeriod = resolveComparisonPeriod(period, compareTo);
+  const currentRow = tbRow(account.code, period);
+  const comparisonRow = comparisonPeriod ? tbRow(account.code, comparisonPeriod) : null;
+  if (!comparisonPeriod || !comparisonRow){
+    return { error: true, message: 'No comparison period available ("'+compareTo+'" relative to '+period+").", account, period };
+  }
+  const currentBalance = currentRow.ending_balance, comparisonBalance = comparisonRow.ending_balance;
+  const varianceAmount = Math.round((currentBalance-comparisonBalance)*100)/100;
+  const variancePct = comparisonBalance!==0 ? Math.round((varianceAmount/Math.abs(comparisonBalance))*10000)/100 : null;
+
+  if (currentRow.source==="derived_plug"){
+    return {
+      account: account.code, account_name: account.name, period, comparison_period: comparisonPeriod,
+      current_balance: currentBalance, comparison_balance: comparisonBalance,
+      variance_amount: varianceAmount, variance_pct: variancePct, is_gl_sourced:false,
+      note: account.name+" is a derived plug (cumulative net income), not a GL-posted account — there are no source transactions to cite. It equals Assets − Liabilities − Common Stock for the period. To explain its movement, examine variance on the P&L accounts instead (they roll into net income).",
+      citations:[
+        {type:"trial_balance",period,account_code:account.code,ending_balance:currentBalance,source:"derived_plug"},
+        {type:"trial_balance",period:comparisonPeriod,account_code:account.code,ending_balance:comparisonBalance,source:"derived_plug"}
+      ]
+    };
+  }
+  const currentTxns = glDetail(account.code, period).map(r=>({transaction_id:r.txn,date:r.date,description:r.description,source_doc:r.source_doc,amount:signedAmount(r,account)}));
+  const historicalTxns = GL.filter(r=>r.code===account.code && r.period!==period);
+  const historicalDescriptions = new Set(historicalTxns.map(r=>r.description));
+  const historicalAmounts = historicalTxns.map(r=>Math.abs(signedAmount(r,account)));
+  const historicalMean = historicalAmounts.length ? historicalAmounts.reduce((a,b)=>a+b,0)/historicalAmounts.length : 0;
+  const likelyDrivers = currentTxns.filter(t=>!historicalDescriptions.has(t.description) || Math.abs(t.amount) > 1.75*historicalMean)
+    .sort((a,b)=>Math.abs(b.amount)-Math.abs(a.amount));
+
+  return {
+    account: account.code, account_name: account.name, period, comparison_period: comparisonPeriod,
+    current_balance: currentBalance, comparison_balance: comparisonBalance,
+    variance_amount: varianceAmount, variance_pct: variancePct, is_gl_sourced:true,
+    likely_drivers: likelyDrivers, all_period_transactions: currentTxns,
+    citations: [
+      {type:"trial_balance",period,account_code:account.code,ending_balance:currentBalance,source:"GL"},
+      {type:"trial_balance",period:comparisonPeriod,account_code:account.code,ending_balance:comparisonBalance,source:"GL"},
+      ...currentTxns.map(t=>({type:"gl_transaction",transaction_id:t.transaction_id,account_code:account.code,period}))
+    ]
+  };
+}
+
+function nextPeriodLabels(fromPeriod,count){
+  let [y,m] = fromPeriod.split("-").map(Number);
+  const labels=[];
+  for (let i=0;i<count;i++){ m+=1; if(m>12){m=1;y+=1;} labels.push(y+"-"+String(m).padStart(2,"0")); }
+  return labels;
+}
+function linearRegression(points){
+  const n=points.length, sumX=points.reduce((a,p)=>a+p.x,0), sumY=points.reduce((a,p)=>a+p.y,0);
+  const sumXY=points.reduce((a,p)=>a+p.x*p.y,0), sumXX=points.reduce((a,p)=>a+p.x*p.x,0);
+  const denom=n*sumXX-sumX*sumX;
+  const slope= denom!==0 ? (n*sumXY-sumX*sumY)/denom : 0;
+  const intercept=(sumY-slope*sumX)/n;
+  return {slope,intercept};
+}
+function forecastAccount(account, periodsAhead, method){
+  const history = PERIODS.map(p=>tbRow(account.code,p)).filter(r=>r && r.ending_balance!==null);
+  const windowSize = Math.min(12, history.length);
+  const windowed = history.slice(-windowSize);
+  let forecastValues, methodDetail;
+  if (method==="moving_average"){
+    const last3 = history.slice(-3).map(r=>r.ending_balance);
+    const avg = last3.reduce((a,b)=>a+b,0)/last3.length;
+    forecastValues = Array(periodsAhead).fill(Math.round(avg*100)/100);
+    methodDetail = "Flat projection at the 3-month moving average of the trailing periods ("+history.slice(-3).map(r=>r.period).join(", ")+").";
+  } else {
+    const points = windowed.map((r,i)=>({x:i,y:r.ending_balance}));
+    const {slope,intercept} = linearRegression(points);
+    forecastValues = Array.from({length:periodsAhead},(_,i)=>{ const x=windowed.length+i; return Math.round((intercept+slope*x)*100)/100; });
+    methodDetail = "Ordinary least-squares linear trend fit over the trailing "+windowed.length+" periods ("+windowed[0].period+".."+windowed[windowed.length-1].period+"); slope ≈ "+Math.round(slope)+" per period.";
+  }
+  const lastPeriod = history[history.length-1].period;
+  const labels = nextPeriodLabels(lastPeriod, periodsAhead);
+  const forecast = labels.map((period,i)=>({period, forecast_ending_balance: forecastValues[i]}));
+  return {
+    account: account.code, account_name: account.name, method, method_detail: methodDetail,
+    history: windowed.map(r=>({period:r.period, ending_balance:r.ending_balance})),
+    forecast,
+    caveat: "This is a naive statistical projection from historical trial-balance history only. It does not know about planned price changes, new contracts, headcount plans, or other future business events — treat it as a starting point for discussion, not a business forecast.",
+    citations: windowed.map(r=>({type:"trial_balance",period:r.period,account_code:account.code,ending_balance:r.ending_balance,source:r.source}))
+  };
+}
+
+/* ---------------- state ---------------- */
+const state = {
+  tab: "variance",
+  account: "6200",
+  period: "2025-10",
+  compareTo: "prior_month",
+  customPeriod: "2025-01",
+  method: "linear_trend",
+  periodsAhead: 3,
+  typeFilter: null,
+  auditLog: []
+};
+
+function log(tool, input, citationCount, summary){
+  state.auditLog.unshift({ ts:new Date().toISOString(), tool, input, citationCount, summary });
+  renderAudit();
+}
+
+/* ---------------- chart helpers ---------------- */
+function svgBarPair(labelA, valueA, labelB, valueB){
+  const W=560,H=200,padL=70,padR=24,padT=20,padB=36;
+  const plotW=W-padL-padR, plotH=H-padT-padB;
+  const maxV = Math.max(valueA, valueB, 1) * 1.15;
+  const barW = plotW*0.28;
+  const xA = padL + plotW*0.22 - barW/2, xB = padL + plotW*0.78 - barW/2;
+  const yA = padT + plotH*(1-valueA/maxV), yB = padT + plotH*(1-valueB/maxV);
+  const hA = plotH*(valueA/maxV), hB = plotH*(valueB/maxV);
+  const gridY = [0,0.25,0.5,0.75,1].map(f=>padT+plotH*f);
+  return '<svg viewBox="0 0 '+W+' '+H+'" role="img" aria-label="Comparison of '+esc(labelA)+' and '+esc(labelB)+'">'
+    + gridY.map(y=>'<line class="gridline" x1="'+padL+'" x2="'+(W-padR)+'" y1="'+y+'" y2="'+y+'"/>').join("")
+    + '<rect x="'+xA+'" y="'+yA+'" width="'+barW+'" height="'+hA+'" rx="3" fill="var(--ink-faint)"/>'
+    + '<rect x="'+xB+'" y="'+yB+'" width="'+barW+'" height="'+hB+'" rx="3" fill="var(--accent)"/>'
+    + '<text class="axis-label" x="'+(xA+barW/2)+'" y="'+(yA-8)+'" text-anchor="middle" font-weight="600">'+esc(fmtUSD(valueA))+'</text>'
+    + '<text class="axis-label" x="'+(xB+barW/2)+'" y="'+(yB-8)+'" text-anchor="middle" font-weight="600" fill="var(--accent)">'+esc(fmtUSD(valueB))+'</text>'
+    + '<text class="axis-label" x="'+(xA+barW/2)+'" y="'+(H-14)+'" text-anchor="middle">'+esc(labelA)+'</text>'
+    + '<text class="axis-label" x="'+(xB+barW/2)+'" y="'+(H-14)+'" text-anchor="middle">'+esc(labelB)+'</text>'
+    + '</svg>';
+}
+
+function lineChart(history, forecast){
+  const W=760,H=260,padL=64,padR=20,padT=20,padB=34;
+  const plotW=W-padL-padR, plotH=H-padT-padB;
+  const allPoints = history.map(h=>({period:h.period,value:h.ending_balance,isForecast:false}))
+    .concat(forecast.map(f=>({period:f.period,value:f.forecast_ending_balance,isForecast:true})));
+  const values = allPoints.map(p=>p.value);
+  const minV = Math.min(...values,0), maxV = Math.max(...values)*1.08;
+  const n = allPoints.length;
+  const xFor = i => padL + (n===1?0:plotW*(i/(n-1)));
+  const yFor = v => padT + plotH*(1-(v-minV)/(maxV-minV || 1));
+  allPoints.forEach((p,i)=>{ p.cx=xFor(i); p.cy=yFor(p.value); });
+
+  const histPts = allPoints.filter(p=>!p.isForecast);
+  const lastHist = histPts[histPts.length-1];
+  const fcPts = [lastHist, ...allPoints.filter(p=>p.isForecast)];
+
+  const pathD = pts => pts.map((p,i)=>(i===0?"M":"L")+p.cx.toFixed(1)+","+p.cy.toFixed(1)).join(" ");
+  const gridY = [0,0.25,0.5,0.75,1].map(f=>padT+plotH*f);
+  const labelEvery = Math.ceil(n/7);
+
+  let svg = '<svg viewBox="0 0 '+W+' '+H+'" role="img" aria-label="Forecast chart">';
+  svg += gridY.map(y=>'<line class="gridline" x1="'+padL+'" x2="'+(W-padR)+'" y1="'+y+'" y2="'+y+'"/>').join("");
+  svg += '<path d="'+pathD(histPts)+'" fill="none" stroke="var(--accent)" stroke-width="2"/>';
+  svg += '<path d="'+pathD(fcPts)+'" fill="none" stroke="var(--accent)" stroke-width="2" stroke-dasharray="5,4" opacity="0.75"/>';
+  allPoints.forEach((p,i)=>{
+    if (i%labelEvery===0 || i===n-1) svg += '<text class="axis-label" x="'+p.cx.toFixed(1)+'" y="'+(H-12)+'" text-anchor="middle">'+esc(periodLabel(p.period).replace(" "," ’").slice(0,-2)+p.period.slice(2,4))+'</text>';
+  });
+  allPoints.forEach(p=>{
+    svg += '<circle cx="'+p.cx.toFixed(1)+'" cy="'+p.cy.toFixed(1)+'" r="'+(p===lastHist?4:2.5)+'" fill="'+(p.isForecast?"var(--surface)":"var(--accent)")+'" stroke="var(--accent)" stroke-width="'+(p.isForecast?1.5:0)+'"/>';
+  });
+  svg += '</svg>';
+  return { svg, points: allPoints, padL, padR, W };
+}
+
+/* ---------------- renderers ---------------- */
+function renderStatRow(){
+  const glCount = GL.length, txns = new Set(GL.map(r=>r.txn)).size;
+  document.getElementById("statRow").innerHTML =
+    '<div class="stat-chip"><b>'+PERIODS.length+'</b><span>Periods</span></div>'+
+    '<div class="stat-chip"><b>'+ACCOUNTS.length+'</b><span>Accounts</span></div>'+
+    '<div class="stat-chip"><b>'+txns+'</b><span>Journal entries</span></div>'+
+    '<div class="stat-chip"><b>'+glCount+'</b><span>GL lines</span></div>';
+}
+
+function renderAudit(){
+  const body = document.getElementById("auditBody");
+  const rows = state.auditLog.slice(0,8);
+  body.innerHTML = rows.map(r=>
+    '<div class="audit-row">'+
+      '<span class="ts">'+r.ts.slice(11,19)+'</span>'+
+      '<span class="tool">'+r.tool+'</span>'+
+      '<span class="summary">'+esc(r.summary)+'</span>'+
+      '<span class="cites">'+r.citationCount+' cite'+(r.citationCount===1?"":"s")+'</span>'+
+    '</div>'
+  ).join("") || '<div class="audit-row"><span class="summary">No calls yet.</span></div>';
+  document.getElementById("auditCount").textContent = state.auditLog.length+" call"+(state.auditLog.length===1?"":"s")+" this session";
+}
+
+function renderTrialBalance(){
+  const rows = tbFor(state.period, state.typeFilter);
+  log("get_trial_balance", {period:state.period, account_type: state.typeFilter||"all"}, rows.length, "Trial balance for "+state.period+(state.typeFilter?" ("+state.typeFilter+")":""));
+  const sumDebit = rows.reduce((a,r)=>a+r.debit,0), sumCredit = rows.reduce((a,r)=>a+r.credit,0);
+  document.getElementById("panel").innerHTML =
+    '<div class="card">'+
+      '<h2>Trial balance — '+periodLabel(state.period)+'</h2>'+
+      '<p class="sub">Revenue/Expense = that month’s activity. Asset/Liability/Equity = period-end cumulative balance.</p>'+
+      '<div class="tablewrap"><table><thead><tr><th>Code</th><th>Account</th><th>Type</th><th class="num">Debit</th><th class="num">Credit</th><th class="num">Ending balance</th><th>Source</th></tr></thead><tbody>'+
+      rows.map(r=>{
+        const a = ACCOUNT_BY_CODE[r.code];
+        return '<tr><td class="mono">'+r.code+'</td><td>'+esc(a.name)+'</td><td>'+a.type+'</td>'+
+          '<td class="num">'+ (r.debit? fmtUSD(r.debit):"") +'</td><td class="num">'+(r.credit? fmtUSD(r.credit):"")+'</td>'+
+          '<td class="num">'+fmtUSD(r.ending_balance)+'</td>'+
+          '<td>'+(r.source==="GL" ? '<span class="badge gl">GL-sourced</span>' : '<span class="badge plug">Derived plug</span>')+'</td></tr>';
+      }).join("")+
+      '</tbody><tfoot><tr><td colspan="3">Totals</td><td class="num">'+fmtUSD(sumDebit)+'</td><td class="num">'+fmtUSD(sumCredit)+'</td><td colspan="2">'+(Math.abs(sumDebit-sumCredit)<0.01 ? "Debits = Credits ✓" : "Out of balance")+'</td></tr></tfoot></table></div>'+
+    '</div>';
+}
+
+function renderAccountDetail(){
+  const acct = findAccount(state.account);
+  if (acct.code==="3900"){
+    log("get_account_detail",{account:state.account,period:state.period},0,"Retained Earnings has no GL detail (derived plug)");
+    document.getElementById("panel").innerHTML = '<div class="card"><h2>'+esc(acct.name)+' — '+periodLabel(state.period)+'</h2>'+
+      '<div class="note">Retained Earnings is a derived plug (cumulative net income), not posted from GL transactions. There is nothing to cite here directly — see the P&amp;L accounts that roll into net income instead.</div></div>';
+    return;
+  }
+  const txns = glDetail(acct.code, state.period);
+  const historicalTxns = GL.filter(r=>r.code===acct.code && r.period!==state.period);
+  const historicalDescriptions = new Set(historicalTxns.map(r=>r.description));
+  const historicalAmounts = historicalTxns.map(r=>Math.abs(signedAmount(r,acct)));
+  const historicalMean = historicalAmounts.length ? historicalAmounts.reduce((a,b)=>a+b,0)/historicalAmounts.length : 0;
+  log("get_account_detail",{account:state.account,period:state.period}, txns.length, txns.length+" GL lines for "+acct.name+" "+state.period);
+  document.getElementById("panel").innerHTML =
+    '<div class="card">'+
+      '<h2>'+esc(acct.name)+' ('+acct.code+') — '+periodLabel(state.period)+'</h2>'+
+      '<p class="sub">Every GL line posted to this account this period — the source-of-truth behind the trial balance figure.</p>'+
+      '<div class="tablewrap"><table><thead><tr><th>Date</th><th>Transaction</th><th>Description</th><th>Source doc</th><th class="num">Debit</th><th class="num">Credit</th></tr></thead><tbody>'+
+      txns.map(r=>{
+        const amt = signedAmount(r,acct);
+        const flagged = !historicalDescriptions.has(r.description) || Math.abs(amt) > 1.75*historicalMean;
+        return '<tr class="'+(flagged?"flagged":"")+'"><td class="mono">'+r.date+'</td><td class="mono">'+r.txn+'</td>'+
+          '<td>'+esc(r.description)+(flagged?' <span class="badge flag">flagged</span>':'')+'</td>'+
+          '<td class="mono">'+r.source_doc+'</td><td class="num">'+(r.debit?fmtUSD(r.debit):"")+'</td><td class="num">'+(r.credit?fmtUSD(r.credit):"")+'</td></tr>';
+      }).join("")+
+      '</tbody></table></div>'+
+    '</div>';
+}
+
+function renderVariance(){
+  const acct = findAccount(state.account);
+  const compareTo = state.compareTo==="custom" ? state.customPeriod : state.compareTo;
+  const result = computeVariance(acct, state.period, compareTo);
+  if (result.error){
+    log("compute_variance",{account:state.account,period:state.period,compare_to:compareTo},0,result.message);
+    document.getElementById("panel").innerHTML = '<div class="card"><div class="note">'+esc(result.message)+'</div></div>';
+    return;
+  }
+  log("compute_variance", {account:state.account,period:state.period,compare_to:compareTo}, result.citations.length,
+    "Variance "+acct.name+" "+state.period+" vs "+result.comparison_period+": "+fmtUSD(result.variance_amount));
+
+  const tiles =
+    '<div class="tiles">'+
+      '<div class="tile"><div class="label">'+periodLabel(result.comparison_period)+'</div><div class="value">'+fmtUSD(result.comparison_balance)+'</div></div>'+
+      '<div class="tile"><div class="label">'+periodLabel(result.period)+'</div><div class="value">'+fmtUSD(result.current_balance)+'</div></div>'+
+      '<div class="tile"><div class="label">Variance $</div><div class="value accent">'+(result.variance_amount>=0?"▲ ":"▼ ")+fmtUSD(Math.abs(result.variance_amount))+'</div></div>'+
+      '<div class="tile"><div class="label">Variance %</div><div class="value accent">'+fmtPct(result.variance_pct)+'</div></div>'+
+    '</div>';
+
+  if (!result.is_gl_sourced){
+    document.getElementById("panel").innerHTML =
+      '<div class="card"><h2>'+esc(acct.name)+'</h2><p class="sub">'+periodLabel(result.period)+' vs '+periodLabel(result.comparison_period)+'</p>'+tiles+
+      '<div class="note" style="margin-top:16px">'+esc(result.note)+'</div></div>';
+    return;
+  }
+
+  document.getElementById("panel").innerHTML =
+    '<div class="card">'+
+      '<h2>'+esc(acct.name)+' ('+acct.code+')</h2><p class="sub">'+periodLabel(result.period)+' vs '+periodLabel(result.comparison_period)+'</p>'+
+      tiles+
+      '<div class="chart-card" style="margin-top:18px">'+svgBarPair(periodLabel(result.comparison_period), result.comparison_balance, periodLabel(result.period), result.current_balance)+'</div>'+
+    '</div>'+
+    '<div class="card">'+
+      '<h2>Likely drivers</h2><p class="sub">Transactions this period with a description never seen in another period, or an amount well above this account’s historical average.</p>'+
+      (result.likely_drivers.length ? result.likely_drivers.map(d=>
+        '<div class="driver-row"><div style="flex:1"><div class="driver-desc">'+esc(d.description)+'<span class="tick" title="'+d.transaction_id+'">'+d.transaction_id+'</span></div>'+
+        '<div class="driver-meta">'+d.date+' &middot; '+d.source_doc+'</div></div><div class="driver-amt">'+fmtUSD(d.amount)+'</div></div>'
+      ).join("") : '<p class="sub">No individually unusual transactions found — this period’s activity looks like a normal continuation of the account’s recurring pattern.</p>')+
+    '</div>'+
+    '<div class="card">'+
+      '<h2>All transactions — '+periodLabel(result.period)+'</h2>'+
+      '<div class="tablewrap"><table><thead><tr><th>Date</th><th>Transaction</th><th>Description</th><th class="num">Amount</th></tr></thead><tbody>'+
+      result.all_period_transactions.map(t=>'<tr><td class="mono">'+t.date+'</td><td class="mono">'+t.transaction_id+'</td><td>'+esc(t.description)+'</td><td class="num">'+fmtUSD(t.amount)+'</td></tr>').join("")+
+      '</tbody></table></div>'+
+    '</div>';
+}
+
+function renderForecast(){
+  const acct = findAccount(state.account);
+  const periodsAhead = Math.max(1, Math.min(12, Number(state.periodsAhead)||3));
+  const result = forecastAccount(acct, periodsAhead, state.method);
+  log("forecast_account", {account:state.account, periods_ahead:periodsAhead, method:state.method}, result.citations.length,
+    "Forecast "+acct.name+" +"+periodsAhead+"p via "+state.method);
+
+  const chart = lineChart(result.history, result.forecast);
+  document.getElementById("panel").innerHTML =
+    '<div class="card chart-card">'+
+      '<h2>'+esc(acct.name)+' — '+periodsAhead+' period forecast</h2>'+
+      '<p class="sub">'+esc(result.method_detail)+'</p>'+
+      '<div class="chart-container" id="chartContainer">'+chart.svg+'<div class="chart-tooltip" id="chartTooltip"></div></div>'+
+    '</div>'+
+    '<div class="card"><div class="caveat">⚠️ <span><b>Naive projection.</b> '+esc(result.caveat)+'</span></div></div>'+
+    '<div class="card">'+
+      '<h2>Forecast values</h2>'+
+      '<div class="tablewrap"><table><thead><tr><th>Period</th><th class="num">Projected ending balance</th></tr></thead><tbody>'+
+      result.forecast.map(f=>'<tr><td>'+periodLabel(f.period)+'</td><td class="num">'+fmtUSD(f.forecast_ending_balance)+'</td></tr>').join("")+
+      '</tbody></table></div>'+
+    '</div>'+
+    '<div class="card">'+
+      '<h2>Citations — history used in the fit</h2>'+
+      '<div class="tablewrap"><table><thead><tr><th>Period</th><th class="num">Ending balance</th><th>Source</th></tr></thead><tbody>'+
+      result.citations.map(c=>'<tr><td>'+periodLabel(c.period)+'</td><td class="num">'+fmtUSD(c.ending_balance)+'</td><td>'+(c.source==="GL"?'<span class="badge gl">GL-sourced</span>':'<span class="badge plug">Derived plug</span>')+'</td></tr>').join("")+
+      '</tbody></table></div>'+
+    '</div>';
+
+  attachChartTooltip(chart);
+}
+
+function attachChartTooltip(chart){
+  const container = document.getElementById("chartContainer");
+  const tooltip = document.getElementById("chartTooltip");
+  const svg = container.querySelector("svg");
+  if (!svg) return;
+  container.addEventListener("mousemove", (e)=>{
+    const rect = svg.getBoundingClientRect();
+    const scaleX = chart.W / rect.width;
+    const mx = (e.clientX - rect.left) * scaleX;
+    let nearest = chart.points[0], best = Infinity;
+    for (const p of chart.points){ const d = Math.abs(p.cx-mx); if (d<best){ best=d; nearest=p; } }
+    const px = nearest.cx / scaleX, py = nearest.cy / (chart.W/rect.width) * (rect.width/rect.width);
+    const svgH = svg.viewBox.baseVal.height || 260;
+    const scaleY = rect.height / svgH;
+    tooltip.style.left = (nearest.cx/scaleX)+"px";
+    tooltip.style.top = (nearest.cy*scaleY)+"px";
+    tooltip.innerHTML = periodLabel(nearest.period)+(nearest.isForecast?" (forecast)":"")+"<br>"+fmtUSD(nearest.value);
+    tooltip.classList.add("show");
+  });
+  container.addEventListener("mouseleave", ()=>tooltip.classList.remove("show"));
+}
+
+const TAB_RENDERERS = { trial_balance: renderTrialBalance, account_detail: renderAccountDetail, variance: renderVariance, forecast: renderForecast };
+const TAB_CONTROLS = {
+  trial_balance: ["period","typeFilter"],
+  account_detail: ["account","period"],
+  variance: ["account","period","compare"].concat([]),
+  forecast: ["account","method","periodsAhead"]
+};
+
+function syncControlVisibility(){
+  const visible = new Set(TAB_CONTROLS[state.tab]);
+  if (state.tab==="variance" && state.compareTo==="custom") visible.add("customPeriod");
+  document.querySelectorAll("[data-ctl]").forEach(el=>{
+    const key = el.getAttribute("data-ctl");
+    el.classList.toggle("hidden", !visible.has(key));
+  });
+}
+
+function render(){
+  document.querySelectorAll(".tab").forEach(t=>t.setAttribute("aria-selected", String(t.dataset.tab===state.tab)));
+  syncControlVisibility();
+  TAB_RENDERERS[state.tab]();
+}
+
+function populateSelects(){
+  const accountSelect = document.getElementById("accountSelect");
+  const groups = {};
+  ACCOUNTS.forEach(a=>{ (groups[a.type] = groups[a.type]||[]).push(a); });
+  accountSelect.innerHTML = Object.keys(groups).map(type=>
+    '<optgroup label="'+type+'">'+groups[type].map(a=>'<option value="'+a.code+'">'+a.code+' — '+esc(a.name)+'</option>').join("")+'</optgroup>'
+  ).join("");
+  accountSelect.value = state.account;
+
+  const periodOptions = PERIODS.map(p=>'<option value="'+p+'">'+periodLabel(p)+'</option>').join("");
+  document.getElementById("periodSelect").innerHTML = periodOptions;
+  document.getElementById("periodSelect").value = state.period;
+  document.getElementById("customPeriodSelect").innerHTML = periodOptions;
+  document.getElementById("customPeriodSelect").value = state.customPeriod;
+
+  const types = ["All","Asset","Liability","Equity","Revenue","Expense"];
+  document.getElementById("typeChips").innerHTML = types.map(t=>
+    '<button type="button" class="chip" data-type="'+(t==="All"?"":t)+'" aria-pressed="'+(state.typeFilter===(t==="All"?null:t))+'">'+t+'</button>'
+  ).join("");
+}
+
+function wireEvents(){
+  document.getElementById("tabbar").addEventListener("click", e=>{
+    const btn = e.target.closest(".tab"); if (!btn) return;
+    state.tab = btn.dataset.tab; render();
+  });
+  document.getElementById("accountSelect").addEventListener("change", e=>{ state.account = e.target.value; render(); });
+  document.getElementById("periodSelect").addEventListener("change", e=>{ state.period = e.target.value; render(); });
+  document.getElementById("compareSelect").addEventListener("change", e=>{ state.compareTo = e.target.value; render(); });
+  document.getElementById("customPeriodSelect").addEventListener("change", e=>{ state.customPeriod = e.target.value; render(); });
+  document.getElementById("methodSelect").addEventListener("change", e=>{ state.method = e.target.value; render(); });
+  document.getElementById("periodsAheadInput").addEventListener("change", e=>{ state.periodsAhead = e.target.value; render(); });
+  document.getElementById("typeChips").addEventListener("click", e=>{
+    const btn = e.target.closest(".chip"); if (!btn) return;
+    state.typeFilter = btn.dataset.type || null; render();
+  });
+}
+
+renderStatRow();
+populateSelects();
+wireEvents();
+render();
+
+})();
+</script>
+</body>
+</html>

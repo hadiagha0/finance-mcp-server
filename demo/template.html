@@ -1,0 +1,730 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Meridian Ledger Console</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Spectral:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&family=IBM+Plex+Sans:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+:root{
+  --ink:#172033; --ink-soft:#4c5a6e; --ink-faint:#7c8798;
+  --paper:#f2f3ef; --surface:#ffffff; --surface-sunken:#eceee9;
+  --rule:#d9dcd4; --rule-strong:#c3c7bd;
+  --accent:#a3332b; --accent-soft:#f4e3e0; --accent-soft-ink:#7a2620;
+  --good:#2e7d5b; --good-bg:#e3f0e9;
+  --flag:#97701f; --flag-bg:#f5ecd8;
+  --plug:#4f5d7a; --plug-bg:#e7eaf1;
+  --serif:"Spectral",Georgia,"Times New Roman",serif;
+  --sans:"IBM Plex Sans",-apple-system,"Segoe UI",sans-serif;
+  --mono:"IBM Plex Mono","SFMono-Regular",Consolas,monospace;
+}
+@media (prefers-color-scheme: dark){
+  :root:not([data-theme="light"]){
+    --ink:#e7e9e2; --ink-soft:#aab2ba; --ink-faint:#7c8798;
+    --paper:#12161d; --surface:#1a1f28; --surface-sunken:#10141a;
+    --rule:#2b323d; --rule-strong:#3a4250;
+    --accent:#e08278; --accent-soft:#382220; --accent-soft-ink:#f0a89f;
+    --good:#5fbb92; --good-bg:#17281f;
+    --flag:#d3ab5a; --flag-bg:#2c2515;
+    --plug:#93a2c4; --plug-bg:#1c2230;
+  }
+}
+:root[data-theme="dark"]{
+  --ink:#e7e9e2; --ink-soft:#aab2ba; --ink-faint:#7c8798;
+  --paper:#12161d; --surface:#1a1f28; --surface-sunken:#10141a;
+  --rule:#2b323d; --rule-strong:#3a4250;
+  --accent:#e08278; --accent-soft:#382220; --accent-soft-ink:#f0a89f;
+  --good:#5fbb92; --good-bg:#17281f;
+  --flag:#d3ab5a; --flag-bg:#2c2515;
+  --plug:#93a2c4; --plug-bg:#1c2230;
+}
+*{box-sizing:border-box;}
+body{
+  background:var(--paper); color:var(--ink); font-family:var(--sans);
+  font-size:14px; line-height:1.5; margin:0;
+}
+::selection{ background:var(--accent-soft); color:var(--accent-soft-ink); }
+.wrap{ max-width:980px; margin:0 auto; padding:28px 20px 60px; }
+
+/* ---------- masthead ---------- */
+.masthead{ margin-bottom:22px; }
+.eyebrow{
+  font-family:var(--mono); font-size:10.5px; letter-spacing:.12em; text-transform:uppercase;
+  color:var(--ink-faint); display:flex; align-items:center; gap:8px; margin-bottom:8px;
+}
+.eyebrow .dot{ width:5px; height:5px; border-radius:50%; background:var(--accent); flex:none; }
+h1{
+  font-family:var(--serif); font-weight:600; font-size:clamp(24px,4vw,32px);
+  margin:0 0 6px; text-wrap:balance; letter-spacing:-.01em;
+}
+.dek{ color:var(--ink-soft); max-width:62ch; margin:0 0 16px; font-size:14.5px; }
+.stat-row{ display:flex; flex-wrap:wrap; gap:10px; }
+.stat-chip{
+  display:flex; align-items:baseline; gap:6px; background:var(--surface);
+  border:1px solid var(--rule); border-radius:7px; padding:7px 12px;
+}
+.stat-chip b{ font-family:var(--mono); font-size:15px; font-variant-numeric:tabular-nums; }
+.stat-chip span{ font-size:11.5px; color:var(--ink-faint); text-transform:uppercase; letter-spacing:.04em; }
+.tool-pills{ display:flex; flex-wrap:wrap; gap:6px; margin-top:14px; }
+.tool-pill{
+  font-family:var(--mono); font-size:11px; color:var(--ink-soft); background:var(--surface-sunken);
+  border:1px solid var(--rule); border-radius:20px; padding:3px 10px;
+}
+
+/* ---------- tabs ---------- */
+.tabbar{ display:flex; gap:2px; border-bottom:1px solid var(--rule-strong); margin:26px 0 18px; overflow-x:auto; }
+.tab{
+  font-family:var(--sans); font-weight:600; font-size:13px; color:var(--ink-faint);
+  background:none; border:none; padding:9px 16px; cursor:pointer; white-space:nowrap;
+  border-bottom:2px solid transparent; margin-bottom:-1px; transition:color .15s;
+}
+.tab:hover{ color:var(--ink); }
+.tab[aria-selected="true"]{ color:var(--accent); border-bottom-color:var(--accent); }
+
+/* ---------- controls ---------- */
+.controls{
+  display:flex; flex-wrap:wrap; gap:12px; align-items:flex-end; margin-bottom:20px;
+  background:var(--surface); border:1px solid var(--rule); border-radius:10px; padding:14px 16px;
+}
+.field{ display:flex; flex-direction:column; gap:4px; }
+.field label{ font-size:11px; text-transform:uppercase; letter-spacing:.05em; color:var(--ink-faint); }
+select, input[type="number"]{
+  font-family:var(--sans); font-size:13.5px; color:var(--ink); background:var(--surface);
+  border:1px solid var(--rule-strong); border-radius:6px; padding:7px 9px; min-width:150px;
+}
+input[type="number"]{ min-width:70px; }
+select:focus, input:focus, button:focus-visible{ outline:2px solid var(--accent); outline-offset:1px; }
+.chipset{ display:flex; gap:6px; flex-wrap:wrap; }
+.chip{
+  font-family:var(--sans); font-size:12.5px; font-weight:600; color:var(--ink-soft);
+  background:var(--surface-sunken); border:1px solid var(--rule); border-radius:20px;
+  padding:5px 12px; cursor:pointer;
+}
+.chip[aria-pressed="true"]{ background:var(--ink); color:var(--paper); border-color:var(--ink); }
+
+/* ---------- panel ---------- */
+.panel{ display:flex; flex-direction:column; gap:18px; }
+.card{
+  background:var(--surface); border:1px solid var(--rule); border-radius:10px; padding:18px 20px;
+}
+.card h2{ font-family:var(--serif); font-size:17px; font-weight:600; margin:0 0 4px; }
+.card .sub{ color:var(--ink-faint); font-size:12.5px; margin:0 0 14px; }
+
+.tablewrap{ overflow-x:auto; border:1px solid var(--rule); border-radius:8px; }
+table{ width:100%; border-collapse:collapse; font-size:13px; }
+th{
+  text-align:left; font-size:11px; text-transform:uppercase; letter-spacing:.04em; color:var(--ink-faint);
+  background:var(--surface-sunken); padding:8px 12px; border-bottom:1px solid var(--rule); white-space:nowrap;
+  position:sticky; top:0;
+}
+td{ padding:8px 12px; border-bottom:1px solid var(--rule); vertical-align:top; }
+tr:last-child td{ border-bottom:none; }
+tr.flagged td:first-child{ box-shadow:inset 3px 0 0 var(--flag); }
+.num{ font-family:var(--mono); font-variant-numeric:tabular-nums; text-align:right; white-space:nowrap; }
+.mono{ font-family:var(--mono); font-size:12px; color:var(--ink-soft); }
+tfoot td{ font-weight:600; background:var(--surface-sunken); border-top:1px solid var(--rule-strong); }
+
+.badge{
+  display:inline-flex; align-items:center; gap:5px; font-size:11px; font-weight:600;
+  padding:2px 8px; border-radius:20px; white-space:nowrap;
+}
+.badge.gl{ background:var(--good-bg); color:var(--good); }
+.badge.plug{ background:var(--plug-bg); color:var(--plug); }
+.badge.flag{ background:var(--flag-bg); color:var(--flag); }
+.tick{
+  display:inline-block; font-family:var(--mono); font-size:10px; font-weight:700; color:var(--accent);
+  background:var(--accent-soft); border-radius:4px; padding:1px 5px; margin-left:5px; cursor:default;
+}
+
+/* ---------- stat tiles ---------- */
+.tiles{ display:grid; grid-template-columns:repeat(auto-fit,minmax(160px,1fr)); gap:1px; background:var(--rule); border:1px solid var(--rule); border-radius:10px; overflow:hidden; }
+.tile{ background:var(--surface); padding:16px 18px; }
+.tile .label{ font-size:11px; text-transform:uppercase; letter-spacing:.04em; color:var(--ink-faint); margin-bottom:6px; }
+.tile .value{ font-family:var(--serif); font-size:22px; font-weight:600; font-variant-numeric:tabular-nums; }
+.tile .value.accent{ color:var(--accent); }
+.tile .delta{ font-family:var(--mono); font-size:12px; color:var(--ink-soft); margin-top:3px; }
+
+.note{
+  background:var(--plug-bg); border:1px solid var(--rule); border-left:3px solid var(--plug);
+  border-radius:6px; padding:12px 14px; font-size:13px; color:var(--ink-soft);
+}
+.caveat{
+  background:var(--flag-bg); border-left:3px solid var(--flag); border-radius:6px;
+  padding:12px 14px; font-size:12.5px; color:var(--ink-soft); display:flex; gap:10px;
+}
+.caveat b{ color:var(--ink); }
+
+.driver-row{
+  display:flex; gap:12px; align-items:flex-start; padding:10px 0; border-bottom:1px solid var(--rule);
+}
+.driver-row:last-child{ border-bottom:none; }
+.driver-amt{ font-family:var(--mono); font-variant-numeric:tabular-nums; font-weight:600; white-space:nowrap; margin-left:auto; padding-left:12px; }
+.driver-desc{ font-size:13px; }
+.driver-meta{ font-size:11.5px; color:var(--ink-faint); margin-top:2px; }
+
+/* ---------- charts ---------- */
+.chart-card svg{ display:block; width:100%; height:auto; overflow:visible; }
+.chart-container{ position:relative; }
+.chart-tooltip{
+  position:absolute; pointer-events:none; background:var(--ink); color:var(--paper);
+  font-family:var(--mono); font-size:11.5px; padding:6px 9px; border-radius:6px; white-space:nowrap;
+  transform:translate(-50%,-115%); opacity:0; transition:opacity .1s; z-index:5;
+}
+.chart-tooltip.show{ opacity:1; }
+.axis-label{ font-family:var(--mono); font-size:10px; fill:var(--ink-faint); }
+.gridline{ stroke:var(--rule); stroke-width:1; }
+.hidden{ display:none !important; }
+
+/* ---------- audit log ---------- */
+.audit{
+  margin-top:26px; border:1px solid var(--rule); border-radius:10px; overflow:hidden;
+}
+.audit-head{
+  display:flex; align-items:center; justify-content:space-between; padding:10px 16px;
+  background:var(--surface-sunken); border-bottom:1px solid var(--rule);
+}
+.audit-head h3{ font-family:var(--sans); font-size:12.5px; text-transform:uppercase; letter-spacing:.05em; margin:0; color:var(--ink-soft); }
+.audit-head .count{ font-family:var(--mono); font-size:11.5px; color:var(--ink-faint); }
+.audit-body{ background:var(--surface); max-height:220px; overflow-y:auto; }
+.audit-row{
+  display:flex; gap:10px; padding:8px 16px; border-bottom:1px solid var(--rule);
+  font-family:var(--mono); font-size:11.5px; align-items:baseline;
+}
+.audit-row:last-child{ border-bottom:none; }
+.audit-row .ts{ color:var(--ink-faint); flex:none; }
+.audit-row .tool{ color:var(--accent); font-weight:600; flex:none; }
+.audit-row .summary{ color:var(--ink-soft); overflow:hidden; text-overflow:ellipsis; white-space:nowrap; }
+.audit-row .cites{ margin-left:auto; color:var(--ink-faint); flex:none; }
+.audit-foot{ padding:8px 16px; font-size:11px; color:var(--ink-faint); border-top:1px solid var(--rule); }
+
+@media (max-width:640px){
+  .controls{ padding:12px; }
+  select, input[type="number"]{ min-width:120px; flex:1; }
+  .driver-amt{ margin-left:0; padding-left:0; }
+  .driver-row{ flex-wrap:wrap; }
+}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <div class="masthead">
+    <div class="eyebrow"><span class="dot"></span>MODEL CONTEXT PROTOCOL &middot; READ-ONLY QUERY CONSOLE</div>
+    <h1>Meridian Analytics — Ledger Console</h1>
+    <p class="dek">An in-browser replay of the <code>finance-gl-server</code> MCP tools against Meridian's real synthetic ledger — every figure below is computed live from the same trial balance &amp; GL data the actual server reads, and every query is logged the same way.</p>
+    <div class="stat-row" id="statRow"></div>
+    <div class="tool-pills">
+      <span class="tool-pill">list_accounts</span>
+      <span class="tool-pill">get_trial_balance</span>
+      <span class="tool-pill">get_account_detail</span>
+      <span class="tool-pill">compute_variance</span>
+      <span class="tool-pill">forecast_account</span>
+    </div>
+  </div>
+
+  <div class="tabbar" role="tablist" id="tabbar">
+    <button class="tab" role="tab" data-tab="variance">Variance</button>
+    <button class="tab" role="tab" data-tab="forecast">Forecast</button>
+    <button class="tab" role="tab" data-tab="trial_balance">Trial Balance</button>
+    <button class="tab" role="tab" data-tab="account_detail">Account Detail</button>
+  </div>
+
+  <div class="controls" id="controls">
+    <div class="field" data-ctl="account">
+      <label for="accountSelect">Account</label>
+      <select id="accountSelect"></select>
+    </div>
+    <div class="field" data-ctl="period">
+      <label for="periodSelect">Period</label>
+      <select id="periodSelect"></select>
+    </div>
+    <div class="field" data-ctl="compare">
+      <label for="compareSelect">Compare to</label>
+      <select id="compareSelect">
+        <option value="prior_month">Prior month</option>
+        <option value="prior_year">Prior year</option>
+        <option value="custom">Custom period&hellip;</option>
+      </select>
+    </div>
+    <div class="field hidden" data-ctl="customPeriod">
+      <label for="customPeriodSelect">Custom period</label>
+      <select id="customPeriodSelect"></select>
+    </div>
+    <div class="field" data-ctl="method">
+      <label for="methodSelect">Method</label>
+      <select id="methodSelect">
+        <option value="linear_trend">Linear trend</option>
+        <option value="moving_average">Moving average</option>
+      </select>
+    </div>
+    <div class="field" data-ctl="periodsAhead">
+      <label for="periodsAheadInput">Periods ahead</label>
+      <input type="number" id="periodsAheadInput" min="1" max="12" value="3">
+    </div>
+    <div class="field" data-ctl="typeFilter">
+      <label>Account type</label>
+      <div class="chipset" id="typeChips"></div>
+    </div>
+  </div>
+
+  <div class="panel" id="panel"></div>
+
+  <div class="audit">
+    <div class="audit-head">
+      <h3>Audit log</h3>
+      <span class="count" id="auditCount">0 calls</span>
+    </div>
+    <div class="audit-body" id="auditBody"></div>
+    <div class="audit-foot">Every interaction above triggers one of the five tool calls, logged here exactly as the real server appends to <span class="mono">data/audit_log.jsonl</span>.</div>
+  </div>
+
+</div>
+
+<script>
+const DATA = /*__EMBEDDED_DATA__*/;
+</script>
+<script>
+(function(){
+"use strict";
+
+const MONTHS = ["Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec"];
+function periodLabel(p){ const [y,m]=p.split("-"); return MONTHS[Number(m)-1]+" "+y; }
+function fmtUSD(n){
+  if (n===null || n===undefined) return "—";
+  const sign = n<0 ? "-" : "";
+  return sign+"$"+Math.abs(n).toLocaleString("en-US",{minimumFractionDigits:2,maximumFractionDigits:2});
+}
+function fmtPct(n){ if(n===null||n===undefined) return "—"; return (n>=0?"+":"")+n.toFixed(1)+"%"; }
+function esc(s){ return String(s).replace(/[&<>"]/g, c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c])); }
+
+/* ---------------- data layer (mirrors src/lib/data.js) ---------------- */
+const ACCOUNTS = DATA.accounts.map(([code,name,type,statement,nb])=>({code,name,type,statement,nb}));
+const ACCOUNT_BY_CODE = Object.fromEntries(ACCOUNTS.map(a=>[a.code,a]));
+const GL = DATA.glRows.map(([txn,date,period,code,debit,credit,description,source_doc])=>({txn,date,period,code,debit,credit,description,source_doc}));
+const TB = DATA.tbRows.map(([period,code,debit,credit,ending_balance,source])=>({period,code,debit,credit,ending_balance,source}));
+const PERIODS = [...new Set(TB.map(r=>r.period))].sort();
+
+function findAccount(ref){
+  const needle = String(ref).trim().toLowerCase();
+  return ACCOUNTS.find(a=>a.code===needle || a.name.toLowerCase()===needle)
+    || ACCOUNTS.find(a=>a.name.toLowerCase().includes(needle));
+}
+function tbRow(code,period){ return TB.find(r=>r.code===code && r.period===period) || null; }
+function tbFor(period, type){ return TB.filter(r=>r.period===period && (!type || ACCOUNT_BY_CODE[r.code].type===type)); }
+function glDetail(code,period){ return GL.filter(r=>r.code===code && r.period===period).sort((a,b)=>a.date.localeCompare(b.date)); }
+function priorPeriod(period){ const i=PERIODS.indexOf(period); return i>0?PERIODS[i-1]:null; }
+function priorYearPeriod(period){ const [y,m]=period.split("-"); const c=(Number(y)-1)+"-"+m; return PERIODS.includes(c)?c:null; }
+function signedAmount(row,account){ return account.nb==="debit" ? row.debit-row.credit : row.credit-row.debit; }
+
+/* ---------------- analysis layer (mirrors src/lib/analysis.js) ---------------- */
+function resolveComparisonPeriod(period, compareTo){
+  if (compareTo==="prior_month") return priorPeriod(period);
+  if (compareTo==="prior_year") return priorYearPeriod(period);
+  return compareTo;
+}
+function computeVariance(account, period, compareTo){
+  const comparisonPeriod = resolveComparisonPeriod(period, compareTo);
+  const currentRow = tbRow(account.code, period);
+  const comparisonRow = comparisonPeriod ? tbRow(account.code, comparisonPeriod) : null;
+  if (!comparisonPeriod || !comparisonRow){
+    return { error: true, message: 'No comparison period available ("'+compareTo+'" relative to '+period+").", account, period };
+  }
+  const currentBalance = currentRow.ending_balance, comparisonBalance = comparisonRow.ending_balance;
+  const varianceAmount = Math.round((currentBalance-comparisonBalance)*100)/100;
+  const variancePct = comparisonBalance!==0 ? Math.round((varianceAmount/Math.abs(comparisonBalance))*10000)/100 : null;
+
+  if (currentRow.source==="derived_plug"){
+    return {
+      account: account.code, account_name: account.name, period, comparison_period: comparisonPeriod,
+      current_balance: currentBalance, comparison_balance: comparisonBalance,
+      variance_amount: varianceAmount, variance_pct: variancePct, is_gl_sourced:false,
+      note: account.name+" is a derived plug (cumulative net income), not a GL-posted account — there are no source transactions to cite. It equals Assets − Liabilities − Common Stock for the period. To explain its movement, examine variance on the P&L accounts instead (they roll into net income).",
+      citations:[
+        {type:"trial_balance",period,account_code:account.code,ending_balance:currentBalance,source:"derived_plug"},
+        {type:"trial_balance",period:comparisonPeriod,account_code:account.code,ending_balance:comparisonBalance,source:"derived_plug"}
+      ]
+    };
+  }
+  const currentTxns = glDetail(account.code, period).map(r=>({transaction_id:r.txn,date:r.date,description:r.description,source_doc:r.source_doc,amount:signedAmount(r,account)}));
+  const historicalTxns = GL.filter(r=>r.code===account.code && r.period!==period);
+  const historicalDescriptions = new Set(historicalTxns.map(r=>r.description));
+  const historicalAmounts = historicalTxns.map(r=>Math.abs(signedAmount(r,account)));
+  const historicalMean = historicalAmounts.length ? historicalAmounts.reduce((a,b)=>a+b,0)/historicalAmounts.length : 0;
+  const likelyDrivers = currentTxns.filter(t=>!historicalDescriptions.has(t.description) || Math.abs(t.amount) > 1.75*historicalMean)
+    .sort((a,b)=>Math.abs(b.amount)-Math.abs(a.amount));
+
+  return {
+    account: account.code, account_name: account.name, period, comparison_period: comparisonPeriod,
+    current_balance: currentBalance, comparison_balance: comparisonBalance,
+    variance_amount: varianceAmount, variance_pct: variancePct, is_gl_sourced:true,
+    likely_drivers: likelyDrivers, all_period_transactions: currentTxns,
+    citations: [
+      {type:"trial_balance",period,account_code:account.code,ending_balance:currentBalance,source:"GL"},
+      {type:"trial_balance",period:comparisonPeriod,account_code:account.code,ending_balance:comparisonBalance,source:"GL"},
+      ...currentTxns.map(t=>({type:"gl_transaction",transaction_id:t.transaction_id,account_code:account.code,period}))
+    ]
+  };
+}
+
+function nextPeriodLabels(fromPeriod,count){
+  let [y,m] = fromPeriod.split("-").map(Number);
+  const labels=[];
+  for (let i=0;i<count;i++){ m+=1; if(m>12){m=1;y+=1;} labels.push(y+"-"+String(m).padStart(2,"0")); }
+  return labels;
+}
+function linearRegression(points){
+  const n=points.length, sumX=points.reduce((a,p)=>a+p.x,0), sumY=points.reduce((a,p)=>a+p.y,0);
+  const sumXY=points.reduce((a,p)=>a+p.x*p.y,0), sumXX=points.reduce((a,p)=>a+p.x*p.x,0);
+  const denom=n*sumXX-sumX*sumX;
+  const slope= denom!==0 ? (n*sumXY-sumX*sumY)/denom : 0;
+  const intercept=(sumY-slope*sumX)/n;
+  return {slope,intercept};
+}
+function forecastAccount(account, periodsAhead, method){
+  const history = PERIODS.map(p=>tbRow(account.code,p)).filter(r=>r && r.ending_balance!==null);
+  const windowSize = Math.min(12, history.length);
+  const windowed = history.slice(-windowSize);
+  let forecastValues, methodDetail;
+  if (method==="moving_average"){
+    const last3 = history.slice(-3).map(r=>r.ending_balance);
+    const avg = last3.reduce((a,b)=>a+b,0)/last3.length;
+    forecastValues = Array(periodsAhead).fill(Math.round(avg*100)/100);
+    methodDetail = "Flat projection at the 3-month moving average of the trailing periods ("+history.slice(-3).map(r=>r.period).join(", ")+").";
+  } else {
+    const points = windowed.map((r,i)=>({x:i,y:r.ending_balance}));
+    const {slope,intercept} = linearRegression(points);
+    forecastValues = Array.from({length:periodsAhead},(_,i)=>{ const x=windowed.length+i; return Math.round((intercept+slope*x)*100)/100; });
+    methodDetail = "Ordinary least-squares linear trend fit over the trailing "+windowed.length+" periods ("+windowed[0].period+".."+windowed[windowed.length-1].period+"); slope ≈ "+Math.round(slope)+" per period.";
+  }
+  const lastPeriod = history[history.length-1].period;
+  const labels = nextPeriodLabels(lastPeriod, periodsAhead);
+  const forecast = labels.map((period,i)=>({period, forecast_ending_balance: forecastValues[i]}));
+  return {
+    account: account.code, account_name: account.name, method, method_detail: methodDetail,
+    history: windowed.map(r=>({period:r.period, ending_balance:r.ending_balance})),
+    forecast,
+    caveat: "This is a naive statistical projection from historical trial-balance history only. It does not know about planned price changes, new contracts, headcount plans, or other future business events — treat it as a starting point for discussion, not a business forecast.",
+    citations: windowed.map(r=>({type:"trial_balance",period:r.period,account_code:account.code,ending_balance:r.ending_balance,source:r.source}))
+  };
+}
+
+/* ---------------- state ---------------- */
+const state = {
+  tab: "variance",
+  account: "6200",
+  period: "2025-10",
+  compareTo: "prior_month",
+  customPeriod: "2025-01",
+  method: "linear_trend",
+  periodsAhead: 3,
+  typeFilter: null,
+  auditLog: []
+};
+
+function log(tool, input, citationCount, summary){
+  state.auditLog.unshift({ ts:new Date().toISOString(), tool, input, citationCount, summary });
+  renderAudit();
+}
+
+/* ---------------- chart helpers ---------------- */
+function svgBarPair(labelA, valueA, labelB, valueB){
+  const W=560,H=200,padL=70,padR=24,padT=20,padB=36;
+  const plotW=W-padL-padR, plotH=H-padT-padB;
+  const maxV = Math.max(valueA, valueB, 1) * 1.15;
+  const barW = plotW*0.28;
+  const xA = padL + plotW*0.22 - barW/2, xB = padL + plotW*0.78 - barW/2;
+  const yA = padT + plotH*(1-valueA/maxV), yB = padT + plotH*(1-valueB/maxV);
+  const hA = plotH*(valueA/maxV), hB = plotH*(valueB/maxV);
+  const gridY = [0,0.25,0.5,0.75,1].map(f=>padT+plotH*f);
+  return '<svg viewBox="0 0 '+W+' '+H+'" role="img" aria-label="Comparison of '+esc(labelA)+' and '+esc(labelB)+'">'
+    + gridY.map(y=>'<line class="gridline" x1="'+padL+'" x2="'+(W-padR)+'" y1="'+y+'" y2="'+y+'"/>').join("")
+    + '<rect x="'+xA+'" y="'+yA+'" width="'+barW+'" height="'+hA+'" rx="3" fill="var(--ink-faint)"/>'
+    + '<rect x="'+xB+'" y="'+yB+'" width="'+barW+'" height="'+hB+'" rx="3" fill="var(--accent)"/>'
+    + '<text class="axis-label" x="'+(xA+barW/2)+'" y="'+(yA-8)+'" text-anchor="middle" font-weight="600">'+esc(fmtUSD(valueA))+'</text>'
+    + '<text class="axis-label" x="'+(xB+barW/2)+'" y="'+(yB-8)+'" text-anchor="middle" font-weight="600" fill="var(--accent)">'+esc(fmtUSD(valueB))+'</text>'
+    + '<text class="axis-label" x="'+(xA+barW/2)+'" y="'+(H-14)+'" text-anchor="middle">'+esc(labelA)+'</text>'
+    + '<text class="axis-label" x="'+(xB+barW/2)+'" y="'+(H-14)+'" text-anchor="middle">'+esc(labelB)+'</text>'
+    + '</svg>';
+}
+
+function lineChart(history, forecast){
+  const W=760,H=260,padL=64,padR=20,padT=20,padB=34;
+  const plotW=W-padL-padR, plotH=H-padT-padB;
+  const allPoints = history.map(h=>({period:h.period,value:h.ending_balance,isForecast:false}))
+    .concat(forecast.map(f=>({period:f.period,value:f.forecast_ending_balance,isForecast:true})));
+  const values = allPoints.map(p=>p.value);
+  const minV = Math.min(...values,0), maxV = Math.max(...values)*1.08;
+  const n = allPoints.length;
+  const xFor = i => padL + (n===1?0:plotW*(i/(n-1)));
+  const yFor = v => padT + plotH*(1-(v-minV)/(maxV-minV || 1));
+  allPoints.forEach((p,i)=>{ p.cx=xFor(i); p.cy=yFor(p.value); });
+
+  const histPts = allPoints.filter(p=>!p.isForecast);
+  const lastHist = histPts[histPts.length-1];
+  const fcPts = [lastHist, ...allPoints.filter(p=>p.isForecast)];
+
+  const pathD = pts => pts.map((p,i)=>(i===0?"M":"L")+p.cx.toFixed(1)+","+p.cy.toFixed(1)).join(" ");
+  const gridY = [0,0.25,0.5,0.75,1].map(f=>padT+plotH*f);
+  const labelEvery = Math.ceil(n/7);
+
+  let svg = '<svg viewBox="0 0 '+W+' '+H+'" role="img" aria-label="Forecast chart">';
+  svg += gridY.map(y=>'<line class="gridline" x1="'+padL+'" x2="'+(W-padR)+'" y1="'+y+'" y2="'+y+'"/>').join("");
+  svg += '<path d="'+pathD(histPts)+'" fill="none" stroke="var(--accent)" stroke-width="2"/>';
+  svg += '<path d="'+pathD(fcPts)+'" fill="none" stroke="var(--accent)" stroke-width="2" stroke-dasharray="5,4" opacity="0.75"/>';
+  allPoints.forEach((p,i)=>{
+    if (i%labelEvery===0 || i===n-1) svg += '<text class="axis-label" x="'+p.cx.toFixed(1)+'" y="'+(H-12)+'" text-anchor="middle">'+esc(periodLabel(p.period).replace(" "," ’").slice(0,-2)+p.period.slice(2,4))+'</text>';
+  });
+  allPoints.forEach(p=>{
+    svg += '<circle cx="'+p.cx.toFixed(1)+'" cy="'+p.cy.toFixed(1)+'" r="'+(p===lastHist?4:2.5)+'" fill="'+(p.isForecast?"var(--surface)":"var(--accent)")+'" stroke="var(--accent)" stroke-width="'+(p.isForecast?1.5:0)+'"/>';
+  });
+  svg += '</svg>';
+  return { svg, points: allPoints, padL, padR, W };
+}
+
+/* ---------------- renderers ---------------- */
+function renderStatRow(){
+  const glCount = GL.length, txns = new Set(GL.map(r=>r.txn)).size;
+  document.getElementById("statRow").innerHTML =
+    '<div class="stat-chip"><b>'+PERIODS.length+'</b><span>Periods</span></div>'+
+    '<div class="stat-chip"><b>'+ACCOUNTS.length+'</b><span>Accounts</span></div>'+
+    '<div class="stat-chip"><b>'+txns+'</b><span>Journal entries</span></div>'+
+    '<div class="stat-chip"><b>'+glCount+'</b><span>GL lines</span></div>';
+}
+
+function renderAudit(){
+  const body = document.getElementById("auditBody");
+  const rows = state.auditLog.slice(0,8);
+  body.innerHTML = rows.map(r=>
+    '<div class="audit-row">'+
+      '<span class="ts">'+r.ts.slice(11,19)+'</span>'+
+      '<span class="tool">'+r.tool+'</span>'+
+      '<span class="summary">'+esc(r.summary)+'</span>'+
+      '<span class="cites">'+r.citationCount+' cite'+(r.citationCount===1?"":"s")+'</span>'+
+    '</div>'
+  ).join("") || '<div class="audit-row"><span class="summary">No calls yet.</span></div>';
+  document.getElementById("auditCount").textContent = state.auditLog.length+" call"+(state.auditLog.length===1?"":"s")+" this session";
+}
+
+function renderTrialBalance(){
+  const rows = tbFor(state.period, state.typeFilter);
+  log("get_trial_balance", {period:state.period, account_type: state.typeFilter||"all"}, rows.length, "Trial balance for "+state.period+(state.typeFilter?" ("+state.typeFilter+")":""));
+  const sumDebit = rows.reduce((a,r)=>a+r.debit,0), sumCredit = rows.reduce((a,r)=>a+r.credit,0);
+  document.getElementById("panel").innerHTML =
+    '<div class="card">'+
+      '<h2>Trial balance — '+periodLabel(state.period)+'</h2>'+
+      '<p class="sub">Revenue/Expense = that month’s activity. Asset/Liability/Equity = period-end cumulative balance.</p>'+
+      '<div class="tablewrap"><table><thead><tr><th>Code</th><th>Account</th><th>Type</th><th class="num">Debit</th><th class="num">Credit</th><th class="num">Ending balance</th><th>Source</th></tr></thead><tbody>'+
+      rows.map(r=>{
+        const a = ACCOUNT_BY_CODE[r.code];
+        return '<tr><td class="mono">'+r.code+'</td><td>'+esc(a.name)+'</td><td>'+a.type+'</td>'+
+          '<td class="num">'+ (r.debit? fmtUSD(r.debit):"") +'</td><td class="num">'+(r.credit? fmtUSD(r.credit):"")+'</td>'+
+          '<td class="num">'+fmtUSD(r.ending_balance)+'</td>'+
+          '<td>'+(r.source==="GL" ? '<span class="badge gl">GL-sourced</span>' : '<span class="badge plug">Derived plug</span>')+'</td></tr>';
+      }).join("")+
+      '</tbody><tfoot><tr><td colspan="3">Totals</td><td class="num">'+fmtUSD(sumDebit)+'</td><td class="num">'+fmtUSD(sumCredit)+'</td><td colspan="2">'+(Math.abs(sumDebit-sumCredit)<0.01 ? "Debits = Credits ✓" : "Out of balance")+'</td></tr></tfoot></table></div>'+
+    '</div>';
+}
+
+function renderAccountDetail(){
+  const acct = findAccount(state.account);
+  if (acct.code==="3900"){
+    log("get_account_detail",{account:state.account,period:state.period},0,"Retained Earnings has no GL detail (derived plug)");
+    document.getElementById("panel").innerHTML = '<div class="card"><h2>'+esc(acct.name)+' — '+periodLabel(state.period)+'</h2>'+
+      '<div class="note">Retained Earnings is a derived plug (cumulative net income), not posted from GL transactions. There is nothing to cite here directly — see the P&amp;L accounts that roll into net income instead.</div></div>';
+    return;
+  }
+  const txns = glDetail(acct.code, state.period);
+  const historicalTxns = GL.filter(r=>r.code===acct.code && r.period!==state.period);
+  const historicalDescriptions = new Set(historicalTxns.map(r=>r.description));
+  const historicalAmounts = historicalTxns.map(r=>Math.abs(signedAmount(r,acct)));
+  const historicalMean = historicalAmounts.length ? historicalAmounts.reduce((a,b)=>a+b,0)/historicalAmounts.length : 0;
+  log("get_account_detail",{account:state.account,period:state.period}, txns.length, txns.length+" GL lines for "+acct.name+" "+state.period);
+  document.getElementById("panel").innerHTML =
+    '<div class="card">'+
+      '<h2>'+esc(acct.name)+' ('+acct.code+') — '+periodLabel(state.period)+'</h2>'+
+      '<p class="sub">Every GL line posted to this account this period — the source-of-truth behind the trial balance figure.</p>'+
+      '<div class="tablewrap"><table><thead><tr><th>Date</th><th>Transaction</th><th>Description</th><th>Source doc</th><th class="num">Debit</th><th class="num">Credit</th></tr></thead><tbody>'+
+      txns.map(r=>{
+        const amt = signedAmount(r,acct);
+        const flagged = !historicalDescriptions.has(r.description) || Math.abs(amt) > 1.75*historicalMean;
+        return '<tr class="'+(flagged?"flagged":"")+'"><td class="mono">'+r.date+'</td><td class="mono">'+r.txn+'</td>'+
+          '<td>'+esc(r.description)+(flagged?' <span class="badge flag">flagged</span>':'')+'</td>'+
+          '<td class="mono">'+r.source_doc+'</td><td class="num">'+(r.debit?fmtUSD(r.debit):"")+'</td><td class="num">'+(r.credit?fmtUSD(r.credit):"")+'</td></tr>';
+      }).join("")+
+      '</tbody></table></div>'+
+    '</div>';
+}
+
+function renderVariance(){
+  const acct = findAccount(state.account);
+  const compareTo = state.compareTo==="custom" ? state.customPeriod : state.compareTo;
+  const result = computeVariance(acct, state.period, compareTo);
+  if (result.error){
+    log("compute_variance",{account:state.account,period:state.period,compare_to:compareTo},0,result.message);
+    document.getElementById("panel").innerHTML = '<div class="card"><div class="note">'+esc(result.message)+'</div></div>';
+    return;
+  }
+  log("compute_variance", {account:state.account,period:state.period,compare_to:compareTo}, result.citations.length,
+    "Variance "+acct.name+" "+state.period+" vs "+result.comparison_period+": "+fmtUSD(result.variance_amount));
+
+  const tiles =
+    '<div class="tiles">'+
+      '<div class="tile"><div class="label">'+periodLabel(result.comparison_period)+'</div><div class="value">'+fmtUSD(result.comparison_balance)+'</div></div>'+
+      '<div class="tile"><div class="label">'+periodLabel(result.period)+'</div><div class="value">'+fmtUSD(result.current_balance)+'</div></div>'+
+      '<div class="tile"><div class="label">Variance $</div><div class="value accent">'+(result.variance_amount>=0?"▲ ":"▼ ")+fmtUSD(Math.abs(result.variance_amount))+'</div></div>'+
+      '<div class="tile"><div class="label">Variance %</div><div class="value accent">'+fmtPct(result.variance_pct)+'</div></div>'+
+    '</div>';
+
+  if (!result.is_gl_sourced){
+    document.getElementById("panel").innerHTML =
+      '<div class="card"><h2>'+esc(acct.name)+'</h2><p class="sub">'+periodLabel(result.period)+' vs '+periodLabel(result.comparison_period)+'</p>'+tiles+
+      '<div class="note" style="margin-top:16px">'+esc(result.note)+'</div></div>';
+    return;
+  }
+
+  document.getElementById("panel").innerHTML =
+    '<div class="card">'+
+      '<h2>'+esc(acct.name)+' ('+acct.code+')</h2><p class="sub">'+periodLabel(result.period)+' vs '+periodLabel(result.comparison_period)+'</p>'+
+      tiles+
+      '<div class="chart-card" style="margin-top:18px">'+svgBarPair(periodLabel(result.comparison_period), result.comparison_balance, periodLabel(result.period), result.current_balance)+'</div>'+
+    '</div>'+
+    '<div class="card">'+
+      '<h2>Likely drivers</h2><p class="sub">Transactions this period with a description never seen in another period, or an amount well above this account’s historical average.</p>'+
+      (result.likely_drivers.length ? result.likely_drivers.map(d=>
+        '<div class="driver-row"><div style="flex:1"><div class="driver-desc">'+esc(d.description)+'<span class="tick" title="'+d.transaction_id+'">'+d.transaction_id+'</span></div>'+
+        '<div class="driver-meta">'+d.date+' &middot; '+d.source_doc+'</div></div><div class="driver-amt">'+fmtUSD(d.amount)+'</div></div>'
+      ).join("") : '<p class="sub">No individually unusual transactions found — this period’s activity looks like a normal continuation of the account’s recurring pattern.</p>')+
+    '</div>'+
+    '<div class="card">'+
+      '<h2>All transactions — '+periodLabel(result.period)+'</h2>'+
+      '<div class="tablewrap"><table><thead><tr><th>Date</th><th>Transaction</th><th>Description</th><th class="num">Amount</th></tr></thead><tbody>'+
+      result.all_period_transactions.map(t=>'<tr><td class="mono">'+t.date+'</td><td class="mono">'+t.transaction_id+'</td><td>'+esc(t.description)+'</td><td class="num">'+fmtUSD(t.amount)+'</td></tr>').join("")+
+      '</tbody></table></div>'+
+    '</div>';
+}
+
+function renderForecast(){
+  const acct = findAccount(state.account);
+  const periodsAhead = Math.max(1, Math.min(12, Number(state.periodsAhead)||3));
+  const result = forecastAccount(acct, periodsAhead, state.method);
+  log("forecast_account", {account:state.account, periods_ahead:periodsAhead, method:state.method}, result.citations.length,
+    "Forecast "+acct.name+" +"+periodsAhead+"p via "+state.method);
+
+  const chart = lineChart(result.history, result.forecast);
+  document.getElementById("panel").innerHTML =
+    '<div class="card chart-card">'+
+      '<h2>'+esc(acct.name)+' — '+periodsAhead+' period forecast</h2>'+
+      '<p class="sub">'+esc(result.method_detail)+'</p>'+
+      '<div class="chart-container" id="chartContainer">'+chart.svg+'<div class="chart-tooltip" id="chartTooltip"></div></div>'+
+    '</div>'+
+    '<div class="card"><div class="caveat">⚠️ <span><b>Naive projection.</b> '+esc(result.caveat)+'</span></div></div>'+
+    '<div class="card">'+
+      '<h2>Forecast values</h2>'+
+      '<div class="tablewrap"><table><thead><tr><th>Period</th><th class="num">Projected ending balance</th></tr></thead><tbody>'+
+      result.forecast.map(f=>'<tr><td>'+periodLabel(f.period)+'</td><td class="num">'+fmtUSD(f.forecast_ending_balance)+'</td></tr>').join("")+
+      '</tbody></table></div>'+
+    '</div>'+
+    '<div class="card">'+
+      '<h2>Citations — history used in the fit</h2>'+
+      '<div class="tablewrap"><table><thead><tr><th>Period</th><th class="num">Ending balance</th><th>Source</th></tr></thead><tbody>'+
+      result.citations.map(c=>'<tr><td>'+periodLabel(c.period)+'</td><td class="num">'+fmtUSD(c.ending_balance)+'</td><td>'+(c.source==="GL"?'<span class="badge gl">GL-sourced</span>':'<span class="badge plug">Derived plug</span>')+'</td></tr>').join("")+
+      '</tbody></table></div>'+
+    '</div>';
+
+  attachChartTooltip(chart);
+}
+
+function attachChartTooltip(chart){
+  const container = document.getElementById("chartContainer");
+  const tooltip = document.getElementById("chartTooltip");
+  const svg = container.querySelector("svg");
+  if (!svg) return;
+  container.addEventListener("mousemove", (e)=>{
+    const rect = svg.getBoundingClientRect();
+    const scaleX = chart.W / rect.width;
+    const mx = (e.clientX - rect.left) * scaleX;
+    let nearest = chart.points[0], best = Infinity;
+    for (const p of chart.points){ const d = Math.abs(p.cx-mx); if (d<best){ best=d; nearest=p; } }
+    const px = nearest.cx / scaleX, py = nearest.cy / (chart.W/rect.width) * (rect.width/rect.width);
+    const svgH = svg.viewBox.baseVal.height || 260;
+    const scaleY = rect.height / svgH;
+    tooltip.style.left = (nearest.cx/scaleX)+"px";
+    tooltip.style.top = (nearest.cy*scaleY)+"px";
+    tooltip.innerHTML = periodLabel(nearest.period)+(nearest.isForecast?" (forecast)":"")+"<br>"+fmtUSD(nearest.value);
+    tooltip.classList.add("show");
+  });
+  container.addEventListener("mouseleave", ()=>tooltip.classList.remove("show"));
+}
+
+const TAB_RENDERERS = { trial_balance: renderTrialBalance, account_detail: renderAccountDetail, variance: renderVariance, forecast: renderForecast };
+const TAB_CONTROLS = {
+  trial_balance: ["period","typeFilter"],
+  account_detail: ["account","period"],
+  variance: ["account","period","compare"].concat([]),
+  forecast: ["account","method","periodsAhead"]
+};
+
+function syncControlVisibility(){
+  const visible = new Set(TAB_CONTROLS[state.tab]);
+  if (state.tab==="variance" && state.compareTo==="custom") visible.add("customPeriod");
+  document.querySelectorAll("[data-ctl]").forEach(el=>{
+    const key = el.getAttribute("data-ctl");
+    el.classList.toggle("hidden", !visible.has(key));
+  });
+}
+
+function render(){
+  document.querySelectorAll(".tab").forEach(t=>t.setAttribute("aria-selected", String(t.dataset.tab===state.tab)));
+  syncControlVisibility();
+  TAB_RENDERERS[state.tab]();
+}
+
+function populateSelects(){
+  const accountSelect = document.getElementById("accountSelect");
+  const groups = {};
+  ACCOUNTS.forEach(a=>{ (groups[a.type] = groups[a.type]||[]).push(a); });
+  accountSelect.innerHTML = Object.keys(groups).map(type=>
+    '<optgroup label="'+type+'">'+groups[type].map(a=>'<option value="'+a.code+'">'+a.code+' — '+esc(a.name)+'</option>').join("")+'</optgroup>'
+  ).join("");
+  accountSelect.value = state.account;
+
+  const periodOptions = PERIODS.map(p=>'<option value="'+p+'">'+periodLabel(p)+'</option>').join("");
+  document.getElementById("periodSelect").innerHTML = periodOptions;
+  document.getElementById("periodSelect").value = state.period;
+  document.getElementById("customPeriodSelect").innerHTML = periodOptions;
+  document.getElementById("customPeriodSelect").value = state.customPeriod;
+
+  const types = ["All","Asset","Liability","Equity","Revenue","Expense"];
+  document.getElementById("typeChips").innerHTML = types.map(t=>
+    '<button type="button" class="chip" data-type="'+(t==="All"?"":t)+'" aria-pressed="'+(state.typeFilter===(t==="All"?null:t))+'">'+t+'</button>'
+  ).join("");
+}
+
+function wireEvents(){
+  document.getElementById("tabbar").addEventListener("click", e=>{
+    const btn = e.target.closest(".tab"); if (!btn) return;
+    state.tab = btn.dataset.tab; render();
+  });
+  document.getElementById("accountSelect").addEventListener("change", e=>{ state.account = e.target.value; render(); });
+  document.getElementById("periodSelect").addEventListener("change", e=>{ state.period = e.target.value; render(); });
+  document.getElementById("compareSelect").addEventListener("change", e=>{ state.compareTo = e.target.value; render(); });
+  document.getElementById("customPeriodSelect").addEventListener("change", e=>{ state.customPeriod = e.target.value; render(); });
+  document.getElementById("methodSelect").addEventListener("change", e=>{ state.method = e.target.value; render(); });
+  document.getElementById("periodsAheadInput").addEventListener("change", e=>{ state.periodsAhead = e.target.value; render(); });
+  document.getElementById("typeChips").addEventListener("click", e=>{
+    const btn = e.target.closest(".chip"); if (!btn) return;
+    state.typeFilter = btn.dataset.type || null; render();
+  });
+}
+
+renderStatRow();
+populateSelects();
+wireEvents();
+render();
+
+})();
+</script>
+</body>
+</html>
