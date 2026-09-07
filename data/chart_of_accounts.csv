@@ -1,0 +1,21 @@
+account_code,account_name,account_type,statement,normal_balance
+1000,Cash,Asset,BS,debit
+1100,Accounts Receivable,Asset,BS,debit
+1500,Fixed Assets,Asset,BS,debit
+1600,Accumulated Depreciation,Asset,BS,credit
+2000,Accounts Payable,Liability,BS,credit
+3000,Common Stock,Equity,BS,credit
+3900,Retained Earnings,Equity,BS,credit
+4000,Product Revenue,Revenue,IS,credit
+4100,Service Revenue,Revenue,IS,credit
+5000,Cost of Goods Sold,Expense,IS,debit
+6000,Salaries & Wages,Expense,IS,debit
+6100,Employee Benefits,Expense,IS,debit
+6200,Software & Subscriptions,Expense,IS,debit
+6300,Marketing & Advertising,Expense,IS,debit
+6400,Travel & Entertainment,Expense,IS,debit
+6500,Professional Fees,Expense,IS,debit
+6600,Rent & Facilities,Expense,IS,debit
+6700,Depreciation,Expense,IS,debit
+6800,Office Supplies,Expense,IS,debit
+6900,Utilities,Expense,IS,debit

@@ -1,0 +1,481 @@
+period,account_code,account_name,account_type,debit,credit,ending_balance,source
+2024-01,1000,Cash,Asset,677873.38,233963.36,443910.02,GL
+2024-01,1100,Accounts Receivable,Asset,209262.81,177873.38,31389.429999999993,GL
+2024-01,1500,Fixed Assets,Asset,6682.81,0,6682.81,GL
+2024-01,1600,Accumulated Depreciation,Asset,0,2000,2000,GL
+2024-01,2000,Accounts Payable,Liability,72131.54,90164.43,18032.89,GL
+2024-01,3000,Common Stock,Equity,0,500000,500000,GL
+2024-01,3900,Retained Earnings,Equity,0,0,-38050.63,derived_plug
+2024-01,4000,Product Revenue,Revenue,0,184552.55,184552.55,GL
+2024-01,4100,Service Revenue,Revenue,0,24710.26,24710.26,GL
+2024-01,5000,Cost of Goods Sold,Expense,58874.54,0,58874.54,GL
+2024-01,6000,Salaries & Wages,Expense,104550.87,0,104550.87,GL
+2024-01,6100,Employee Benefits,Expense,22396.62,0,22396.62,GL
+2024-01,6200,Software & Subscriptions,Expense,8625.75,0,8625.75,GL
+2024-01,6300,Marketing & Advertising,Expense,16339.63,0,16339.63,GL
+2024-01,6400,Travel & Entertainment,Expense,4107.46,0,4107.46,GL
+2024-01,6500,Professional Fees,Expense,14950.26,0,14950.26,GL
+2024-01,6600,Rent & Facilities,Expense,12000,0,12000,GL
+2024-01,6700,Depreciation,Expense,2000,0,2000,GL
+2024-01,6800,Office Supplies,Expense,969.04,0,969.04,GL
+2024-01,6900,Utilities,Expense,2499.27,0,2499.27,GL
+2024-02,1000,Cash,Asset,183507.31,227586.98,399830.35,GL
+2024-02,1100,Accounts Receivable,Asset,215890.96,183507.31,63773.07999999999,GL
+2024-02,1500,Fixed Assets,Asset,0,0,6682.81,GL
+2024-02,1600,Accumulated Depreciation,Asset,0,2000,4000,GL
+2024-02,2000,Accounts Payable,Liability,73714.64,92143.3,36461.55,GL
+2024-02,3000,Common Stock,Equity,0,0,500000,GL
+2024-02,3900,Retained Earnings,Equity,0,0,-70175.31,derived_plug
+2024-02,4000,Product Revenue,Revenue,0,192923.18,192923.18,GL
+2024-02,4100,Service Revenue,Revenue,0,22967.78,22967.78,GL
+2024-02,5000,Cost of Goods Sold,Expense,61741.71,0,61741.71,GL
+2024-02,6000,Salaries & Wages,Expense,104490.61,0,104490.61,GL
+2024-02,6100,Employee Benefits,Expense,23040.7,0,23040.7,GL
+2024-02,6200,Software & Subscriptions,Expense,7862.26,0,7862.26,GL
+2024-02,6300,Marketing & Advertising,Expense,15242.26,0,15242.26,GL
+2024-02,6400,Travel & Entertainment,Expense,3411.57,0,3411.57,GL
+2024-02,6500,Professional Fees,Expense,15159.33,0,15159.33,GL
+2024-02,6600,Rent & Facilities,Expense,12000,0,12000,GL
+2024-02,6700,Depreciation,Expense,2000,0,2000,GL
+2024-02,6800,Office Supplies,Expense,1185.38,0,1185.38,GL
+2024-02,6900,Utilities,Expense,1881.82,0,1881.82,GL
+2024-03,1000,Cash,Asset,182596.13,216399.02,366027.45999999996,GL
+2024-03,1100,Accounts Receivable,Asset,214818.97,182596.13,95995.91999999998,GL
+2024-03,1500,Fixed Assets,Asset,0,0,6682.81,GL
+2024-03,1600,Accumulated Depreciation,Asset,0,2000,6000,GL
+2024-03,2000,Accounts Payable,Liability,66343.8,82929.75,53047.5,GL
+2024-03,3000,Common Stock,Equity,0,0,500000,GL
+2024-03,3900,Retained Earnings,Equity,0,0,-90341.31,derived_plug
+2024-03,4000,Product Revenue,Revenue,0,188494.09,188494.09,GL
+2024-03,4100,Service Revenue,Revenue,0,26324.88,26324.88,GL
+2024-03,5000,Cost of Goods Sold,Expense,61923.4,0,61923.4,GL
+2024-03,6000,Salaries & Wages,Expense,100846.26,0,100846.26,GL
+2024-03,6100,Employee Benefits,Expense,22122.58,0,22122.58,GL
+2024-03,6200,Software & Subscriptions,Expense,7948.28,0,7948.28,GL
+2024-03,6300,Marketing & Advertising,Expense,15362.53,0,15362.53,GL
+2024-03,6400,Travel & Entertainment,Expense,3961.91,0,3961.91,GL
+2024-03,6500,Professional Fees,Expense,5643.82,0,5643.82,GL
+2024-03,6600,Rent & Facilities,Expense,12000,0,12000,GL
+2024-03,6700,Depreciation,Expense,2000,0,2000,GL
+2024-03,6800,Office Supplies,Expense,1349.54,0,1349.54,GL
+2024-03,6900,Utilities,Expense,1826.65,0,1826.65,GL
+2024-04,1000,Cash,Asset,193502.78,231809.38,327720.86,GL
+2024-04,1100,Accounts Receivable,Asset,227650.33,193502.78,130143.47,GL
+2024-04,1500,Fixed Assets,Asset,8188.49,0,14871.3,GL
+2024-04,1600,Accumulated Depreciation,Asset,0,2000,8000,GL
+2024-04,2000,Accounts Payable,Liability,68463,85578.76,70163.26,GL
+2024-04,3000,Common Stock,Equity,0,0,500000,GL
+2024-04,3900,Retained Earnings,Equity,0,0,-105427.63,derived_plug
+2024-04,4000,Product Revenue,Revenue,0,199369.85,199369.85,GL
+2024-04,4100,Service Revenue,Revenue,0,28280.48,28280.48,GL
+2024-04,5000,Cost of Goods Sold,Expense,65798.51,0,65798.51,GL
+2024-04,6000,Salaries & Wages,Expense,103757.11,0,103757.11,GL
+2024-04,6100,Employee Benefits,Expense,23580.89,0,23580.89,GL
+2024-04,6200,Software & Subscriptions,Expense,8580.53,0,8580.53,GL
+2024-04,6300,Marketing & Advertising,Expense,14355.6,0,14355.6,GL
+2024-04,6400,Travel & Entertainment,Expense,4370.69,0,4370.69,GL
+2024-04,6500,Professional Fees,Expense,5424.65,0,5424.65,GL
+2024-04,6600,Rent & Facilities,Expense,12000,0,12000,GL
+2024-04,6700,Depreciation,Expense,2000,0,2000,GL
+2024-04,6800,Office Supplies,Expense,1044.68,0,1044.68,GL
+2024-04,6900,Utilities,Expense,1823.99,0,1823.99,GL
+2024-05,1000,Cash,Asset,191079.59,220795.7,298004.75,GL
+2024-05,1100,Accounts Receivable,Asset,224799.52,191079.59,163863.4,GL
+2024-05,1500,Fixed Assets,Asset,0,0,14871.3,GL
+2024-05,1600,Accumulated Depreciation,Asset,0,2000,10000,GL
+2024-05,2000,Accounts Payable,Liability,67635.86,84544.83,87072.23,GL
+2024-05,3000,Common Stock,Equity,0,0,500000,GL
+2024-05,3900,Retained Earnings,Equity,0,0,-120332.78,derived_plug
+2024-05,4000,Product Revenue,Revenue,0,199795.25,199795.25,GL
+2024-05,4100,Service Revenue,Revenue,0,25004.27,25004.27,GL
+2024-05,5000,Cost of Goods Sold,Expense,62810.2,0,62810.2,GL
+2024-05,6000,Salaries & Wages,Expense,103686.03,0,103686.03,GL
+2024-05,6100,Employee Benefits,Expense,21739.06,0,21739.06,GL
+2024-05,6200,Software & Subscriptions,Expense,8419.76,0,8419.76,GL
+2024-05,6300,Marketing & Advertising,Expense,15181.35,0,15181.35,GL
+2024-05,6400,Travel & Entertainment,Expense,4078.79,0,4078.79,GL
+2024-05,6500,Professional Fees,Expense,6553.28,0,6553.28,GL
+2024-05,6600,Rent & Facilities,Expense,12000,0,12000,GL
+2024-05,6700,Depreciation,Expense,2000,0,2000,GL
+2024-05,6800,Office Supplies,Expense,1288.99,0,1288.99,GL
+2024-05,6900,Utilities,Expense,1947.21,0,1947.21,GL
+2024-06,1000,Cash,Asset,198101.86,226285.71,269820.9,GL
+2024-06,1100,Accounts Receivable,Asset,233061.02,198101.86,198822.56,GL
+2024-06,1500,Fixed Assets,Asset,0,0,14871.3,GL
+2024-06,1600,Accumulated Depreciation,Asset,0,2000,12000,GL
+2024-06,2000,Accounts Payable,Liability,73221.32,91526.66,105377.56999999998,GL
+2024-06,3000,Common Stock,Equity,0,0,500000,GL
+2024-06,3900,Retained Earnings,Equity,0,0,-133862.81,derived_plug
+2024-06,4000,Product Revenue,Revenue,0,208137.27,208137.27,GL
+2024-06,4100,Service Revenue,Revenue,0,24923.75,24923.75,GL
+2024-06,5000,Cost of Goods Sold,Expense,68844.14,0,68844.14,GL
+2024-06,6000,Salaries & Wages,Expense,102389.81,0,102389.81,GL
+2024-06,6100,Employee Benefits,Expense,21786.72,0,21786.72,GL
+2024-06,6200,Software & Subscriptions,Expense,8845.99,0,8845.99,GL
+2024-06,6300,Marketing & Advertising,Expense,17029.1,0,17029.1,GL
+2024-06,6400,Travel & Entertainment,Expense,4563.05,0,4563.05,GL
+2024-06,6500,Professional Fees,Expense,5653.42,0,5653.42,GL
+2024-06,6600,Rent & Facilities,Expense,12000,0,12000,GL
+2024-06,6700,Depreciation,Expense,2000,0,2000,GL
+2024-06,6800,Office Supplies,Expense,1343.06,0,1343.06,GL
+2024-06,6900,Utilities,Expense,2135.76,0,2135.76,GL
+2024-07,1000,Cash,Asset,207285.37,239355.81,237750.46,GL
+2024-07,1100,Accounts Receivable,Asset,243865.15,207285.37,235402.34,GL
+2024-07,1500,Fixed Assets,Asset,7499.87,0,22371.17,GL
+2024-07,1600,Accumulated Depreciation,Asset,0,2000,14000,GL
+2024-07,2000,Accounts Payable,Liability,70005.94,87507.43,122879.05999999997,GL
+2024-07,3000,Common Stock,Equity,0,0,500000,GL
+2024-07,3900,Retained Earnings,Equity,0,0,-141355.09,derived_plug
+2024-07,4000,Product Revenue,Revenue,0,217689.22,217689.22,GL
+2024-07,4100,Service Revenue,Revenue,0,26175.93,26175.93,GL
+2024-07,5000,Cost of Goods Sold,Expense,66178.98,0,66178.98,GL
+2024-07,6000,Salaries & Wages,Expense,109992.84,0,109992.84,GL
+2024-07,6100,Employee Benefits,Expense,23798.11,0,23798.11,GL
+2024-07,6200,Software & Subscriptions,Expense,8334.6,0,8334.6,GL
+2024-07,6300,Marketing & Advertising,Expense,15389.06,0,15389.06,GL
+2024-07,6400,Travel & Entertainment,Expense,4557.79,0,4557.79,GL
+2024-07,6500,Professional Fees,Expense,5939.39,0,5939.39,GL
+2024-07,6600,Rent & Facilities,Expense,12000,0,12000,GL
+2024-07,6700,Depreciation,Expense,2000,0,2000,GL
+2024-07,6800,Office Supplies,Expense,971.74,0,971.74,GL
+2024-07,6900,Utilities,Expense,2194.92,0,2194.92,GL
+2024-08,1000,Cash,Asset,210030.26,238585.27,209195.44999999995,GL
+2024-08,1100,Accounts Receivable,Asset,247094.42,210030.26,272466.5,GL
+2024-08,1500,Fixed Assets,Asset,0,0,22371.17,GL
+2024-08,1600,Accumulated Depreciation,Asset,0,2000,16000,GL
+2024-08,2000,Accounts Payable,Liability,78113.69,97642.11,142407.47999999998,GL
+2024-08,3000,Common Stock,Equity,0,0,500000,GL
+2024-08,3900,Retained Earnings,Equity,0,0,-154374.36,derived_plug
+2024-08,4000,Product Revenue,Revenue,0,221902.09,221902.09,GL
+2024-08,4100,Service Revenue,Revenue,0,25192.33,25192.33,GL
+2024-08,5000,Cost of Goods Sold,Expense,74274.33,0,74274.33,GL
+2024-08,6000,Salaries & Wages,Expense,109281.08,0,109281.08,GL
+2024-08,6100,Employee Benefits,Expense,22901.59,0,22901.59,GL
+2024-08,6200,Software & Subscriptions,Expense,8523.16,0,8523.16,GL
+2024-08,6300,Marketing & Advertising,Expense,17358.55,0,17358.55,GL
+2024-08,6400,Travel & Entertainment,Expense,4348.66,0,4348.66,GL
+2024-08,6500,Professional Fees,Expense,6009.23,0,6009.23,GL
+2024-08,6600,Rent & Facilities,Expense,12000,0,12000,GL
+2024-08,6700,Depreciation,Expense,2000,0,2000,GL
+2024-08,6800,Office Supplies,Expense,1283.14,0,1283.14,GL
+2024-08,6900,Utilities,Expense,2133.95,0,2133.95,GL
+2024-09,1000,Cash,Asset,209443.41,237404.53,181234.32999999996,GL
+2024-09,1100,Accounts Receivable,Asset,246404.01,209443.41,309427.1,GL
+2024-09,1500,Fixed Assets,Asset,0,0,22371.17,GL
+2024-09,1600,Accumulated Depreciation,Asset,0,2000,18000,GL
+2024-09,2000,Accounts Payable,Liability,73248.38,91560.47,160719.56999999995,GL
+2024-09,3000,Common Stock,Equity,0,0,500000,GL
+2024-09,3900,Retained Earnings,Equity,0,0,-165686.97,derived_plug
+2024-09,4000,Product Revenue,Revenue,0,219997.34,219997.34,GL
+2024-09,4100,Service Revenue,Revenue,0,26406.67,26406.67,GL
+2024-09,5000,Cost of Goods Sold,Expense,71385.73,0,71385.73,GL
+2024-09,6000,Salaries & Wages,Expense,111511.96,0,111511.96,GL
+2024-09,6100,Employee Benefits,Expense,24034.81,0,24034.81,GL
+2024-09,6200,Software & Subscriptions,Expense,9115.27,0,9115.27,GL
+2024-09,6300,Marketing & Advertising,Expense,14716.2,0,14716.2,GL
+2024-09,6400,Travel & Entertainment,Expense,4547.72,0,4547.72,GL
+2024-09,6500,Professional Fees,Expense,5458.54,0,5458.54,GL
+2024-09,6600,Rent & Facilities,Expense,12000,0,12000,GL
+2024-09,6700,Depreciation,Expense,2000,0,2000,GL
+2024-09,6800,Office Supplies,Expense,1075.43,0,1075.43,GL
+2024-09,6900,Utilities,Expense,1870.96,0,1870.96,GL
+2024-10,1000,Cash,Asset,222510.03,257188.57,146555.78999999998,GL
+2024-10,1100,Accounts Receivable,Asset,261776.51,222510.03,348693.57999999996,GL
+2024-10,1500,Fixed Assets,Asset,7734.77,0,30105.94,GL
+2024-10,1600,Accumulated Depreciation,Asset,0,2000,20000,GL
+2024-10,2000,Accounts Payable,Liability,85787.41,107234.27,182166.42999999993,GL
+2024-10,3000,Common Stock,Equity,0,0,500000,GL
+2024-10,3900,Retained Earnings,Equity,0,0,-176811.12,derived_plug
+2024-10,4000,Product Revenue,Revenue,0,229262.95,229262.95,GL
+2024-10,4100,Service Revenue,Revenue,0,32513.56,32513.56,GL
+2024-10,5000,Cost of Goods Sold,Expense,75171.92,0,75171.92,GL
+2024-10,6000,Salaries & Wages,Expense,111829.37,0,111829.37,GL
+2024-10,6100,Employee Benefits,Expense,23958.06,0,23958.06,GL
+2024-10,6200,Software & Subscriptions,Expense,8511,0,8511,GL
+2024-10,6300,Marketing & Advertising,Expense,26611.06,0,26611.06,GL
+2024-10,6400,Travel & Entertainment,Expense,4240.44,0,4240.44,GL
+2024-10,6500,Professional Fees,Expense,5451.29,0,5451.29,GL
+2024-10,6600,Rent & Facilities,Expense,12000,0,12000,GL
+2024-10,6700,Depreciation,Expense,2000,0,2000,GL
+2024-10,6800,Office Supplies,Expense,1252.18,0,1252.18,GL
+2024-10,6900,Utilities,Expense,1875.34,0,1875.34,GL
+2024-11,1000,Cash,Asset,226776.01,248014.92,125316.87999999995,GL
+2024-11,1100,Accounts Receivable,Asset,266795.31,226776.01,388712.87999999995,GL
+2024-11,1500,Fixed Assets,Asset,0,0,30105.94,GL
+2024-11,1600,Accumulated Depreciation,Asset,0,2000,22000,GL
+2024-11,2000,Accounts Payable,Liability,83546.02,104432.53,203052.93999999994,GL
+2024-11,3000,Common Stock,Equity,0,0,500000,GL
+2024-11,3900,Retained Earnings,Equity,0,0,-180917.24,derived_plug
+2024-11,4000,Product Revenue,Revenue,0,233860.53,233860.53,GL
+2024-11,4100,Service Revenue,Revenue,0,32934.78,32934.78,GL
+2024-11,5000,Cost of Goods Sold,Expense,73081.22,0,73081.22,GL
+2024-11,6000,Salaries & Wages,Expense,111027.45,0,111027.45,GL
+2024-11,6100,Employee Benefits,Expense,25295.37,0,25295.37,GL
+2024-11,6200,Software & Subscriptions,Expense,8784.47,0,8784.47,GL
+2024-11,6300,Marketing & Advertising,Expense,25669.14,0,25669.14,GL
+2024-11,6400,Travel & Entertainment,Expense,4135.96,0,4135.96,GL
+2024-11,6500,Professional Fees,Expense,5682.17,0,5682.17,GL
+2024-11,6600,Rent & Facilities,Expense,12000,0,12000,GL
+2024-11,6700,Depreciation,Expense,2000,0,2000,GL
+2024-11,6800,Office Supplies,Expense,1413.48,0,1413.48,GL
+2024-11,6900,Utilities,Expense,1812.17,0,1812.17,GL
+2024-12,1000,Cash,Asset,230080.94,248554.44,106843.37999999998,GL
+2024-12,1100,Accounts Receivable,Asset,270683.47,230080.94,429315.4099999999,GL
+2024-12,1500,Fixed Assets,Asset,0,0,30105.94,GL
+2024-12,1600,Accumulated Depreciation,Asset,0,2000,24000,GL
+2024-12,2000,Accounts Payable,Liability,84821.35,106026.69,224258.27999999994,GL
+2024-12,3000,Common Stock,Equity,0,0,500000,GL
+2024-12,3900,Retained Earnings,Equity,0,0,-181993.55,derived_plug
+2024-12,4000,Product Revenue,Revenue,0,241492.68,241492.68,GL
+2024-12,4100,Service Revenue,Revenue,0,29190.79,29190.79,GL
+2024-12,5000,Cost of Goods Sold,Expense,73917.9,0,73917.9,GL
+2024-12,6000,Salaries & Wages,Expense,109295.84,0,109295.84,GL
+2024-12,6100,Employee Benefits,Expense,24954.09,0,24954.09,GL
+2024-12,6200,Software & Subscriptions,Expense,9619.34,0,9619.34,GL
+2024-12,6300,Marketing & Advertising,Expense,26125.08,0,26125.08,GL
+2024-12,6400,Travel & Entertainment,Expense,4299.05,0,4299.05,GL
+2024-12,6500,Professional Fees,Expense,5983.71,0,5983.71,GL
+2024-12,6600,Rent & Facilities,Expense,12000,0,12000,GL
+2024-12,6700,Depreciation,Expense,2000,0,2000,GL
+2024-12,6800,Office Supplies,Expense,1080.99,0,1080.99,GL
+2024-12,6900,Utilities,Expense,2483.78,0,2483.78,GL
+2025-01,1000,Cash,Asset,238937.85,274363.4,71417.82999999996,GL
+2025-01,1100,Accounts Receivable,Asset,281103.35,238937.85,471480.9099999999,GL
+2025-01,1500,Fixed Assets,Asset,6739.34,0,36845.28,GL
+2025-01,1600,Accumulated Depreciation,Asset,0,2000,26000,GL
+2025-01,2000,Accounts Payable,Liability,88752.03,110940.03,246446.27999999994,GL
+2025-01,3000,Common Stock,Equity,0,0,500000,GL
+2025-01,3900,Retained Earnings,Equity,0,0,-192702.26,derived_plug
+2025-01,4000,Product Revenue,Revenue,0,250187.23,250187.23,GL
+2025-01,4100,Service Revenue,Revenue,0,30916.12,30916.12,GL
+2025-01,5000,Cost of Goods Sold,Expense,77884.27,0,77884.27,GL
+2025-01,6000,Salaries & Wages,Expense,121828.6,0,121828.6,GL
+2025-01,6100,Employee Benefits,Expense,27146.86,0,27146.86,GL
+2025-01,6200,Software & Subscriptions,Expense,10298.82,0,10298.82,GL
+2025-01,6300,Marketing & Advertising,Expense,18321.23,0,18321.23,GL
+2025-01,6400,Travel & Entertainment,Expense,4286.84,0,4286.84,GL
+2025-01,6500,Professional Fees,Expense,14734.53,0,14734.53,GL
+2025-01,6600,Rent & Facilities,Expense,12000,0,12000,GL
+2025-01,6700,Depreciation,Expense,2000,0,2000,GL
+2025-01,6800,Office Supplies,Expense,992.64,0,992.64,GL
+2025-01,6900,Utilities,Expense,2318.27,0,2318.27,GL
+2025-02,1000,Cash,Asset,238474.54,269134.33,40758.04000000001,GL
+2025-02,1100,Accounts Receivable,Asset,280558.29,238474.54,513564.6599999999,GL
+2025-02,1500,Fixed Assets,Asset,0,0,36845.28,GL
+2025-02,1600,Accumulated Depreciation,Asset,0,2000,28000,GL
+2025-02,2000,Accounts Payable,Liability,92748.05,115935.06,269633.2899999999,GL
+2025-02,3000,Common Stock,Equity,0,0,500000,GL
+2025-02,3900,Retained Earnings,Equity,0,0,-206465.31,derived_plug
+2025-02,4000,Product Revenue,Revenue,0,253822.16,253822.16,GL
+2025-02,4100,Service Revenue,Revenue,0,26736.13,26736.13,GL
+2025-02,5000,Cost of Goods Sold,Expense,81967.7,0,81967.7,GL
+2025-02,6000,Salaries & Wages,Expense,120240.78,0,120240.78,GL
+2025-02,6100,Employee Benefits,Expense,27083.93,0,27083.93,GL
+2025-02,6200,Software & Subscriptions,Expense,10306.84,0,10306.84,GL
+2025-02,6300,Marketing & Advertising,Expense,18663.49,0,18663.49,GL
+2025-02,6400,Travel & Entertainment,Expense,3702.27,0,3702.27,GL
+2025-02,6500,Professional Fees,Expense,15303.87,0,15303.87,GL
+2025-02,6600,Rent & Facilities,Expense,12000,0,12000,GL
+2025-02,6700,Depreciation,Expense,2000,0,2000,GL
+2025-02,6800,Office Supplies,Expense,1136.13,0,1136.13,GL
+2025-02,6900,Utilities,Expense,1916.33,0,1916.33,GL
+2025-03,1000,Cash,Asset,242442.84,261425.84,21775.03999999998,GL
+2025-03,1100,Accounts Receivable,Asset,285226.88,242442.84,556348.7,GL
+2025-03,1500,Fixed Assets,Asset,0,0,36845.28,GL
+2025-03,1600,Accumulated Depreciation,Asset,0,2000,30000,GL
+2025-03,2000,Accounts Payable,Liability,84234.57,105293.21,290691.92999999993,GL
+2025-03,3000,Common Stock,Equity,0,0,500000,GL
+2025-03,3900,Retained Earnings,Equity,0,0,-205722.91,derived_plug
+2025-03,4000,Product Revenue,Revenue,0,256758.65,256758.65,GL
+2025-03,4100,Service Revenue,Revenue,0,28468.23,28468.23,GL
+2025-03,5000,Cost of Goods Sold,Expense,80981.55,0,80981.55,GL
+2025-03,6000,Salaries & Wages,Expense,121524.57,0,121524.57,GL
+2025-03,6100,Employee Benefits,Expense,26647.98,0,26647.98,GL
+2025-03,6200,Software & Subscriptions,Expense,9179.95,0,9179.95,GL
+2025-03,6300,Marketing & Advertising,Expense,17833.93,0,17833.93,GL
+2025-03,6400,Travel & Entertainment,Expense,4462.32,0,4462.32,GL
+2025-03,6500,Professional Fees,Expense,6477.73,0,6477.73,GL
+2025-03,6600,Rent & Facilities,Expense,12000,0,12000,GL
+2025-03,6700,Depreciation,Expense,2000,0,2000,GL
+2025-03,6800,Office Supplies,Expense,1179.55,0,1179.55,GL
+2025-03,6900,Utilities,Expense,2196.9,0,2196.9,GL
+2025-04,1000,Cash,Asset,257619.78,274297.42,5097.399999999994,GL
+2025-04,1100,Accounts Receivable,Asset,303082.1,257619.78,601811.0199999999,GL
+2025-04,1500,Fixed Assets,Asset,8584.15,0,45429.43,GL
+2025-04,1600,Accumulated Depreciation,Asset,0,2000,32000,GL
+2025-04,2000,Accounts Payable,Liability,89841.95,112302.45,313152.42999999993,GL
+2025-04,3000,Common Stock,Equity,0,0,500000,GL
+2025-04,3900,Retained Earnings,Equity,0,0,-192814.58,derived_plug
+2025-04,4000,Product Revenue,Revenue,0,271314.62,271314.62,GL
+2025-04,4100,Service Revenue,Revenue,0,31767.48,31767.48,GL
+2025-04,5000,Cost of Goods Sold,Expense,87309.78,0,87309.78,GL
+2025-04,6000,Salaries & Wages,Expense,121583.77,0,121583.77,GL
+2025-04,6100,Employee Benefits,Expense,25733.57,0,25733.57,GL
+2025-04,6200,Software & Subscriptions,Expense,9223.19,0,9223.19,GL
+2025-04,6300,Marketing & Advertising,Expense,18592.75,0,18592.75,GL
+2025-04,6400,Travel & Entertainment,Expense,4353.17,0,4353.17,GL
+2025-04,6500,Professional Fees,Expense,6399.92,0,6399.92,GL
+2025-04,6600,Rent & Facilities,Expense,12000,0,12000,GL
+2025-04,6700,Depreciation,Expense,2000,0,2000,GL
+2025-04,6800,Office Supplies,Expense,965.12,0,965.12,GL
+2025-04,6900,Utilities,Expense,2012.5,0,2012.5,GL
+2025-05,1000,Cash,Asset,253894.03,259750.7,-759.2700000000186,GL
+2025-05,1100,Accounts Receivable,Asset,298698.86,253894.03,646615.85,GL
+2025-05,1500,Fixed Assets,Asset,0,0,45429.43,GL
+2025-05,1600,Accumulated Depreciation,Asset,0,2000,34000,GL
+2025-05,2000,Accounts Payable,Liability,86979.77,108724.7,334897.3599999999,GL
+2025-05,3000,Common Stock,Equity,0,0,500000,GL
+2025-05,3900,Retained Earnings,Equity,0,0,-177611.35,derived_plug
+2025-05,4000,Product Revenue,Revenue,0,267836.27,267836.27,GL
+2025-05,4100,Service Revenue,Revenue,0,30862.59,30862.59,GL
+2025-05,5000,Cost of Goods Sold,Expense,85924.47,0,85924.47,GL
+2025-05,6000,Salaries & Wages,Expense,118000.29,0,118000.29,GL
+2025-05,6100,Employee Benefits,Expense,24851.49,0,24851.49,GL
+2025-05,6200,Software & Subscriptions,Expense,10684.45,0,10684.45,GL
+2025-05,6300,Marketing & Advertising,Expense,17315.46,0,17315.46,GL
+2025-05,6400,Travel & Entertainment,Expense,3995.37,0,3995.37,GL
+2025-05,6500,Professional Fees,Expense,5484.77,0,5484.77,GL
+2025-05,6600,Rent & Facilities,Expense,12000,0,12000,GL
+2025-05,6700,Depreciation,Expense,2000,0,2000,GL
+2025-05,6800,Office Supplies,Expense,1111.27,0,1111.27,GL
+2025-05,6900,Utilities,Expense,2128.06,0,2128.06,GL
+2025-06,1000,Cash,Asset,267452.38,266717.94,-24.82999999995809,GL
+2025-06,1100,Accounts Receivable,Asset,314649.86,267452.38,693813.33,GL
+2025-06,1500,Fixed Assets,Asset,0,0,45429.43,GL
+2025-06,1600,Accumulated Depreciation,Asset,0,2000,36000,GL
+2025-06,2000,Accounts Payable,Liability,92813.94,116017.42,358100.8399999999,GL
+2025-06,3000,Common Stock,Equity,0,0,500000,GL
+2025-06,3900,Retained Earnings,Equity,0,0,-154882.91,derived_plug
+2025-06,4000,Product Revenue,Revenue,0,287561.36,287561.36,GL
+2025-06,4100,Service Revenue,Revenue,0,27088.5,27088.5,GL
+2025-06,5000,Cost of Goods Sold,Expense,92897.67,0,92897.67,GL
+2025-06,6000,Salaries & Wages,Expense,119999.02,0,119999.02,GL
+2025-06,6100,Employee Benefits,Expense,25278.91,0,25278.91,GL
+2025-06,6200,Software & Subscriptions,Expense,9638.21,0,9638.21,GL
+2025-06,6300,Marketing & Advertising,Expense,17396.19,0,17396.19,GL
+2025-06,6400,Travel & Entertainment,Expense,3676.52,0,3676.52,GL
+2025-06,6500,Professional Fees,Expense,5723.56,0,5723.56,GL
+2025-06,6600,Rent & Facilities,Expense,12000,0,12000,GL
+2025-06,6700,Depreciation,Expense,2000,0,2000,GL
+2025-06,6800,Office Supplies,Expense,972.04,0,972.04,GL
+2025-06,6900,Utilities,Expense,2339.3,0,2339.3,GL
+2025-07,1000,Cash,Asset,268400.77,287882.6,-19506.659999999916,GL
+2025-07,1100,Accounts Receivable,Asset,315765.61,268400.77,741178.1699999999,GL
+2025-07,1500,Fixed Assets,Asset,8490.71,0,53920.14,GL
+2025-07,1600,Accumulated Depreciation,Asset,0,2000,38000,GL
+2025-07,2000,Accounts Payable,Liability,88881.43,111101.78,380321.18999999994,GL
+2025-07,3000,Common Stock,Equity,0,0,500000,GL
+2025-07,3900,Retained Earnings,Equity,0,0,-142729.54,derived_plug
+2025-07,4000,Product Revenue,Revenue,0,286901.43,286901.43,GL
+2025-07,4100,Service Revenue,Revenue,0,28864.18,28864.18,GL
+2025-07,5000,Cost of Goods Sold,Expense,87295,0,87295,GL
+2025-07,6000,Salaries & Wages,Expense,130995.57,0,130995.57,GL
+2025-07,6100,Employee Benefits,Expense,27968.58,0,27968.58,GL
+2025-07,6200,Software & Subscriptions,Expense,11166.13,0,11166.13,GL
+2025-07,6300,Marketing & Advertising,Expense,17972.92,0,17972.92,GL
+2025-07,6400,Travel & Entertainment,Expense,4028.82,0,4028.82,GL
+2025-07,6500,Professional Fees,Expense,5833.86,0,5833.86,GL
+2025-07,6600,Rent & Facilities,Expense,13200,0,13200,GL
+2025-07,6700,Depreciation,Expense,2000,0,2000,GL
+2025-07,6800,Office Supplies,Expense,1010.96,0,1010.96,GL
+2025-07,6900,Utilities,Expense,2140.4,0,2140.4,GL
+2025-08,1000,Cash,Asset,277626.44,282742.76,-24622.979999999923,GL
+2025-08,1100,Accounts Receivable,Asset,326619.35,277626.44,790171.08,GL
+2025-08,1500,Fixed Assets,Asset,0,0,53920.14,GL
+2025-08,1600,Accumulated Depreciation,Asset,0,2000,40000,GL
+2025-08,2000,Accounts Payable,Liability,93989.8,117487.26,403818.6499999999,GL
+2025-08,3000,Common Stock,Equity,0,0,500000,GL
+2025-08,3900,Retained Earnings,Equity,0,0,-124350.41,derived_plug
+2025-08,4000,Product Revenue,Revenue,0,294047.51,294047.51,GL
+2025-08,4100,Service Revenue,Revenue,0,32571.84,32571.84,GL
+2025-08,5000,Cost of Goods Sold,Expense,91778.18,0,91778.18,GL
+2025-08,6000,Salaries & Wages,Expense,130693.07,0,130693.07,GL
+2025-08,6100,Employee Benefits,Expense,28057.61,0,28057.61,GL
+2025-08,6200,Software & Subscriptions,Expense,9800.91,0,9800.91,GL
+2025-08,6300,Marketing & Advertising,Expense,19503.76,0,19503.76,GL
+2025-08,6400,Travel & Entertainment,Expense,3440.06,0,3440.06,GL
+2025-08,6500,Professional Fees,Expense,6205.32,0,6205.32,GL
+2025-08,6600,Rent & Facilities,Expense,13200,0,13200,GL
+2025-08,6700,Depreciation,Expense,2000,0,2000,GL
+2025-08,6800,Office Supplies,Expense,1125.53,0,1125.53,GL
+2025-08,6900,Utilities,Expense,2435.78,0,2435.78,GL
+2025-09,1000,Cash,Asset,287687.66,294905.12,-31840.439999999944,GL
+2025-09,1100,Accounts Receivable,Asset,338456.07,287687.66,840939.49,GL
+2025-09,1500,Fixed Assets,Asset,0,0,53920.14,GL
+2025-09,1600,Accumulated Depreciation,Asset,0,2000,42000,GL
+2025-09,2000,Accounts Payable,Liability,96631.57,120789.46,427976.5399999999,GL
+2025-09,3000,Common Stock,Equity,0,0,500000,GL
+2025-09,3900,Retained Earnings,Equity,0,0,-106957.35,derived_plug
+2025-09,4000,Product Revenue,Revenue,0,309023.69,309023.69,GL
+2025-09,4100,Service Revenue,Revenue,0,29432.38,29432.38,GL
+2025-09,5000,Cost of Goods Sold,Expense,94822.41,0,94822.41,GL
+2025-09,6000,Salaries & Wages,Expense,127371.3,0,127371.3,GL
+2025-09,6100,Employee Benefits,Expense,28705.46,0,28705.46,GL
+2025-09,6200,Software & Subscriptions,Expense,10194.04,0,10194.04,GL
+2025-09,6300,Marketing & Advertising,Expense,19372.96,0,19372.96,GL
+2025-09,6400,Travel & Entertainment,Expense,15519.54,0,15519.54,GL
+2025-09,6500,Professional Fees,Expense,6594.09,0,6594.09,GL
+2025-09,6600,Rent & Facilities,Expense,13200,0,13200,GL
+2025-09,6700,Depreciation,Expense,2000,0,2000,GL
+2025-09,6800,Office Supplies,Expense,1093.77,0,1093.77,GL
+2025-09,6900,Utilities,Expense,2189.44,0,2189.44,GL
+2025-10,1000,Cash,Asset,292807.15,308209.39,-47242.679999999935,GL
+2025-10,1100,Accounts Receivable,Asset,344479,292807.15,892611.34,GL
+2025-10,1500,Fixed Assets,Asset,9513.81,0,63433.95,GL
+2025-10,1600,Accumulated Depreciation,Asset,0,2000,44000,GL
+2025-10,2000,Accounts Payable,Liability,106766.09,175457.62,496668.06999999995,GL
+2025-10,3000,Common Stock,Equity,0,0,500000,GL
+2025-10,3900,Retained Earnings,Equity,0,0,-131865.46,derived_plug
+2025-10,4000,Product Revenue,Revenue,0,306781.46,306781.46,GL
+2025-10,4100,Service Revenue,Revenue,0,37697.54,37697.54,GL
+2025-10,5000,Cost of Goods Sold,Expense,98273.22,0,98273.22,GL
+2025-10,6000,Salaries & Wages,Expense,130815.35,0,130815.35,GL
+2025-10,6100,Employee Benefits,Expense,29614.84,0,29614.84,GL
+2025-10,6200,Software & Subscriptions,Expense,52544.97,0,52544.97,GL
+2025-10,6300,Marketing & Advertising,Expense,29073.16,0,29073.16,GL
+2025-10,6400,Travel & Entertainment,Expense,4286.76,0,4286.76,GL
+2025-10,6500,Professional Fees,Expense,6111.24,0,6111.24,GL
+2025-10,6600,Rent & Facilities,Expense,13200,0,13200,GL
+2025-10,6700,Depreciation,Expense,2000,0,2000,GL
+2025-10,6800,Office Supplies,Expense,1392.93,0,1392.93,GL
+2025-10,6900,Utilities,Expense,2074.64,0,2074.64,GL
+2025-11,1000,Cash,Asset,306341.03,304805.03,-45706.679999999935,GL
+2025-11,1100,Accounts Receivable,Asset,360401.21,306341.03,946671.5199999999,GL
+2025-11,1500,Fixed Assets,Asset,0,0,63433.95,GL
+2025-11,1600,Accumulated Depreciation,Asset,0,2000,46000,GL
+2025-11,2000,Accounts Payable,Liability,115107.94,181884.92,563445.0499999999,GL
+2025-11,3000,Common Stock,Equity,0,0,500000,GL
+2025-11,3900,Retained Earnings,Equity,0,0,-145046.26,derived_plug
+2025-11,4000,Product Revenue,Revenue,0,326057.67,326057.67,GL
+2025-11,4100,Service Revenue,Revenue,0,34343.54,34343.54,GL
+2025-11,5000,Cost of Goods Sold,Expense,109397.69,0,109397.69,GL
+2025-11,6000,Salaries & Wages,Expense,129735.61,0,129735.61,GL
+2025-11,6100,Employee Benefits,Expense,29124.66,0,29124.66,GL
+2025-11,6200,Software & Subscriptions,Expense,10311.07,0,10311.07,GL
+2025-11,6300,Marketing & Advertising,Expense,66691.92,0,66691.92,GL
+2025-11,6400,Travel & Entertainment,Expense,4210.88,0,4210.88,GL
+2025-11,6500,Professional Fees,Expense,5795.31,0,5795.31,GL
+2025-11,6600,Rent & Facilities,Expense,13200,0,13200,GL
+2025-11,6700,Depreciation,Expense,2000,0,2000,GL
+2025-11,6800,Office Supplies,Expense,1098.43,0,1098.43,GL
+2025-11,6900,Utilities,Expense,2016.44,0,2016.44,GL
+2025-12,1000,Cash,Asset,302494.83,299398.27,-42610.11999999994,GL
+2025-12,1100,Accounts Receivable,Asset,355876.28,302494.83,1000052.97,GL
+2025-12,1500,Fixed Assets,Asset,0,0,63433.95,GL
+2025-12,1600,Accumulated Depreciation,Asset,0,2000,48000,GL
+2025-12,2000,Accounts Payable,Liability,109324.24,136655.29,590776.1,GL
+2025-12,3000,Common Stock,Equity,0,0,500000,GL
+2025-12,3900,Retained Earnings,Equity,0,0,-117899.3,derived_plug
+2025-12,4000,Product Revenue,Revenue,0,319665.37,319665.37,GL
+2025-12,4100,Service Revenue,Revenue,0,36210.91,36210.91,GL
+2025-12,5000,Cost of Goods Sold,Expense,102205.4,0,102205.4,GL
+2025-12,6000,Salaries & Wages,Expense,129982.08,0,129982.08,GL
+2025-12,6100,Employee Benefits,Expense,27654.15,0,27654.15,GL
+2025-12,6200,Software & Subscriptions,Expense,11658.41,0,11658.41,GL
+2025-12,6300,Marketing & Advertising,Expense,28910.98,0,28910.98,GL
+2025-12,6400,Travel & Entertainment,Expense,4164.39,0,4164.39,GL
+2025-12,6500,Professional Fees,Expense,5538.91,0,5538.91,GL
+2025-12,6600,Rent & Facilities,Expense,13200,0,13200,GL
+2025-12,6700,Depreciation,Expense,2000,0,2000,GL
+2025-12,6800,Office Supplies,Expense,1200.28,0,1200.28,GL
+2025-12,6900,Utilities,Expense,2214.72,0,2214.72,GL

@@ -1,0 +1,22 @@
+{
+  "name": "finance-mcp-server",
+  "version": "1.0.0",
+  "description": "Toy MCP server over a synthetic GL/trial-balance dataset — read-only variance & forecast tools with source citations and an audit trail.",
+  "main": "src/server.js",
+  "directories": {
+    "doc": "docs"
+  },
+  "scripts": {
+    "start": "node src/server.js",
+    "generate-data": "node src/generate-data.js",
+    "test": "node src/test-client.js"
+  },
+  "keywords": ["mcp", "model-context-protocol", "finance", "general-ledger"],
+  "author": "Hadi Agha",
+  "license": "MIT",
+  "type": "module",
+  "dependencies": {
+    "@modelcontextprotocol/sdk": "^1.30.0",
+    "zod": "^3.25.76"
+  }
+}

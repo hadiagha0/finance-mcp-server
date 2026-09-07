@@ -1,0 +1,743 @@
+transaction_id,line_id,date,period,account_code,account_name,debit,credit,description,source_doc
+JE-000001,JE-000001-1,2024-01-02,2024-01,1000,Cash,500000,0,Founding equity contribution,JE-OPEN-0001
+JE-000001,JE-000001-2,2024-01-02,2024-01,3000,Common Stock,0,500000,Founding equity contribution,JE-OPEN-0001
+JE-000002,JE-000002-1,2024-01-31,2024-01,1100,Accounts Receivable,184552.55,0,Monthly SaaS subscription revenue recognized,SUB-40001
+JE-000002,JE-000002-2,2024-01-31,2024-01,4000,Product Revenue,0,184552.55,Monthly SaaS subscription revenue recognized,SUB-40001
+JE-000003,JE-000003-1,2024-01-31,2024-01,1100,Accounts Receivable,24710.26,0,Professional services revenue recognized,SVC-40002
+JE-000003,JE-000003-2,2024-01-31,2024-01,4100,Service Revenue,0,24710.26,Professional services revenue recognized,SVC-40002
+JE-000004,JE-000004-1,2024-01-31,2024-01,5000,Cost of Goods Sold,58874.54,0,Hosting infrastructure & customer support costs,INV-40003
+JE-000004,JE-000004-2,2024-01-31,2024-01,2000,Accounts Payable,0,58874.54,Hosting infrastructure & customer support costs,INV-40003
+JE-000005,JE-000005-1,2024-01-05,2024-01,6000,Salaries & Wages,104550.87,0,Payroll run,PR-40004
+JE-000005,JE-000005-2,2024-01-05,2024-01,1000,Cash,0,104550.87,Payroll run,PR-40004
+JE-000006,JE-000006-1,2024-01-05,2024-01,6100,Employee Benefits,22396.62,0,Employee benefits & payroll taxes,PR-40005
+JE-000006,JE-000006-2,2024-01-05,2024-01,1000,Cash,0,22396.62,Employee benefits & payroll taxes,PR-40005
+JE-000007,JE-000007-1,2024-01-15,2024-01,6200,Software & Subscriptions,8625.75,0,Recurring SaaS tooling subscriptions,SUB-40006
+JE-000007,JE-000007-2,2024-01-15,2024-01,1000,Cash,0,8625.75,Recurring SaaS tooling subscriptions,SUB-40006
+JE-000008,JE-000008-1,2024-01-15,2024-01,6300,Marketing & Advertising,16339.63,0,Digital advertising & agency fees,INV-40007
+JE-000008,JE-000008-2,2024-01-15,2024-01,2000,Accounts Payable,0,16339.63,Digital advertising & agency fees,INV-40007
+JE-000009,JE-000009-1,2024-01-15,2024-01,6400,Travel & Entertainment,4107.46,0,Employee travel & client entertainment,EXP-40008
+JE-000009,JE-000009-2,2024-01-15,2024-01,1000,Cash,0,4107.46,Employee travel & client entertainment,EXP-40008
+JE-000010,JE-000010-1,2024-01-15,2024-01,6500,Professional Fees,14950.26,0,"Legal, audit & advisory fees",INV-40009
+JE-000010,JE-000010-2,2024-01-15,2024-01,2000,Accounts Payable,0,14950.26,"Legal, audit & advisory fees",INV-40009
+JE-000011,JE-000011-1,2024-01-05,2024-01,6600,Rent & Facilities,12000,0,Office lease payment,LEASE-40010
+JE-000011,JE-000011-2,2024-01-05,2024-01,1000,Cash,0,12000,Office lease payment,LEASE-40010
+JE-000012,JE-000012-1,2024-01-05,2024-01,1500,Fixed Assets,6682.81,0,Capital expenditure — equipment & software capitalization,CAPEX-40011
+JE-000012,JE-000012-2,2024-01-05,2024-01,1000,Cash,0,6682.81,Capital expenditure — equipment & software capitalization,CAPEX-40011
+JE-000013,JE-000013-1,2024-01-31,2024-01,6700,Depreciation,2000,0,Monthly depreciation expense,DEP-2024-01
+JE-000013,JE-000013-2,2024-01-31,2024-01,1600,Accumulated Depreciation,0,2000,Monthly depreciation expense,DEP-2024-01
+JE-000014,JE-000014-1,2024-01-15,2024-01,6800,Office Supplies,969.04,0,Office supplies,EXP-40012
+JE-000014,JE-000014-2,2024-01-15,2024-01,1000,Cash,0,969.04,Office supplies,EXP-40012
+JE-000015,JE-000015-1,2024-01-15,2024-01,6900,Utilities,2499.27,0,Utilities,UTIL-40013
+JE-000015,JE-000015-2,2024-01-15,2024-01,1000,Cash,0,2499.27,Utilities,UTIL-40013
+JE-000016,JE-000016-1,2024-01-31,2024-01,1000,Cash,177873.38,0,Customer collections on account,COLL-2024-01
+JE-000016,JE-000016-2,2024-01-31,2024-01,1100,Accounts Receivable,0,177873.38,Customer collections on account,COLL-2024-01
+JE-000017,JE-000017-1,2024-01-31,2024-01,2000,Accounts Payable,72131.54,0,Vendor payments on account,PMT-2024-01
+JE-000017,JE-000017-2,2024-01-31,2024-01,1000,Cash,0,72131.54,Vendor payments on account,PMT-2024-01
+JE-000018,JE-000018-1,2024-02-29,2024-02,1100,Accounts Receivable,192923.18,0,Monthly SaaS subscription revenue recognized,SUB-40014
+JE-000018,JE-000018-2,2024-02-29,2024-02,4000,Product Revenue,0,192923.18,Monthly SaaS subscription revenue recognized,SUB-40014
+JE-000019,JE-000019-1,2024-02-29,2024-02,1100,Accounts Receivable,22967.78,0,Professional services revenue recognized,SVC-40015
+JE-000019,JE-000019-2,2024-02-29,2024-02,4100,Service Revenue,0,22967.78,Professional services revenue recognized,SVC-40015
+JE-000020,JE-000020-1,2024-02-29,2024-02,5000,Cost of Goods Sold,61741.71,0,Hosting infrastructure & customer support costs,INV-40016
+JE-000020,JE-000020-2,2024-02-29,2024-02,2000,Accounts Payable,0,61741.71,Hosting infrastructure & customer support costs,INV-40016
+JE-000021,JE-000021-1,2024-02-05,2024-02,6000,Salaries & Wages,104490.61,0,Payroll run,PR-40017
+JE-000021,JE-000021-2,2024-02-05,2024-02,1000,Cash,0,104490.61,Payroll run,PR-40017
+JE-000022,JE-000022-1,2024-02-05,2024-02,6100,Employee Benefits,23040.7,0,Employee benefits & payroll taxes,PR-40018
+JE-000022,JE-000022-2,2024-02-05,2024-02,1000,Cash,0,23040.7,Employee benefits & payroll taxes,PR-40018
+JE-000023,JE-000023-1,2024-02-15,2024-02,6200,Software & Subscriptions,7862.26,0,Recurring SaaS tooling subscriptions,SUB-40019
+JE-000023,JE-000023-2,2024-02-15,2024-02,1000,Cash,0,7862.26,Recurring SaaS tooling subscriptions,SUB-40019
+JE-000024,JE-000024-1,2024-02-15,2024-02,6300,Marketing & Advertising,15242.26,0,Digital advertising & agency fees,INV-40020
+JE-000024,JE-000024-2,2024-02-15,2024-02,2000,Accounts Payable,0,15242.26,Digital advertising & agency fees,INV-40020
+JE-000025,JE-000025-1,2024-02-15,2024-02,6400,Travel & Entertainment,3411.57,0,Employee travel & client entertainment,EXP-40021
+JE-000025,JE-000025-2,2024-02-15,2024-02,1000,Cash,0,3411.57,Employee travel & client entertainment,EXP-40021
+JE-000026,JE-000026-1,2024-02-15,2024-02,6500,Professional Fees,15159.33,0,"Legal, audit & advisory fees",INV-40022
+JE-000026,JE-000026-2,2024-02-15,2024-02,2000,Accounts Payable,0,15159.33,"Legal, audit & advisory fees",INV-40022
+JE-000027,JE-000027-1,2024-02-05,2024-02,6600,Rent & Facilities,12000,0,Office lease payment,LEASE-40023
+JE-000027,JE-000027-2,2024-02-05,2024-02,1000,Cash,0,12000,Office lease payment,LEASE-40023
+JE-000028,JE-000028-1,2024-02-29,2024-02,6700,Depreciation,2000,0,Monthly depreciation expense,DEP-2024-02
+JE-000028,JE-000028-2,2024-02-29,2024-02,1600,Accumulated Depreciation,0,2000,Monthly depreciation expense,DEP-2024-02
+JE-000029,JE-000029-1,2024-02-15,2024-02,6800,Office Supplies,1185.38,0,Office supplies,EXP-40024
+JE-000029,JE-000029-2,2024-02-15,2024-02,1000,Cash,0,1185.38,Office supplies,EXP-40024
+JE-000030,JE-000030-1,2024-02-15,2024-02,6900,Utilities,1881.82,0,Utilities,UTIL-40025
+JE-000030,JE-000030-2,2024-02-15,2024-02,1000,Cash,0,1881.82,Utilities,UTIL-40025
+JE-000031,JE-000031-1,2024-02-29,2024-02,1000,Cash,183507.31,0,Customer collections on account,COLL-2024-02
+JE-000031,JE-000031-2,2024-02-29,2024-02,1100,Accounts Receivable,0,183507.31,Customer collections on account,COLL-2024-02
+JE-000032,JE-000032-1,2024-02-29,2024-02,2000,Accounts Payable,73714.64,0,Vendor payments on account,PMT-2024-02
+JE-000032,JE-000032-2,2024-02-29,2024-02,1000,Cash,0,73714.64,Vendor payments on account,PMT-2024-02
+JE-000033,JE-000033-1,2024-03-31,2024-03,1100,Accounts Receivable,188494.09,0,Monthly SaaS subscription revenue recognized,SUB-40026
+JE-000033,JE-000033-2,2024-03-31,2024-03,4000,Product Revenue,0,188494.09,Monthly SaaS subscription revenue recognized,SUB-40026
+JE-000034,JE-000034-1,2024-03-31,2024-03,1100,Accounts Receivable,26324.88,0,Professional services revenue recognized,SVC-40027
+JE-000034,JE-000034-2,2024-03-31,2024-03,4100,Service Revenue,0,26324.88,Professional services revenue recognized,SVC-40027
+JE-000035,JE-000035-1,2024-03-31,2024-03,5000,Cost of Goods Sold,61923.4,0,Hosting infrastructure & customer support costs,INV-40028
+JE-000035,JE-000035-2,2024-03-31,2024-03,2000,Accounts Payable,0,61923.4,Hosting infrastructure & customer support costs,INV-40028
+JE-000036,JE-000036-1,2024-03-05,2024-03,6000,Salaries & Wages,100846.26,0,Payroll run,PR-40029
+JE-000036,JE-000036-2,2024-03-05,2024-03,1000,Cash,0,100846.26,Payroll run,PR-40029
+JE-000037,JE-000037-1,2024-03-05,2024-03,6100,Employee Benefits,22122.58,0,Employee benefits & payroll taxes,PR-40030
+JE-000037,JE-000037-2,2024-03-05,2024-03,1000,Cash,0,22122.58,Employee benefits & payroll taxes,PR-40030
+JE-000038,JE-000038-1,2024-03-15,2024-03,6200,Software & Subscriptions,7948.28,0,Recurring SaaS tooling subscriptions,SUB-40031
+JE-000038,JE-000038-2,2024-03-15,2024-03,1000,Cash,0,7948.28,Recurring SaaS tooling subscriptions,SUB-40031
+JE-000039,JE-000039-1,2024-03-15,2024-03,6300,Marketing & Advertising,15362.53,0,Digital advertising & agency fees,INV-40032
+JE-000039,JE-000039-2,2024-03-15,2024-03,2000,Accounts Payable,0,15362.53,Digital advertising & agency fees,INV-40032
+JE-000040,JE-000040-1,2024-03-15,2024-03,6400,Travel & Entertainment,3961.91,0,Employee travel & client entertainment,EXP-40033
+JE-000040,JE-000040-2,2024-03-15,2024-03,1000,Cash,0,3961.91,Employee travel & client entertainment,EXP-40033
+JE-000041,JE-000041-1,2024-03-15,2024-03,6500,Professional Fees,5643.82,0,"Legal, audit & advisory fees",INV-40034
+JE-000041,JE-000041-2,2024-03-15,2024-03,2000,Accounts Payable,0,5643.82,"Legal, audit & advisory fees",INV-40034
+JE-000042,JE-000042-1,2024-03-05,2024-03,6600,Rent & Facilities,12000,0,Office lease payment,LEASE-40035
+JE-000042,JE-000042-2,2024-03-05,2024-03,1000,Cash,0,12000,Office lease payment,LEASE-40035
+JE-000043,JE-000043-1,2024-03-31,2024-03,6700,Depreciation,2000,0,Monthly depreciation expense,DEP-2024-03
+JE-000043,JE-000043-2,2024-03-31,2024-03,1600,Accumulated Depreciation,0,2000,Monthly depreciation expense,DEP-2024-03
+JE-000044,JE-000044-1,2024-03-15,2024-03,6800,Office Supplies,1349.54,0,Office supplies,EXP-40036
+JE-000044,JE-000044-2,2024-03-15,2024-03,1000,Cash,0,1349.54,Office supplies,EXP-40036
+JE-000045,JE-000045-1,2024-03-15,2024-03,6900,Utilities,1826.65,0,Utilities,UTIL-40037
+JE-000045,JE-000045-2,2024-03-15,2024-03,1000,Cash,0,1826.65,Utilities,UTIL-40037
+JE-000046,JE-000046-1,2024-03-31,2024-03,1000,Cash,182596.13,0,Customer collections on account,COLL-2024-03
+JE-000046,JE-000046-2,2024-03-31,2024-03,1100,Accounts Receivable,0,182596.13,Customer collections on account,COLL-2024-03
+JE-000047,JE-000047-1,2024-03-31,2024-03,2000,Accounts Payable,66343.8,0,Vendor payments on account,PMT-2024-03
+JE-000047,JE-000047-2,2024-03-31,2024-03,1000,Cash,0,66343.8,Vendor payments on account,PMT-2024-03
+JE-000048,JE-000048-1,2024-04-30,2024-04,1100,Accounts Receivable,199369.85,0,Monthly SaaS subscription revenue recognized,SUB-40038
+JE-000048,JE-000048-2,2024-04-30,2024-04,4000,Product Revenue,0,199369.85,Monthly SaaS subscription revenue recognized,SUB-40038
+JE-000049,JE-000049-1,2024-04-30,2024-04,1100,Accounts Receivable,28280.48,0,Professional services revenue recognized,SVC-40039
+JE-000049,JE-000049-2,2024-04-30,2024-04,4100,Service Revenue,0,28280.48,Professional services revenue recognized,SVC-40039
+JE-000050,JE-000050-1,2024-04-30,2024-04,5000,Cost of Goods Sold,65798.51,0,Hosting infrastructure & customer support costs,INV-40040
+JE-000050,JE-000050-2,2024-04-30,2024-04,2000,Accounts Payable,0,65798.51,Hosting infrastructure & customer support costs,INV-40040
+JE-000051,JE-000051-1,2024-04-05,2024-04,6000,Salaries & Wages,103757.11,0,Payroll run,PR-40041
+JE-000051,JE-000051-2,2024-04-05,2024-04,1000,Cash,0,103757.11,Payroll run,PR-40041
+JE-000052,JE-000052-1,2024-04-05,2024-04,6100,Employee Benefits,23580.89,0,Employee benefits & payroll taxes,PR-40042
+JE-000052,JE-000052-2,2024-04-05,2024-04,1000,Cash,0,23580.89,Employee benefits & payroll taxes,PR-40042
+JE-000053,JE-000053-1,2024-04-15,2024-04,6200,Software & Subscriptions,8580.53,0,Recurring SaaS tooling subscriptions,SUB-40043
+JE-000053,JE-000053-2,2024-04-15,2024-04,1000,Cash,0,8580.53,Recurring SaaS tooling subscriptions,SUB-40043
+JE-000054,JE-000054-1,2024-04-15,2024-04,6300,Marketing & Advertising,14355.6,0,Digital advertising & agency fees,INV-40044
+JE-000054,JE-000054-2,2024-04-15,2024-04,2000,Accounts Payable,0,14355.6,Digital advertising & agency fees,INV-40044
+JE-000055,JE-000055-1,2024-04-15,2024-04,6400,Travel & Entertainment,4370.69,0,Employee travel & client entertainment,EXP-40045
+JE-000055,JE-000055-2,2024-04-15,2024-04,1000,Cash,0,4370.69,Employee travel & client entertainment,EXP-40045
+JE-000056,JE-000056-1,2024-04-15,2024-04,6500,Professional Fees,5424.65,0,"Legal, audit & advisory fees",INV-40046
+JE-000056,JE-000056-2,2024-04-15,2024-04,2000,Accounts Payable,0,5424.65,"Legal, audit & advisory fees",INV-40046
+JE-000057,JE-000057-1,2024-04-05,2024-04,6600,Rent & Facilities,12000,0,Office lease payment,LEASE-40047
+JE-000057,JE-000057-2,2024-04-05,2024-04,1000,Cash,0,12000,Office lease payment,LEASE-40047
+JE-000058,JE-000058-1,2024-04-05,2024-04,1500,Fixed Assets,8188.49,0,Capital expenditure — equipment & software capitalization,CAPEX-40048
+JE-000058,JE-000058-2,2024-04-05,2024-04,1000,Cash,0,8188.49,Capital expenditure — equipment & software capitalization,CAPEX-40048
+JE-000059,JE-000059-1,2024-04-30,2024-04,6700,Depreciation,2000,0,Monthly depreciation expense,DEP-2024-04
+JE-000059,JE-000059-2,2024-04-30,2024-04,1600,Accumulated Depreciation,0,2000,Monthly depreciation expense,DEP-2024-04
+JE-000060,JE-000060-1,2024-04-15,2024-04,6800,Office Supplies,1044.68,0,Office supplies,EXP-40049
+JE-000060,JE-000060-2,2024-04-15,2024-04,1000,Cash,0,1044.68,Office supplies,EXP-40049
+JE-000061,JE-000061-1,2024-04-15,2024-04,6900,Utilities,1823.99,0,Utilities,UTIL-40050
+JE-000061,JE-000061-2,2024-04-15,2024-04,1000,Cash,0,1823.99,Utilities,UTIL-40050
+JE-000062,JE-000062-1,2024-04-30,2024-04,1000,Cash,193502.78,0,Customer collections on account,COLL-2024-04
+JE-000062,JE-000062-2,2024-04-30,2024-04,1100,Accounts Receivable,0,193502.78,Customer collections on account,COLL-2024-04
+JE-000063,JE-000063-1,2024-04-30,2024-04,2000,Accounts Payable,68463,0,Vendor payments on account,PMT-2024-04
+JE-000063,JE-000063-2,2024-04-30,2024-04,1000,Cash,0,68463,Vendor payments on account,PMT-2024-04
+JE-000064,JE-000064-1,2024-05-31,2024-05,1100,Accounts Receivable,199795.25,0,Monthly SaaS subscription revenue recognized,SUB-40051
+JE-000064,JE-000064-2,2024-05-31,2024-05,4000,Product Revenue,0,199795.25,Monthly SaaS subscription revenue recognized,SUB-40051
+JE-000065,JE-000065-1,2024-05-31,2024-05,1100,Accounts Receivable,25004.27,0,Professional services revenue recognized,SVC-40052
+JE-000065,JE-000065-2,2024-05-31,2024-05,4100,Service Revenue,0,25004.27,Professional services revenue recognized,SVC-40052
+JE-000066,JE-000066-1,2024-05-31,2024-05,5000,Cost of Goods Sold,62810.2,0,Hosting infrastructure & customer support costs,INV-40053
+JE-000066,JE-000066-2,2024-05-31,2024-05,2000,Accounts Payable,0,62810.2,Hosting infrastructure & customer support costs,INV-40053
+JE-000067,JE-000067-1,2024-05-05,2024-05,6000,Salaries & Wages,103686.03,0,Payroll run,PR-40054
+JE-000067,JE-000067-2,2024-05-05,2024-05,1000,Cash,0,103686.03,Payroll run,PR-40054
+JE-000068,JE-000068-1,2024-05-05,2024-05,6100,Employee Benefits,21739.06,0,Employee benefits & payroll taxes,PR-40055
+JE-000068,JE-000068-2,2024-05-05,2024-05,1000,Cash,0,21739.06,Employee benefits & payroll taxes,PR-40055
+JE-000069,JE-000069-1,2024-05-15,2024-05,6200,Software & Subscriptions,8419.76,0,Recurring SaaS tooling subscriptions,SUB-40056
+JE-000069,JE-000069-2,2024-05-15,2024-05,1000,Cash,0,8419.76,Recurring SaaS tooling subscriptions,SUB-40056
+JE-000070,JE-000070-1,2024-05-15,2024-05,6300,Marketing & Advertising,15181.35,0,Digital advertising & agency fees,INV-40057
+JE-000070,JE-000070-2,2024-05-15,2024-05,2000,Accounts Payable,0,15181.35,Digital advertising & agency fees,INV-40057
+JE-000071,JE-000071-1,2024-05-15,2024-05,6400,Travel & Entertainment,4078.79,0,Employee travel & client entertainment,EXP-40058
+JE-000071,JE-000071-2,2024-05-15,2024-05,1000,Cash,0,4078.79,Employee travel & client entertainment,EXP-40058
+JE-000072,JE-000072-1,2024-05-15,2024-05,6500,Professional Fees,6553.28,0,"Legal, audit & advisory fees",INV-40059
+JE-000072,JE-000072-2,2024-05-15,2024-05,2000,Accounts Payable,0,6553.28,"Legal, audit & advisory fees",INV-40059
+JE-000073,JE-000073-1,2024-05-05,2024-05,6600,Rent & Facilities,12000,0,Office lease payment,LEASE-40060
+JE-000073,JE-000073-2,2024-05-05,2024-05,1000,Cash,0,12000,Office lease payment,LEASE-40060
+JE-000074,JE-000074-1,2024-05-31,2024-05,6700,Depreciation,2000,0,Monthly depreciation expense,DEP-2024-05
+JE-000074,JE-000074-2,2024-05-31,2024-05,1600,Accumulated Depreciation,0,2000,Monthly depreciation expense,DEP-2024-05
+JE-000075,JE-000075-1,2024-05-15,2024-05,6800,Office Supplies,1288.99,0,Office supplies,EXP-40061
+JE-000075,JE-000075-2,2024-05-15,2024-05,1000,Cash,0,1288.99,Office supplies,EXP-40061
+JE-000076,JE-000076-1,2024-05-15,2024-05,6900,Utilities,1947.21,0,Utilities,UTIL-40062
+JE-000076,JE-000076-2,2024-05-15,2024-05,1000,Cash,0,1947.21,Utilities,UTIL-40062
+JE-000077,JE-000077-1,2024-05-31,2024-05,1000,Cash,191079.59,0,Customer collections on account,COLL-2024-05
+JE-000077,JE-000077-2,2024-05-31,2024-05,1100,Accounts Receivable,0,191079.59,Customer collections on account,COLL-2024-05
+JE-000078,JE-000078-1,2024-05-31,2024-05,2000,Accounts Payable,67635.86,0,Vendor payments on account,PMT-2024-05
+JE-000078,JE-000078-2,2024-05-31,2024-05,1000,Cash,0,67635.86,Vendor payments on account,PMT-2024-05
+JE-000079,JE-000079-1,2024-06-30,2024-06,1100,Accounts Receivable,208137.27,0,Monthly SaaS subscription revenue recognized,SUB-40063
+JE-000079,JE-000079-2,2024-06-30,2024-06,4000,Product Revenue,0,208137.27,Monthly SaaS subscription revenue recognized,SUB-40063
+JE-000080,JE-000080-1,2024-06-30,2024-06,1100,Accounts Receivable,24923.75,0,Professional services revenue recognized,SVC-40064
+JE-000080,JE-000080-2,2024-06-30,2024-06,4100,Service Revenue,0,24923.75,Professional services revenue recognized,SVC-40064
+JE-000081,JE-000081-1,2024-06-30,2024-06,5000,Cost of Goods Sold,68844.14,0,Hosting infrastructure & customer support costs,INV-40065
+JE-000081,JE-000081-2,2024-06-30,2024-06,2000,Accounts Payable,0,68844.14,Hosting infrastructure & customer support costs,INV-40065
+JE-000082,JE-000082-1,2024-06-05,2024-06,6000,Salaries & Wages,102389.81,0,Payroll run,PR-40066
+JE-000082,JE-000082-2,2024-06-05,2024-06,1000,Cash,0,102389.81,Payroll run,PR-40066
+JE-000083,JE-000083-1,2024-06-05,2024-06,6100,Employee Benefits,21786.72,0,Employee benefits & payroll taxes,PR-40067
+JE-000083,JE-000083-2,2024-06-05,2024-06,1000,Cash,0,21786.72,Employee benefits & payroll taxes,PR-40067
+JE-000084,JE-000084-1,2024-06-15,2024-06,6200,Software & Subscriptions,8845.99,0,Recurring SaaS tooling subscriptions,SUB-40068
+JE-000084,JE-000084-2,2024-06-15,2024-06,1000,Cash,0,8845.99,Recurring SaaS tooling subscriptions,SUB-40068
+JE-000085,JE-000085-1,2024-06-15,2024-06,6300,Marketing & Advertising,17029.1,0,Digital advertising & agency fees,INV-40069
+JE-000085,JE-000085-2,2024-06-15,2024-06,2000,Accounts Payable,0,17029.1,Digital advertising & agency fees,INV-40069
+JE-000086,JE-000086-1,2024-06-15,2024-06,6400,Travel & Entertainment,4563.05,0,Employee travel & client entertainment,EXP-40070
+JE-000086,JE-000086-2,2024-06-15,2024-06,1000,Cash,0,4563.05,Employee travel & client entertainment,EXP-40070
+JE-000087,JE-000087-1,2024-06-15,2024-06,6500,Professional Fees,5653.42,0,"Legal, audit & advisory fees",INV-40071
+JE-000087,JE-000087-2,2024-06-15,2024-06,2000,Accounts Payable,0,5653.42,"Legal, audit & advisory fees",INV-40071
+JE-000088,JE-000088-1,2024-06-05,2024-06,6600,Rent & Facilities,12000,0,Office lease payment,LEASE-40072
+JE-000088,JE-000088-2,2024-06-05,2024-06,1000,Cash,0,12000,Office lease payment,LEASE-40072
+JE-000089,JE-000089-1,2024-06-30,2024-06,6700,Depreciation,2000,0,Monthly depreciation expense,DEP-2024-06
+JE-000089,JE-000089-2,2024-06-30,2024-06,1600,Accumulated Depreciation,0,2000,Monthly depreciation expense,DEP-2024-06
+JE-000090,JE-000090-1,2024-06-15,2024-06,6800,Office Supplies,1343.06,0,Office supplies,EXP-40073
+JE-000090,JE-000090-2,2024-06-15,2024-06,1000,Cash,0,1343.06,Office supplies,EXP-40073
+JE-000091,JE-000091-1,2024-06-15,2024-06,6900,Utilities,2135.76,0,Utilities,UTIL-40074
+JE-000091,JE-000091-2,2024-06-15,2024-06,1000,Cash,0,2135.76,Utilities,UTIL-40074
+JE-000092,JE-000092-1,2024-06-30,2024-06,1000,Cash,198101.86,0,Customer collections on account,COLL-2024-06
+JE-000092,JE-000092-2,2024-06-30,2024-06,1100,Accounts Receivable,0,198101.86,Customer collections on account,COLL-2024-06
+JE-000093,JE-000093-1,2024-06-30,2024-06,2000,Accounts Payable,73221.32,0,Vendor payments on account,PMT-2024-06
+JE-000093,JE-000093-2,2024-06-30,2024-06,1000,Cash,0,73221.32,Vendor payments on account,PMT-2024-06
+JE-000094,JE-000094-1,2024-07-31,2024-07,1100,Accounts Receivable,217689.22,0,Monthly SaaS subscription revenue recognized,SUB-40075
+JE-000094,JE-000094-2,2024-07-31,2024-07,4000,Product Revenue,0,217689.22,Monthly SaaS subscription revenue recognized,SUB-40075
+JE-000095,JE-000095-1,2024-07-31,2024-07,1100,Accounts Receivable,26175.93,0,Professional services revenue recognized,SVC-40076
+JE-000095,JE-000095-2,2024-07-31,2024-07,4100,Service Revenue,0,26175.93,Professional services revenue recognized,SVC-40076
+JE-000096,JE-000096-1,2024-07-31,2024-07,5000,Cost of Goods Sold,66178.98,0,Hosting infrastructure & customer support costs,INV-40077
+JE-000096,JE-000096-2,2024-07-31,2024-07,2000,Accounts Payable,0,66178.98,Hosting infrastructure & customer support costs,INV-40077
+JE-000097,JE-000097-1,2024-07-05,2024-07,6000,Salaries & Wages,109992.84,0,Payroll run,PR-40078
+JE-000097,JE-000097-2,2024-07-05,2024-07,1000,Cash,0,109992.84,Payroll run,PR-40078
+JE-000098,JE-000098-1,2024-07-05,2024-07,6100,Employee Benefits,23798.11,0,Employee benefits & payroll taxes,PR-40079
+JE-000098,JE-000098-2,2024-07-05,2024-07,1000,Cash,0,23798.11,Employee benefits & payroll taxes,PR-40079
+JE-000099,JE-000099-1,2024-07-15,2024-07,6200,Software & Subscriptions,8334.6,0,Recurring SaaS tooling subscriptions,SUB-40080
+JE-000099,JE-000099-2,2024-07-15,2024-07,1000,Cash,0,8334.6,Recurring SaaS tooling subscriptions,SUB-40080
+JE-000100,JE-000100-1,2024-07-15,2024-07,6300,Marketing & Advertising,15389.06,0,Digital advertising & agency fees,INV-40081
+JE-000100,JE-000100-2,2024-07-15,2024-07,2000,Accounts Payable,0,15389.06,Digital advertising & agency fees,INV-40081
+JE-000101,JE-000101-1,2024-07-15,2024-07,6400,Travel & Entertainment,4557.79,0,Employee travel & client entertainment,EXP-40082
+JE-000101,JE-000101-2,2024-07-15,2024-07,1000,Cash,0,4557.79,Employee travel & client entertainment,EXP-40082
+JE-000102,JE-000102-1,2024-07-15,2024-07,6500,Professional Fees,5939.39,0,"Legal, audit & advisory fees",INV-40083
+JE-000102,JE-000102-2,2024-07-15,2024-07,2000,Accounts Payable,0,5939.39,"Legal, audit & advisory fees",INV-40083
+JE-000103,JE-000103-1,2024-07-05,2024-07,6600,Rent & Facilities,12000,0,Office lease payment,LEASE-40084
+JE-000103,JE-000103-2,2024-07-05,2024-07,1000,Cash,0,12000,Office lease payment,LEASE-40084
+JE-000104,JE-000104-1,2024-07-05,2024-07,1500,Fixed Assets,7499.87,0,Capital expenditure — equipment & software capitalization,CAPEX-40085
+JE-000104,JE-000104-2,2024-07-05,2024-07,1000,Cash,0,7499.87,Capital expenditure — equipment & software capitalization,CAPEX-40085
+JE-000105,JE-000105-1,2024-07-31,2024-07,6700,Depreciation,2000,0,Monthly depreciation expense,DEP-2024-07
+JE-000105,JE-000105-2,2024-07-31,2024-07,1600,Accumulated Depreciation,0,2000,Monthly depreciation expense,DEP-2024-07
+JE-000106,JE-000106-1,2024-07-15,2024-07,6800,Office Supplies,971.74,0,Office supplies,EXP-40086
+JE-000106,JE-000106-2,2024-07-15,2024-07,1000,Cash,0,971.74,Office supplies,EXP-40086
+JE-000107,JE-000107-1,2024-07-15,2024-07,6900,Utilities,2194.92,0,Utilities,UTIL-40087
+JE-000107,JE-000107-2,2024-07-15,2024-07,1000,Cash,0,2194.92,Utilities,UTIL-40087
+JE-000108,JE-000108-1,2024-07-31,2024-07,1000,Cash,207285.37,0,Customer collections on account,COLL-2024-07
+JE-000108,JE-000108-2,2024-07-31,2024-07,1100,Accounts Receivable,0,207285.37,Customer collections on account,COLL-2024-07
+JE-000109,JE-000109-1,2024-07-31,2024-07,2000,Accounts Payable,70005.94,0,Vendor payments on account,PMT-2024-07
+JE-000109,JE-000109-2,2024-07-31,2024-07,1000,Cash,0,70005.94,Vendor payments on account,PMT-2024-07
+JE-000110,JE-000110-1,2024-08-31,2024-08,1100,Accounts Receivable,221902.09,0,Monthly SaaS subscription revenue recognized,SUB-40088
+JE-000110,JE-000110-2,2024-08-31,2024-08,4000,Product Revenue,0,221902.09,Monthly SaaS subscription revenue recognized,SUB-40088
+JE-000111,JE-000111-1,2024-08-31,2024-08,1100,Accounts Receivable,25192.33,0,Professional services revenue recognized,SVC-40089
+JE-000111,JE-000111-2,2024-08-31,2024-08,4100,Service Revenue,0,25192.33,Professional services revenue recognized,SVC-40089
+JE-000112,JE-000112-1,2024-08-31,2024-08,5000,Cost of Goods Sold,74274.33,0,Hosting infrastructure & customer support costs,INV-40090
+JE-000112,JE-000112-2,2024-08-31,2024-08,2000,Accounts Payable,0,74274.33,Hosting infrastructure & customer support costs,INV-40090
+JE-000113,JE-000113-1,2024-08-05,2024-08,6000,Salaries & Wages,109281.08,0,Payroll run,PR-40091
+JE-000113,JE-000113-2,2024-08-05,2024-08,1000,Cash,0,109281.08,Payroll run,PR-40091
+JE-000114,JE-000114-1,2024-08-05,2024-08,6100,Employee Benefits,22901.59,0,Employee benefits & payroll taxes,PR-40092
+JE-000114,JE-000114-2,2024-08-05,2024-08,1000,Cash,0,22901.59,Employee benefits & payroll taxes,PR-40092
+JE-000115,JE-000115-1,2024-08-15,2024-08,6200,Software & Subscriptions,8523.16,0,Recurring SaaS tooling subscriptions,SUB-40093
+JE-000115,JE-000115-2,2024-08-15,2024-08,1000,Cash,0,8523.16,Recurring SaaS tooling subscriptions,SUB-40093
+JE-000116,JE-000116-1,2024-08-15,2024-08,6300,Marketing & Advertising,17358.55,0,Digital advertising & agency fees,INV-40094
+JE-000116,JE-000116-2,2024-08-15,2024-08,2000,Accounts Payable,0,17358.55,Digital advertising & agency fees,INV-40094
+JE-000117,JE-000117-1,2024-08-15,2024-08,6400,Travel & Entertainment,4348.66,0,Employee travel & client entertainment,EXP-40095
+JE-000117,JE-000117-2,2024-08-15,2024-08,1000,Cash,0,4348.66,Employee travel & client entertainment,EXP-40095
+JE-000118,JE-000118-1,2024-08-15,2024-08,6500,Professional Fees,6009.23,0,"Legal, audit & advisory fees",INV-40096
+JE-000118,JE-000118-2,2024-08-15,2024-08,2000,Accounts Payable,0,6009.23,"Legal, audit & advisory fees",INV-40096
+JE-000119,JE-000119-1,2024-08-05,2024-08,6600,Rent & Facilities,12000,0,Office lease payment,LEASE-40097
+JE-000119,JE-000119-2,2024-08-05,2024-08,1000,Cash,0,12000,Office lease payment,LEASE-40097
+JE-000120,JE-000120-1,2024-08-31,2024-08,6700,Depreciation,2000,0,Monthly depreciation expense,DEP-2024-08
+JE-000120,JE-000120-2,2024-08-31,2024-08,1600,Accumulated Depreciation,0,2000,Monthly depreciation expense,DEP-2024-08
+JE-000121,JE-000121-1,2024-08-15,2024-08,6800,Office Supplies,1283.14,0,Office supplies,EXP-40098
+JE-000121,JE-000121-2,2024-08-15,2024-08,1000,Cash,0,1283.14,Office supplies,EXP-40098
+JE-000122,JE-000122-1,2024-08-15,2024-08,6900,Utilities,2133.95,0,Utilities,UTIL-40099
+JE-000122,JE-000122-2,2024-08-15,2024-08,1000,Cash,0,2133.95,Utilities,UTIL-40099
+JE-000123,JE-000123-1,2024-08-31,2024-08,1000,Cash,210030.26,0,Customer collections on account,COLL-2024-08
+JE-000123,JE-000123-2,2024-08-31,2024-08,1100,Accounts Receivable,0,210030.26,Customer collections on account,COLL-2024-08
+JE-000124,JE-000124-1,2024-08-31,2024-08,2000,Accounts Payable,78113.69,0,Vendor payments on account,PMT-2024-08
+JE-000124,JE-000124-2,2024-08-31,2024-08,1000,Cash,0,78113.69,Vendor payments on account,PMT-2024-08
+JE-000125,JE-000125-1,2024-09-30,2024-09,1100,Accounts Receivable,219997.34,0,Monthly SaaS subscription revenue recognized,SUB-40100
+JE-000125,JE-000125-2,2024-09-30,2024-09,4000,Product Revenue,0,219997.34,Monthly SaaS subscription revenue recognized,SUB-40100
+JE-000126,JE-000126-1,2024-09-30,2024-09,1100,Accounts Receivable,26406.67,0,Professional services revenue recognized,SVC-40101
+JE-000126,JE-000126-2,2024-09-30,2024-09,4100,Service Revenue,0,26406.67,Professional services revenue recognized,SVC-40101
+JE-000127,JE-000127-1,2024-09-30,2024-09,5000,Cost of Goods Sold,71385.73,0,Hosting infrastructure & customer support costs,INV-40102
+JE-000127,JE-000127-2,2024-09-30,2024-09,2000,Accounts Payable,0,71385.73,Hosting infrastructure & customer support costs,INV-40102
+JE-000128,JE-000128-1,2024-09-05,2024-09,6000,Salaries & Wages,111511.96,0,Payroll run,PR-40103
+JE-000128,JE-000128-2,2024-09-05,2024-09,1000,Cash,0,111511.96,Payroll run,PR-40103
+JE-000129,JE-000129-1,2024-09-05,2024-09,6100,Employee Benefits,24034.81,0,Employee benefits & payroll taxes,PR-40104
+JE-000129,JE-000129-2,2024-09-05,2024-09,1000,Cash,0,24034.81,Employee benefits & payroll taxes,PR-40104
+JE-000130,JE-000130-1,2024-09-15,2024-09,6200,Software & Subscriptions,9115.27,0,Recurring SaaS tooling subscriptions,SUB-40105
+JE-000130,JE-000130-2,2024-09-15,2024-09,1000,Cash,0,9115.27,Recurring SaaS tooling subscriptions,SUB-40105
+JE-000131,JE-000131-1,2024-09-15,2024-09,6300,Marketing & Advertising,14716.2,0,Digital advertising & agency fees,INV-40106
+JE-000131,JE-000131-2,2024-09-15,2024-09,2000,Accounts Payable,0,14716.2,Digital advertising & agency fees,INV-40106
+JE-000132,JE-000132-1,2024-09-15,2024-09,6400,Travel & Entertainment,4547.72,0,Employee travel & client entertainment,EXP-40107
+JE-000132,JE-000132-2,2024-09-15,2024-09,1000,Cash,0,4547.72,Employee travel & client entertainment,EXP-40107
+JE-000133,JE-000133-1,2024-09-15,2024-09,6500,Professional Fees,5458.54,0,"Legal, audit & advisory fees",INV-40108
+JE-000133,JE-000133-2,2024-09-15,2024-09,2000,Accounts Payable,0,5458.54,"Legal, audit & advisory fees",INV-40108
+JE-000134,JE-000134-1,2024-09-05,2024-09,6600,Rent & Facilities,12000,0,Office lease payment,LEASE-40109
+JE-000134,JE-000134-2,2024-09-05,2024-09,1000,Cash,0,12000,Office lease payment,LEASE-40109
+JE-000135,JE-000135-1,2024-09-30,2024-09,6700,Depreciation,2000,0,Monthly depreciation expense,DEP-2024-09
+JE-000135,JE-000135-2,2024-09-30,2024-09,1600,Accumulated Depreciation,0,2000,Monthly depreciation expense,DEP-2024-09
+JE-000136,JE-000136-1,2024-09-15,2024-09,6800,Office Supplies,1075.43,0,Office supplies,EXP-40110
+JE-000136,JE-000136-2,2024-09-15,2024-09,1000,Cash,0,1075.43,Office supplies,EXP-40110
+JE-000137,JE-000137-1,2024-09-15,2024-09,6900,Utilities,1870.96,0,Utilities,UTIL-40111
+JE-000137,JE-000137-2,2024-09-15,2024-09,1000,Cash,0,1870.96,Utilities,UTIL-40111
+JE-000138,JE-000138-1,2024-09-30,2024-09,1000,Cash,209443.41,0,Customer collections on account,COLL-2024-09
+JE-000138,JE-000138-2,2024-09-30,2024-09,1100,Accounts Receivable,0,209443.41,Customer collections on account,COLL-2024-09
+JE-000139,JE-000139-1,2024-09-30,2024-09,2000,Accounts Payable,73248.38,0,Vendor payments on account,PMT-2024-09
+JE-000139,JE-000139-2,2024-09-30,2024-09,1000,Cash,0,73248.38,Vendor payments on account,PMT-2024-09
+JE-000140,JE-000140-1,2024-10-31,2024-10,1100,Accounts Receivable,229262.95,0,Monthly SaaS subscription revenue recognized,SUB-40112
+JE-000140,JE-000140-2,2024-10-31,2024-10,4000,Product Revenue,0,229262.95,Monthly SaaS subscription revenue recognized,SUB-40112
+JE-000141,JE-000141-1,2024-10-31,2024-10,1100,Accounts Receivable,32513.56,0,Professional services revenue recognized,SVC-40113
+JE-000141,JE-000141-2,2024-10-31,2024-10,4100,Service Revenue,0,32513.56,Professional services revenue recognized,SVC-40113
+JE-000142,JE-000142-1,2024-10-31,2024-10,5000,Cost of Goods Sold,75171.92,0,Hosting infrastructure & customer support costs,INV-40114
+JE-000142,JE-000142-2,2024-10-31,2024-10,2000,Accounts Payable,0,75171.92,Hosting infrastructure & customer support costs,INV-40114
+JE-000143,JE-000143-1,2024-10-05,2024-10,6000,Salaries & Wages,111829.37,0,Payroll run,PR-40115
+JE-000143,JE-000143-2,2024-10-05,2024-10,1000,Cash,0,111829.37,Payroll run,PR-40115
+JE-000144,JE-000144-1,2024-10-05,2024-10,6100,Employee Benefits,23958.06,0,Employee benefits & payroll taxes,PR-40116
+JE-000144,JE-000144-2,2024-10-05,2024-10,1000,Cash,0,23958.06,Employee benefits & payroll taxes,PR-40116
+JE-000145,JE-000145-1,2024-10-15,2024-10,6200,Software & Subscriptions,8511,0,Recurring SaaS tooling subscriptions,SUB-40117
+JE-000145,JE-000145-2,2024-10-15,2024-10,1000,Cash,0,8511,Recurring SaaS tooling subscriptions,SUB-40117
+JE-000146,JE-000146-1,2024-10-15,2024-10,6300,Marketing & Advertising,26611.06,0,Digital advertising & agency fees,INV-40118
+JE-000146,JE-000146-2,2024-10-15,2024-10,2000,Accounts Payable,0,26611.06,Digital advertising & agency fees,INV-40118
+JE-000147,JE-000147-1,2024-10-15,2024-10,6400,Travel & Entertainment,4240.44,0,Employee travel & client entertainment,EXP-40119
+JE-000147,JE-000147-2,2024-10-15,2024-10,1000,Cash,0,4240.44,Employee travel & client entertainment,EXP-40119
+JE-000148,JE-000148-1,2024-10-15,2024-10,6500,Professional Fees,5451.29,0,"Legal, audit & advisory fees",INV-40120
+JE-000148,JE-000148-2,2024-10-15,2024-10,2000,Accounts Payable,0,5451.29,"Legal, audit & advisory fees",INV-40120
+JE-000149,JE-000149-1,2024-10-05,2024-10,6600,Rent & Facilities,12000,0,Office lease payment,LEASE-40121
+JE-000149,JE-000149-2,2024-10-05,2024-10,1000,Cash,0,12000,Office lease payment,LEASE-40121
+JE-000150,JE-000150-1,2024-10-05,2024-10,1500,Fixed Assets,7734.77,0,Capital expenditure — equipment & software capitalization,CAPEX-40122
+JE-000150,JE-000150-2,2024-10-05,2024-10,1000,Cash,0,7734.77,Capital expenditure — equipment & software capitalization,CAPEX-40122
+JE-000151,JE-000151-1,2024-10-31,2024-10,6700,Depreciation,2000,0,Monthly depreciation expense,DEP-2024-10
+JE-000151,JE-000151-2,2024-10-31,2024-10,1600,Accumulated Depreciation,0,2000,Monthly depreciation expense,DEP-2024-10
+JE-000152,JE-000152-1,2024-10-15,2024-10,6800,Office Supplies,1252.18,0,Office supplies,EXP-40123
+JE-000152,JE-000152-2,2024-10-15,2024-10,1000,Cash,0,1252.18,Office supplies,EXP-40123
+JE-000153,JE-000153-1,2024-10-15,2024-10,6900,Utilities,1875.34,0,Utilities,UTIL-40124
+JE-000153,JE-000153-2,2024-10-15,2024-10,1000,Cash,0,1875.34,Utilities,UTIL-40124
+JE-000154,JE-000154-1,2024-10-31,2024-10,1000,Cash,222510.03,0,Customer collections on account,COLL-2024-10
+JE-000154,JE-000154-2,2024-10-31,2024-10,1100,Accounts Receivable,0,222510.03,Customer collections on account,COLL-2024-10
+JE-000155,JE-000155-1,2024-10-31,2024-10,2000,Accounts Payable,85787.41,0,Vendor payments on account,PMT-2024-10
+JE-000155,JE-000155-2,2024-10-31,2024-10,1000,Cash,0,85787.41,Vendor payments on account,PMT-2024-10
+JE-000156,JE-000156-1,2024-11-30,2024-11,1100,Accounts Receivable,233860.53,0,Monthly SaaS subscription revenue recognized,SUB-40125
+JE-000156,JE-000156-2,2024-11-30,2024-11,4000,Product Revenue,0,233860.53,Monthly SaaS subscription revenue recognized,SUB-40125
+JE-000157,JE-000157-1,2024-11-30,2024-11,1100,Accounts Receivable,32934.78,0,Professional services revenue recognized,SVC-40126
+JE-000157,JE-000157-2,2024-11-30,2024-11,4100,Service Revenue,0,32934.78,Professional services revenue recognized,SVC-40126
+JE-000158,JE-000158-1,2024-11-30,2024-11,5000,Cost of Goods Sold,73081.22,0,Hosting infrastructure & customer support costs,INV-40127
+JE-000158,JE-000158-2,2024-11-30,2024-11,2000,Accounts Payable,0,73081.22,Hosting infrastructure & customer support costs,INV-40127
+JE-000159,JE-000159-1,2024-11-05,2024-11,6000,Salaries & Wages,111027.45,0,Payroll run,PR-40128
+JE-000159,JE-000159-2,2024-11-05,2024-11,1000,Cash,0,111027.45,Payroll run,PR-40128
+JE-000160,JE-000160-1,2024-11-05,2024-11,6100,Employee Benefits,25295.37,0,Employee benefits & payroll taxes,PR-40129
+JE-000160,JE-000160-2,2024-11-05,2024-11,1000,Cash,0,25295.37,Employee benefits & payroll taxes,PR-40129
+JE-000161,JE-000161-1,2024-11-15,2024-11,6200,Software & Subscriptions,8784.47,0,Recurring SaaS tooling subscriptions,SUB-40130
+JE-000161,JE-000161-2,2024-11-15,2024-11,1000,Cash,0,8784.47,Recurring SaaS tooling subscriptions,SUB-40130
+JE-000162,JE-000162-1,2024-11-15,2024-11,6300,Marketing & Advertising,25669.14,0,Digital advertising & agency fees,INV-40131
+JE-000162,JE-000162-2,2024-11-15,2024-11,2000,Accounts Payable,0,25669.14,Digital advertising & agency fees,INV-40131
+JE-000163,JE-000163-1,2024-11-15,2024-11,6400,Travel & Entertainment,4135.96,0,Employee travel & client entertainment,EXP-40132
+JE-000163,JE-000163-2,2024-11-15,2024-11,1000,Cash,0,4135.96,Employee travel & client entertainment,EXP-40132
+JE-000164,JE-000164-1,2024-11-15,2024-11,6500,Professional Fees,5682.17,0,"Legal, audit & advisory fees",INV-40133
+JE-000164,JE-000164-2,2024-11-15,2024-11,2000,Accounts Payable,0,5682.17,"Legal, audit & advisory fees",INV-40133
+JE-000165,JE-000165-1,2024-11-05,2024-11,6600,Rent & Facilities,12000,0,Office lease payment,LEASE-40134
+JE-000165,JE-000165-2,2024-11-05,2024-11,1000,Cash,0,12000,Office lease payment,LEASE-40134
+JE-000166,JE-000166-1,2024-11-30,2024-11,6700,Depreciation,2000,0,Monthly depreciation expense,DEP-2024-11
+JE-000166,JE-000166-2,2024-11-30,2024-11,1600,Accumulated Depreciation,0,2000,Monthly depreciation expense,DEP-2024-11
+JE-000167,JE-000167-1,2024-11-15,2024-11,6800,Office Supplies,1413.48,0,Office supplies,EXP-40135
+JE-000167,JE-000167-2,2024-11-15,2024-11,1000,Cash,0,1413.48,Office supplies,EXP-40135
+JE-000168,JE-000168-1,2024-11-15,2024-11,6900,Utilities,1812.17,0,Utilities,UTIL-40136
+JE-000168,JE-000168-2,2024-11-15,2024-11,1000,Cash,0,1812.17,Utilities,UTIL-40136
+JE-000169,JE-000169-1,2024-11-30,2024-11,1000,Cash,226776.01,0,Customer collections on account,COLL-2024-11
+JE-000169,JE-000169-2,2024-11-30,2024-11,1100,Accounts Receivable,0,226776.01,Customer collections on account,COLL-2024-11
+JE-000170,JE-000170-1,2024-11-30,2024-11,2000,Accounts Payable,83546.02,0,Vendor payments on account,PMT-2024-11
+JE-000170,JE-000170-2,2024-11-30,2024-11,1000,Cash,0,83546.02,Vendor payments on account,PMT-2024-11
+JE-000171,JE-000171-1,2024-12-31,2024-12,1100,Accounts Receivable,241492.68,0,Monthly SaaS subscription revenue recognized,SUB-40137
+JE-000171,JE-000171-2,2024-12-31,2024-12,4000,Product Revenue,0,241492.68,Monthly SaaS subscription revenue recognized,SUB-40137
+JE-000172,JE-000172-1,2024-12-31,2024-12,1100,Accounts Receivable,29190.79,0,Professional services revenue recognized,SVC-40138
+JE-000172,JE-000172-2,2024-12-31,2024-12,4100,Service Revenue,0,29190.79,Professional services revenue recognized,SVC-40138
+JE-000173,JE-000173-1,2024-12-31,2024-12,5000,Cost of Goods Sold,73917.9,0,Hosting infrastructure & customer support costs,INV-40139
+JE-000173,JE-000173-2,2024-12-31,2024-12,2000,Accounts Payable,0,73917.9,Hosting infrastructure & customer support costs,INV-40139
+JE-000174,JE-000174-1,2024-12-05,2024-12,6000,Salaries & Wages,109295.84,0,Payroll run,PR-40140
+JE-000174,JE-000174-2,2024-12-05,2024-12,1000,Cash,0,109295.84,Payroll run,PR-40140
+JE-000175,JE-000175-1,2024-12-05,2024-12,6100,Employee Benefits,24954.09,0,Employee benefits & payroll taxes,PR-40141
+JE-000175,JE-000175-2,2024-12-05,2024-12,1000,Cash,0,24954.09,Employee benefits & payroll taxes,PR-40141
+JE-000176,JE-000176-1,2024-12-15,2024-12,6200,Software & Subscriptions,9619.34,0,Recurring SaaS tooling subscriptions,SUB-40142
+JE-000176,JE-000176-2,2024-12-15,2024-12,1000,Cash,0,9619.34,Recurring SaaS tooling subscriptions,SUB-40142
+JE-000177,JE-000177-1,2024-12-15,2024-12,6300,Marketing & Advertising,26125.08,0,Digital advertising & agency fees,INV-40143
+JE-000177,JE-000177-2,2024-12-15,2024-12,2000,Accounts Payable,0,26125.08,Digital advertising & agency fees,INV-40143
+JE-000178,JE-000178-1,2024-12-15,2024-12,6400,Travel & Entertainment,4299.05,0,Employee travel & client entertainment,EXP-40144
+JE-000178,JE-000178-2,2024-12-15,2024-12,1000,Cash,0,4299.05,Employee travel & client entertainment,EXP-40144
+JE-000179,JE-000179-1,2024-12-15,2024-12,6500,Professional Fees,5983.71,0,"Legal, audit & advisory fees",INV-40145
+JE-000179,JE-000179-2,2024-12-15,2024-12,2000,Accounts Payable,0,5983.71,"Legal, audit & advisory fees",INV-40145
+JE-000180,JE-000180-1,2024-12-05,2024-12,6600,Rent & Facilities,12000,0,Office lease payment,LEASE-40146
+JE-000180,JE-000180-2,2024-12-05,2024-12,1000,Cash,0,12000,Office lease payment,LEASE-40146
+JE-000181,JE-000181-1,2024-12-31,2024-12,6700,Depreciation,2000,0,Monthly depreciation expense,DEP-2024-12
+JE-000181,JE-000181-2,2024-12-31,2024-12,1600,Accumulated Depreciation,0,2000,Monthly depreciation expense,DEP-2024-12
+JE-000182,JE-000182-1,2024-12-15,2024-12,6800,Office Supplies,1080.99,0,Office supplies,EXP-40147
+JE-000182,JE-000182-2,2024-12-15,2024-12,1000,Cash,0,1080.99,Office supplies,EXP-40147
+JE-000183,JE-000183-1,2024-12-15,2024-12,6900,Utilities,2483.78,0,Utilities,UTIL-40148
+JE-000183,JE-000183-2,2024-12-15,2024-12,1000,Cash,0,2483.78,Utilities,UTIL-40148
+JE-000184,JE-000184-1,2024-12-31,2024-12,1000,Cash,230080.94,0,Customer collections on account,COLL-2024-12
+JE-000184,JE-000184-2,2024-12-31,2024-12,1100,Accounts Receivable,0,230080.94,Customer collections on account,COLL-2024-12
+JE-000185,JE-000185-1,2024-12-31,2024-12,2000,Accounts Payable,84821.35,0,Vendor payments on account,PMT-2024-12
+JE-000185,JE-000185-2,2024-12-31,2024-12,1000,Cash,0,84821.35,Vendor payments on account,PMT-2024-12
+JE-000186,JE-000186-1,2025-01-31,2025-01,1100,Accounts Receivable,250187.23,0,Monthly SaaS subscription revenue recognized,SUB-40149
+JE-000186,JE-000186-2,2025-01-31,2025-01,4000,Product Revenue,0,250187.23,Monthly SaaS subscription revenue recognized,SUB-40149
+JE-000187,JE-000187-1,2025-01-31,2025-01,1100,Accounts Receivable,30916.12,0,Professional services revenue recognized,SVC-40150
+JE-000187,JE-000187-2,2025-01-31,2025-01,4100,Service Revenue,0,30916.12,Professional services revenue recognized,SVC-40150
+JE-000188,JE-000188-1,2025-01-31,2025-01,5000,Cost of Goods Sold,77884.27,0,Hosting infrastructure & customer support costs,INV-40151
+JE-000188,JE-000188-2,2025-01-31,2025-01,2000,Accounts Payable,0,77884.27,Hosting infrastructure & customer support costs,INV-40151
+JE-000189,JE-000189-1,2025-01-05,2025-01,6000,Salaries & Wages,121828.6,0,Payroll run,PR-40152
+JE-000189,JE-000189-2,2025-01-05,2025-01,1000,Cash,0,121828.6,Payroll run,PR-40152
+JE-000190,JE-000190-1,2025-01-05,2025-01,6100,Employee Benefits,27146.86,0,Employee benefits & payroll taxes,PR-40153
+JE-000190,JE-000190-2,2025-01-05,2025-01,1000,Cash,0,27146.86,Employee benefits & payroll taxes,PR-40153
+JE-000191,JE-000191-1,2025-01-15,2025-01,6200,Software & Subscriptions,10298.82,0,Recurring SaaS tooling subscriptions,SUB-40154
+JE-000191,JE-000191-2,2025-01-15,2025-01,1000,Cash,0,10298.82,Recurring SaaS tooling subscriptions,SUB-40154
+JE-000192,JE-000192-1,2025-01-15,2025-01,6300,Marketing & Advertising,18321.23,0,Digital advertising & agency fees,INV-40155
+JE-000192,JE-000192-2,2025-01-15,2025-01,2000,Accounts Payable,0,18321.23,Digital advertising & agency fees,INV-40155
+JE-000193,JE-000193-1,2025-01-15,2025-01,6400,Travel & Entertainment,4286.84,0,Employee travel & client entertainment,EXP-40156
+JE-000193,JE-000193-2,2025-01-15,2025-01,1000,Cash,0,4286.84,Employee travel & client entertainment,EXP-40156
+JE-000194,JE-000194-1,2025-01-15,2025-01,6500,Professional Fees,14734.53,0,"Legal, audit & advisory fees",INV-40157
+JE-000194,JE-000194-2,2025-01-15,2025-01,2000,Accounts Payable,0,14734.53,"Legal, audit & advisory fees",INV-40157
+JE-000195,JE-000195-1,2025-01-05,2025-01,6600,Rent & Facilities,12000,0,Office lease payment,LEASE-40158
+JE-000195,JE-000195-2,2025-01-05,2025-01,1000,Cash,0,12000,Office lease payment,LEASE-40158
+JE-000196,JE-000196-1,2025-01-05,2025-01,1500,Fixed Assets,6739.34,0,Capital expenditure — equipment & software capitalization,CAPEX-40159
+JE-000196,JE-000196-2,2025-01-05,2025-01,1000,Cash,0,6739.34,Capital expenditure — equipment & software capitalization,CAPEX-40159
+JE-000197,JE-000197-1,2025-01-31,2025-01,6700,Depreciation,2000,0,Monthly depreciation expense,DEP-2025-01
+JE-000197,JE-000197-2,2025-01-31,2025-01,1600,Accumulated Depreciation,0,2000,Monthly depreciation expense,DEP-2025-01
+JE-000198,JE-000198-1,2025-01-15,2025-01,6800,Office Supplies,992.64,0,Office supplies,EXP-40160
+JE-000198,JE-000198-2,2025-01-15,2025-01,1000,Cash,0,992.64,Office supplies,EXP-40160
+JE-000199,JE-000199-1,2025-01-15,2025-01,6900,Utilities,2318.27,0,Utilities,UTIL-40161
+JE-000199,JE-000199-2,2025-01-15,2025-01,1000,Cash,0,2318.27,Utilities,UTIL-40161
+JE-000200,JE-000200-1,2025-01-31,2025-01,1000,Cash,238937.85,0,Customer collections on account,COLL-2025-01
+JE-000200,JE-000200-2,2025-01-31,2025-01,1100,Accounts Receivable,0,238937.85,Customer collections on account,COLL-2025-01
+JE-000201,JE-000201-1,2025-01-31,2025-01,2000,Accounts Payable,88752.03,0,Vendor payments on account,PMT-2025-01
+JE-000201,JE-000201-2,2025-01-31,2025-01,1000,Cash,0,88752.03,Vendor payments on account,PMT-2025-01
+JE-000202,JE-000202-1,2025-02-28,2025-02,1100,Accounts Receivable,253822.16,0,Monthly SaaS subscription revenue recognized,SUB-40162
+JE-000202,JE-000202-2,2025-02-28,2025-02,4000,Product Revenue,0,253822.16,Monthly SaaS subscription revenue recognized,SUB-40162
+JE-000203,JE-000203-1,2025-02-28,2025-02,1100,Accounts Receivable,26736.13,0,Professional services revenue recognized,SVC-40163
+JE-000203,JE-000203-2,2025-02-28,2025-02,4100,Service Revenue,0,26736.13,Professional services revenue recognized,SVC-40163
+JE-000204,JE-000204-1,2025-02-28,2025-02,5000,Cost of Goods Sold,81967.7,0,Hosting infrastructure & customer support costs,INV-40164
+JE-000204,JE-000204-2,2025-02-28,2025-02,2000,Accounts Payable,0,81967.7,Hosting infrastructure & customer support costs,INV-40164
+JE-000205,JE-000205-1,2025-02-05,2025-02,6000,Salaries & Wages,120240.78,0,Payroll run,PR-40165
+JE-000205,JE-000205-2,2025-02-05,2025-02,1000,Cash,0,120240.78,Payroll run,PR-40165
+JE-000206,JE-000206-1,2025-02-05,2025-02,6100,Employee Benefits,27083.93,0,Employee benefits & payroll taxes,PR-40166
+JE-000206,JE-000206-2,2025-02-05,2025-02,1000,Cash,0,27083.93,Employee benefits & payroll taxes,PR-40166
+JE-000207,JE-000207-1,2025-02-15,2025-02,6200,Software & Subscriptions,10306.84,0,Recurring SaaS tooling subscriptions,SUB-40167
+JE-000207,JE-000207-2,2025-02-15,2025-02,1000,Cash,0,10306.84,Recurring SaaS tooling subscriptions,SUB-40167
+JE-000208,JE-000208-1,2025-02-15,2025-02,6300,Marketing & Advertising,18663.49,0,Digital advertising & agency fees,INV-40168
+JE-000208,JE-000208-2,2025-02-15,2025-02,2000,Accounts Payable,0,18663.49,Digital advertising & agency fees,INV-40168
+JE-000209,JE-000209-1,2025-02-15,2025-02,6400,Travel & Entertainment,3702.27,0,Employee travel & client entertainment,EXP-40169
+JE-000209,JE-000209-2,2025-02-15,2025-02,1000,Cash,0,3702.27,Employee travel & client entertainment,EXP-40169
+JE-000210,JE-000210-1,2025-02-15,2025-02,6500,Professional Fees,15303.87,0,"Legal, audit & advisory fees",INV-40170
+JE-000210,JE-000210-2,2025-02-15,2025-02,2000,Accounts Payable,0,15303.87,"Legal, audit & advisory fees",INV-40170
+JE-000211,JE-000211-1,2025-02-05,2025-02,6600,Rent & Facilities,12000,0,Office lease payment,LEASE-40171
+JE-000211,JE-000211-2,2025-02-05,2025-02,1000,Cash,0,12000,Office lease payment,LEASE-40171
+JE-000212,JE-000212-1,2025-02-28,2025-02,6700,Depreciation,2000,0,Monthly depreciation expense,DEP-2025-02
+JE-000212,JE-000212-2,2025-02-28,2025-02,1600,Accumulated Depreciation,0,2000,Monthly depreciation expense,DEP-2025-02
+JE-000213,JE-000213-1,2025-02-15,2025-02,6800,Office Supplies,1136.13,0,Office supplies,EXP-40172
+JE-000213,JE-000213-2,2025-02-15,2025-02,1000,Cash,0,1136.13,Office supplies,EXP-40172
+JE-000214,JE-000214-1,2025-02-15,2025-02,6900,Utilities,1916.33,0,Utilities,UTIL-40173
+JE-000214,JE-000214-2,2025-02-15,2025-02,1000,Cash,0,1916.33,Utilities,UTIL-40173
+JE-000215,JE-000215-1,2025-02-28,2025-02,1000,Cash,238474.54,0,Customer collections on account,COLL-2025-02
+JE-000215,JE-000215-2,2025-02-28,2025-02,1100,Accounts Receivable,0,238474.54,Customer collections on account,COLL-2025-02
+JE-000216,JE-000216-1,2025-02-28,2025-02,2000,Accounts Payable,92748.05,0,Vendor payments on account,PMT-2025-02
+JE-000216,JE-000216-2,2025-02-28,2025-02,1000,Cash,0,92748.05,Vendor payments on account,PMT-2025-02
+JE-000217,JE-000217-1,2025-03-31,2025-03,1100,Accounts Receivable,256758.65,0,Monthly SaaS subscription revenue recognized,SUB-40174
+JE-000217,JE-000217-2,2025-03-31,2025-03,4000,Product Revenue,0,256758.65,Monthly SaaS subscription revenue recognized,SUB-40174
+JE-000218,JE-000218-1,2025-03-31,2025-03,1100,Accounts Receivable,28468.23,0,Professional services revenue recognized,SVC-40175
+JE-000218,JE-000218-2,2025-03-31,2025-03,4100,Service Revenue,0,28468.23,Professional services revenue recognized,SVC-40175
+JE-000219,JE-000219-1,2025-03-31,2025-03,5000,Cost of Goods Sold,80981.55,0,Hosting infrastructure & customer support costs,INV-40176
+JE-000219,JE-000219-2,2025-03-31,2025-03,2000,Accounts Payable,0,80981.55,Hosting infrastructure & customer support costs,INV-40176
+JE-000220,JE-000220-1,2025-03-05,2025-03,6000,Salaries & Wages,121524.57,0,Payroll run,PR-40177
+JE-000220,JE-000220-2,2025-03-05,2025-03,1000,Cash,0,121524.57,Payroll run,PR-40177
+JE-000221,JE-000221-1,2025-03-05,2025-03,6100,Employee Benefits,26647.98,0,Employee benefits & payroll taxes,PR-40178
+JE-000221,JE-000221-2,2025-03-05,2025-03,1000,Cash,0,26647.98,Employee benefits & payroll taxes,PR-40178
+JE-000222,JE-000222-1,2025-03-15,2025-03,6200,Software & Subscriptions,9179.95,0,Recurring SaaS tooling subscriptions,SUB-40179
+JE-000222,JE-000222-2,2025-03-15,2025-03,1000,Cash,0,9179.95,Recurring SaaS tooling subscriptions,SUB-40179
+JE-000223,JE-000223-1,2025-03-15,2025-03,6300,Marketing & Advertising,17833.93,0,Digital advertising & agency fees,INV-40180
+JE-000223,JE-000223-2,2025-03-15,2025-03,2000,Accounts Payable,0,17833.93,Digital advertising & agency fees,INV-40180
+JE-000224,JE-000224-1,2025-03-15,2025-03,6400,Travel & Entertainment,4462.32,0,Employee travel & client entertainment,EXP-40181
+JE-000224,JE-000224-2,2025-03-15,2025-03,1000,Cash,0,4462.32,Employee travel & client entertainment,EXP-40181
+JE-000225,JE-000225-1,2025-03-15,2025-03,6500,Professional Fees,6477.73,0,"Legal, audit & advisory fees",INV-40182
+JE-000225,JE-000225-2,2025-03-15,2025-03,2000,Accounts Payable,0,6477.73,"Legal, audit & advisory fees",INV-40182
+JE-000226,JE-000226-1,2025-03-05,2025-03,6600,Rent & Facilities,12000,0,Office lease payment,LEASE-40183
+JE-000226,JE-000226-2,2025-03-05,2025-03,1000,Cash,0,12000,Office lease payment,LEASE-40183
+JE-000227,JE-000227-1,2025-03-31,2025-03,6700,Depreciation,2000,0,Monthly depreciation expense,DEP-2025-03
+JE-000227,JE-000227-2,2025-03-31,2025-03,1600,Accumulated Depreciation,0,2000,Monthly depreciation expense,DEP-2025-03
+JE-000228,JE-000228-1,2025-03-15,2025-03,6800,Office Supplies,1179.55,0,Office supplies,EXP-40184
+JE-000228,JE-000228-2,2025-03-15,2025-03,1000,Cash,0,1179.55,Office supplies,EXP-40184
+JE-000229,JE-000229-1,2025-03-15,2025-03,6900,Utilities,2196.9,0,Utilities,UTIL-40185
+JE-000229,JE-000229-2,2025-03-15,2025-03,1000,Cash,0,2196.9,Utilities,UTIL-40185
+JE-000230,JE-000230-1,2025-03-31,2025-03,1000,Cash,242442.84,0,Customer collections on account,COLL-2025-03
+JE-000230,JE-000230-2,2025-03-31,2025-03,1100,Accounts Receivable,0,242442.84,Customer collections on account,COLL-2025-03
+JE-000231,JE-000231-1,2025-03-31,2025-03,2000,Accounts Payable,84234.57,0,Vendor payments on account,PMT-2025-03
+JE-000231,JE-000231-2,2025-03-31,2025-03,1000,Cash,0,84234.57,Vendor payments on account,PMT-2025-03
+JE-000232,JE-000232-1,2025-04-30,2025-04,1100,Accounts Receivable,271314.62,0,Monthly SaaS subscription revenue recognized,SUB-40186
+JE-000232,JE-000232-2,2025-04-30,2025-04,4000,Product Revenue,0,271314.62,Monthly SaaS subscription revenue recognized,SUB-40186
+JE-000233,JE-000233-1,2025-04-30,2025-04,1100,Accounts Receivable,31767.48,0,Professional services revenue recognized,SVC-40187
+JE-000233,JE-000233-2,2025-04-30,2025-04,4100,Service Revenue,0,31767.48,Professional services revenue recognized,SVC-40187
+JE-000234,JE-000234-1,2025-04-30,2025-04,5000,Cost of Goods Sold,87309.78,0,Hosting infrastructure & customer support costs,INV-40188
+JE-000234,JE-000234-2,2025-04-30,2025-04,2000,Accounts Payable,0,87309.78,Hosting infrastructure & customer support costs,INV-40188
+JE-000235,JE-000235-1,2025-04-05,2025-04,6000,Salaries & Wages,121583.77,0,Payroll run,PR-40189
+JE-000235,JE-000235-2,2025-04-05,2025-04,1000,Cash,0,121583.77,Payroll run,PR-40189
+JE-000236,JE-000236-1,2025-04-05,2025-04,6100,Employee Benefits,25733.57,0,Employee benefits & payroll taxes,PR-40190
+JE-000236,JE-000236-2,2025-04-05,2025-04,1000,Cash,0,25733.57,Employee benefits & payroll taxes,PR-40190
+JE-000237,JE-000237-1,2025-04-15,2025-04,6200,Software & Subscriptions,9223.19,0,Recurring SaaS tooling subscriptions,SUB-40191
+JE-000237,JE-000237-2,2025-04-15,2025-04,1000,Cash,0,9223.19,Recurring SaaS tooling subscriptions,SUB-40191
+JE-000238,JE-000238-1,2025-04-15,2025-04,6300,Marketing & Advertising,18592.75,0,Digital advertising & agency fees,INV-40192
+JE-000238,JE-000238-2,2025-04-15,2025-04,2000,Accounts Payable,0,18592.75,Digital advertising & agency fees,INV-40192
+JE-000239,JE-000239-1,2025-04-15,2025-04,6400,Travel & Entertainment,4353.17,0,Employee travel & client entertainment,EXP-40193
+JE-000239,JE-000239-2,2025-04-15,2025-04,1000,Cash,0,4353.17,Employee travel & client entertainment,EXP-40193
+JE-000240,JE-000240-1,2025-04-15,2025-04,6500,Professional Fees,6399.92,0,"Legal, audit & advisory fees",INV-40194
+JE-000240,JE-000240-2,2025-04-15,2025-04,2000,Accounts Payable,0,6399.92,"Legal, audit & advisory fees",INV-40194
+JE-000241,JE-000241-1,2025-04-05,2025-04,6600,Rent & Facilities,12000,0,Office lease payment,LEASE-40195
+JE-000241,JE-000241-2,2025-04-05,2025-04,1000,Cash,0,12000,Office lease payment,LEASE-40195
+JE-000242,JE-000242-1,2025-04-05,2025-04,1500,Fixed Assets,8584.15,0,Capital expenditure — equipment & software capitalization,CAPEX-40196
+JE-000242,JE-000242-2,2025-04-05,2025-04,1000,Cash,0,8584.15,Capital expenditure — equipment & software capitalization,CAPEX-40196
+JE-000243,JE-000243-1,2025-04-30,2025-04,6700,Depreciation,2000,0,Monthly depreciation expense,DEP-2025-04
+JE-000243,JE-000243-2,2025-04-30,2025-04,1600,Accumulated Depreciation,0,2000,Monthly depreciation expense,DEP-2025-04
+JE-000244,JE-000244-1,2025-04-15,2025-04,6800,Office Supplies,965.12,0,Office supplies,EXP-40197
+JE-000244,JE-000244-2,2025-04-15,2025-04,1000,Cash,0,965.12,Office supplies,EXP-40197
+JE-000245,JE-000245-1,2025-04-15,2025-04,6900,Utilities,2012.5,0,Utilities,UTIL-40198
+JE-000245,JE-000245-2,2025-04-15,2025-04,1000,Cash,0,2012.5,Utilities,UTIL-40198
+JE-000246,JE-000246-1,2025-04-30,2025-04,1000,Cash,257619.78,0,Customer collections on account,COLL-2025-04
+JE-000246,JE-000246-2,2025-04-30,2025-04,1100,Accounts Receivable,0,257619.78,Customer collections on account,COLL-2025-04
+JE-000247,JE-000247-1,2025-04-30,2025-04,2000,Accounts Payable,89841.95,0,Vendor payments on account,PMT-2025-04
+JE-000247,JE-000247-2,2025-04-30,2025-04,1000,Cash,0,89841.95,Vendor payments on account,PMT-2025-04
+JE-000248,JE-000248-1,2025-05-31,2025-05,1100,Accounts Receivable,267836.27,0,Monthly SaaS subscription revenue recognized,SUB-40199
+JE-000248,JE-000248-2,2025-05-31,2025-05,4000,Product Revenue,0,267836.27,Monthly SaaS subscription revenue recognized,SUB-40199
+JE-000249,JE-000249-1,2025-05-31,2025-05,1100,Accounts Receivable,30862.59,0,Professional services revenue recognized,SVC-40200
+JE-000249,JE-000249-2,2025-05-31,2025-05,4100,Service Revenue,0,30862.59,Professional services revenue recognized,SVC-40200
+JE-000250,JE-000250-1,2025-05-31,2025-05,5000,Cost of Goods Sold,85924.47,0,Hosting infrastructure & customer support costs,INV-40201
+JE-000250,JE-000250-2,2025-05-31,2025-05,2000,Accounts Payable,0,85924.47,Hosting infrastructure & customer support costs,INV-40201
+JE-000251,JE-000251-1,2025-05-05,2025-05,6000,Salaries & Wages,118000.29,0,Payroll run,PR-40202
+JE-000251,JE-000251-2,2025-05-05,2025-05,1000,Cash,0,118000.29,Payroll run,PR-40202
+JE-000252,JE-000252-1,2025-05-05,2025-05,6100,Employee Benefits,24851.49,0,Employee benefits & payroll taxes,PR-40203
+JE-000252,JE-000252-2,2025-05-05,2025-05,1000,Cash,0,24851.49,Employee benefits & payroll taxes,PR-40203
+JE-000253,JE-000253-1,2025-05-15,2025-05,6200,Software & Subscriptions,10684.45,0,Recurring SaaS tooling subscriptions,SUB-40204
+JE-000253,JE-000253-2,2025-05-15,2025-05,1000,Cash,0,10684.45,Recurring SaaS tooling subscriptions,SUB-40204
+JE-000254,JE-000254-1,2025-05-15,2025-05,6300,Marketing & Advertising,17315.46,0,Digital advertising & agency fees,INV-40205
+JE-000254,JE-000254-2,2025-05-15,2025-05,2000,Accounts Payable,0,17315.46,Digital advertising & agency fees,INV-40205
+JE-000255,JE-000255-1,2025-05-15,2025-05,6400,Travel & Entertainment,3995.37,0,Employee travel & client entertainment,EXP-40206
+JE-000255,JE-000255-2,2025-05-15,2025-05,1000,Cash,0,3995.37,Employee travel & client entertainment,EXP-40206
+JE-000256,JE-000256-1,2025-05-15,2025-05,6500,Professional Fees,5484.77,0,"Legal, audit & advisory fees",INV-40207
+JE-000256,JE-000256-2,2025-05-15,2025-05,2000,Accounts Payable,0,5484.77,"Legal, audit & advisory fees",INV-40207
+JE-000257,JE-000257-1,2025-05-05,2025-05,6600,Rent & Facilities,12000,0,Office lease payment,LEASE-40208
+JE-000257,JE-000257-2,2025-05-05,2025-05,1000,Cash,0,12000,Office lease payment,LEASE-40208
+JE-000258,JE-000258-1,2025-05-31,2025-05,6700,Depreciation,2000,0,Monthly depreciation expense,DEP-2025-05
+JE-000258,JE-000258-2,2025-05-31,2025-05,1600,Accumulated Depreciation,0,2000,Monthly depreciation expense,DEP-2025-05
+JE-000259,JE-000259-1,2025-05-15,2025-05,6800,Office Supplies,1111.27,0,Office supplies,EXP-40209
+JE-000259,JE-000259-2,2025-05-15,2025-05,1000,Cash,0,1111.27,Office supplies,EXP-40209
+JE-000260,JE-000260-1,2025-05-15,2025-05,6900,Utilities,2128.06,0,Utilities,UTIL-40210
+JE-000260,JE-000260-2,2025-05-15,2025-05,1000,Cash,0,2128.06,Utilities,UTIL-40210
+JE-000261,JE-000261-1,2025-05-31,2025-05,1000,Cash,253894.03,0,Customer collections on account,COLL-2025-05
+JE-000261,JE-000261-2,2025-05-31,2025-05,1100,Accounts Receivable,0,253894.03,Customer collections on account,COLL-2025-05
+JE-000262,JE-000262-1,2025-05-31,2025-05,2000,Accounts Payable,86979.77,0,Vendor payments on account,PMT-2025-05
+JE-000262,JE-000262-2,2025-05-31,2025-05,1000,Cash,0,86979.77,Vendor payments on account,PMT-2025-05
+JE-000263,JE-000263-1,2025-06-30,2025-06,1100,Accounts Receivable,287561.36,0,Monthly SaaS subscription revenue recognized,SUB-40211
+JE-000263,JE-000263-2,2025-06-30,2025-06,4000,Product Revenue,0,287561.36,Monthly SaaS subscription revenue recognized,SUB-40211
+JE-000264,JE-000264-1,2025-06-30,2025-06,1100,Accounts Receivable,27088.5,0,Professional services revenue recognized,SVC-40212
+JE-000264,JE-000264-2,2025-06-30,2025-06,4100,Service Revenue,0,27088.5,Professional services revenue recognized,SVC-40212
+JE-000265,JE-000265-1,2025-06-30,2025-06,5000,Cost of Goods Sold,92897.67,0,Hosting infrastructure & customer support costs,INV-40213
+JE-000265,JE-000265-2,2025-06-30,2025-06,2000,Accounts Payable,0,92897.67,Hosting infrastructure & customer support costs,INV-40213
+JE-000266,JE-000266-1,2025-06-05,2025-06,6000,Salaries & Wages,119999.02,0,Payroll run,PR-40214
+JE-000266,JE-000266-2,2025-06-05,2025-06,1000,Cash,0,119999.02,Payroll run,PR-40214
+JE-000267,JE-000267-1,2025-06-05,2025-06,6100,Employee Benefits,25278.91,0,Employee benefits & payroll taxes,PR-40215
+JE-000267,JE-000267-2,2025-06-05,2025-06,1000,Cash,0,25278.91,Employee benefits & payroll taxes,PR-40215
+JE-000268,JE-000268-1,2025-06-15,2025-06,6200,Software & Subscriptions,9638.21,0,Recurring SaaS tooling subscriptions,SUB-40216
+JE-000268,JE-000268-2,2025-06-15,2025-06,1000,Cash,0,9638.21,Recurring SaaS tooling subscriptions,SUB-40216
+JE-000269,JE-000269-1,2025-06-15,2025-06,6300,Marketing & Advertising,17396.19,0,Digital advertising & agency fees,INV-40217
+JE-000269,JE-000269-2,2025-06-15,2025-06,2000,Accounts Payable,0,17396.19,Digital advertising & agency fees,INV-40217
+JE-000270,JE-000270-1,2025-06-15,2025-06,6400,Travel & Entertainment,3676.52,0,Employee travel & client entertainment,EXP-40218
+JE-000270,JE-000270-2,2025-06-15,2025-06,1000,Cash,0,3676.52,Employee travel & client entertainment,EXP-40218
+JE-000271,JE-000271-1,2025-06-15,2025-06,6500,Professional Fees,5723.56,0,"Legal, audit & advisory fees",INV-40219
+JE-000271,JE-000271-2,2025-06-15,2025-06,2000,Accounts Payable,0,5723.56,"Legal, audit & advisory fees",INV-40219
+JE-000272,JE-000272-1,2025-06-05,2025-06,6600,Rent & Facilities,12000,0,Office lease payment,LEASE-40220
+JE-000272,JE-000272-2,2025-06-05,2025-06,1000,Cash,0,12000,Office lease payment,LEASE-40220
+JE-000273,JE-000273-1,2025-06-30,2025-06,6700,Depreciation,2000,0,Monthly depreciation expense,DEP-2025-06
+JE-000273,JE-000273-2,2025-06-30,2025-06,1600,Accumulated Depreciation,0,2000,Monthly depreciation expense,DEP-2025-06
+JE-000274,JE-000274-1,2025-06-15,2025-06,6800,Office Supplies,972.04,0,Office supplies,EXP-40221
+JE-000274,JE-000274-2,2025-06-15,2025-06,1000,Cash,0,972.04,Office supplies,EXP-40221
+JE-000275,JE-000275-1,2025-06-15,2025-06,6900,Utilities,2339.3,0,Utilities,UTIL-40222
+JE-000275,JE-000275-2,2025-06-15,2025-06,1000,Cash,0,2339.3,Utilities,UTIL-40222
+JE-000276,JE-000276-1,2025-06-30,2025-06,1000,Cash,267452.38,0,Customer collections on account,COLL-2025-06
+JE-000276,JE-000276-2,2025-06-30,2025-06,1100,Accounts Receivable,0,267452.38,Customer collections on account,COLL-2025-06
+JE-000277,JE-000277-1,2025-06-30,2025-06,2000,Accounts Payable,92813.94,0,Vendor payments on account,PMT-2025-06
+JE-000277,JE-000277-2,2025-06-30,2025-06,1000,Cash,0,92813.94,Vendor payments on account,PMT-2025-06
+JE-000278,JE-000278-1,2025-07-31,2025-07,1100,Accounts Receivable,286901.43,0,Monthly SaaS subscription revenue recognized,SUB-40223
+JE-000278,JE-000278-2,2025-07-31,2025-07,4000,Product Revenue,0,286901.43,Monthly SaaS subscription revenue recognized,SUB-40223
+JE-000279,JE-000279-1,2025-07-31,2025-07,1100,Accounts Receivable,28864.18,0,Professional services revenue recognized,SVC-40224
+JE-000279,JE-000279-2,2025-07-31,2025-07,4100,Service Revenue,0,28864.18,Professional services revenue recognized,SVC-40224
+JE-000280,JE-000280-1,2025-07-31,2025-07,5000,Cost of Goods Sold,87295,0,Hosting infrastructure & customer support costs,INV-40225
+JE-000280,JE-000280-2,2025-07-31,2025-07,2000,Accounts Payable,0,87295,Hosting infrastructure & customer support costs,INV-40225
+JE-000281,JE-000281-1,2025-07-05,2025-07,6000,Salaries & Wages,130995.57,0,Payroll run,PR-40226
+JE-000281,JE-000281-2,2025-07-05,2025-07,1000,Cash,0,130995.57,Payroll run,PR-40226
+JE-000282,JE-000282-1,2025-07-05,2025-07,6100,Employee Benefits,27968.58,0,Employee benefits & payroll taxes,PR-40227
+JE-000282,JE-000282-2,2025-07-05,2025-07,1000,Cash,0,27968.58,Employee benefits & payroll taxes,PR-40227
+JE-000283,JE-000283-1,2025-07-15,2025-07,6200,Software & Subscriptions,11166.13,0,Recurring SaaS tooling subscriptions,SUB-40228
+JE-000283,JE-000283-2,2025-07-15,2025-07,1000,Cash,0,11166.13,Recurring SaaS tooling subscriptions,SUB-40228
+JE-000284,JE-000284-1,2025-07-15,2025-07,6300,Marketing & Advertising,17972.92,0,Digital advertising & agency fees,INV-40229
+JE-000284,JE-000284-2,2025-07-15,2025-07,2000,Accounts Payable,0,17972.92,Digital advertising & agency fees,INV-40229
+JE-000285,JE-000285-1,2025-07-15,2025-07,6400,Travel & Entertainment,4028.82,0,Employee travel & client entertainment,EXP-40230
+JE-000285,JE-000285-2,2025-07-15,2025-07,1000,Cash,0,4028.82,Employee travel & client entertainment,EXP-40230
+JE-000286,JE-000286-1,2025-07-15,2025-07,6500,Professional Fees,5833.86,0,"Legal, audit & advisory fees",INV-40231
+JE-000286,JE-000286-2,2025-07-15,2025-07,2000,Accounts Payable,0,5833.86,"Legal, audit & advisory fees",INV-40231
+JE-000287,JE-000287-1,2025-07-05,2025-07,6600,Rent & Facilities,13200,0,Office lease payment,LEASE-40232
+JE-000287,JE-000287-2,2025-07-05,2025-07,1000,Cash,0,13200,Office lease payment,LEASE-40232
+JE-000288,JE-000288-1,2025-07-05,2025-07,1500,Fixed Assets,8490.71,0,Capital expenditure — equipment & software capitalization,CAPEX-40233
+JE-000288,JE-000288-2,2025-07-05,2025-07,1000,Cash,0,8490.71,Capital expenditure — equipment & software capitalization,CAPEX-40233
+JE-000289,JE-000289-1,2025-07-31,2025-07,6700,Depreciation,2000,0,Monthly depreciation expense,DEP-2025-07
+JE-000289,JE-000289-2,2025-07-31,2025-07,1600,Accumulated Depreciation,0,2000,Monthly depreciation expense,DEP-2025-07
+JE-000290,JE-000290-1,2025-07-15,2025-07,6800,Office Supplies,1010.96,0,Office supplies,EXP-40234
+JE-000290,JE-000290-2,2025-07-15,2025-07,1000,Cash,0,1010.96,Office supplies,EXP-40234
+JE-000291,JE-000291-1,2025-07-15,2025-07,6900,Utilities,2140.4,0,Utilities,UTIL-40235
+JE-000291,JE-000291-2,2025-07-15,2025-07,1000,Cash,0,2140.4,Utilities,UTIL-40235
+JE-000292,JE-000292-1,2025-07-31,2025-07,1000,Cash,268400.77,0,Customer collections on account,COLL-2025-07
+JE-000292,JE-000292-2,2025-07-31,2025-07,1100,Accounts Receivable,0,268400.77,Customer collections on account,COLL-2025-07
+JE-000293,JE-000293-1,2025-07-31,2025-07,2000,Accounts Payable,88881.43,0,Vendor payments on account,PMT-2025-07
+JE-000293,JE-000293-2,2025-07-31,2025-07,1000,Cash,0,88881.43,Vendor payments on account,PMT-2025-07
+JE-000294,JE-000294-1,2025-08-31,2025-08,1100,Accounts Receivable,294047.51,0,Monthly SaaS subscription revenue recognized,SUB-40236
+JE-000294,JE-000294-2,2025-08-31,2025-08,4000,Product Revenue,0,294047.51,Monthly SaaS subscription revenue recognized,SUB-40236
+JE-000295,JE-000295-1,2025-08-31,2025-08,1100,Accounts Receivable,32571.84,0,Professional services revenue recognized,SVC-40237
+JE-000295,JE-000295-2,2025-08-31,2025-08,4100,Service Revenue,0,32571.84,Professional services revenue recognized,SVC-40237
+JE-000296,JE-000296-1,2025-08-31,2025-08,5000,Cost of Goods Sold,91778.18,0,Hosting infrastructure & customer support costs,INV-40238
+JE-000296,JE-000296-2,2025-08-31,2025-08,2000,Accounts Payable,0,91778.18,Hosting infrastructure & customer support costs,INV-40238
+JE-000297,JE-000297-1,2025-08-05,2025-08,6000,Salaries & Wages,130693.07,0,Payroll run,PR-40239
+JE-000297,JE-000297-2,2025-08-05,2025-08,1000,Cash,0,130693.07,Payroll run,PR-40239
+JE-000298,JE-000298-1,2025-08-05,2025-08,6100,Employee Benefits,28057.61,0,Employee benefits & payroll taxes,PR-40240
+JE-000298,JE-000298-2,2025-08-05,2025-08,1000,Cash,0,28057.61,Employee benefits & payroll taxes,PR-40240
+JE-000299,JE-000299-1,2025-08-15,2025-08,6200,Software & Subscriptions,9800.91,0,Recurring SaaS tooling subscriptions,SUB-40241
+JE-000299,JE-000299-2,2025-08-15,2025-08,1000,Cash,0,9800.91,Recurring SaaS tooling subscriptions,SUB-40241
+JE-000300,JE-000300-1,2025-08-15,2025-08,6300,Marketing & Advertising,19503.76,0,Digital advertising & agency fees,INV-40242
+JE-000300,JE-000300-2,2025-08-15,2025-08,2000,Accounts Payable,0,19503.76,Digital advertising & agency fees,INV-40242
+JE-000301,JE-000301-1,2025-08-15,2025-08,6400,Travel & Entertainment,3440.06,0,Employee travel & client entertainment,EXP-40243
+JE-000301,JE-000301-2,2025-08-15,2025-08,1000,Cash,0,3440.06,Employee travel & client entertainment,EXP-40243
+JE-000302,JE-000302-1,2025-08-15,2025-08,6500,Professional Fees,6205.32,0,"Legal, audit & advisory fees",INV-40244
+JE-000302,JE-000302-2,2025-08-15,2025-08,2000,Accounts Payable,0,6205.32,"Legal, audit & advisory fees",INV-40244
+JE-000303,JE-000303-1,2025-08-05,2025-08,6600,Rent & Facilities,13200,0,Office lease payment,LEASE-40245
+JE-000303,JE-000303-2,2025-08-05,2025-08,1000,Cash,0,13200,Office lease payment,LEASE-40245
+JE-000304,JE-000304-1,2025-08-31,2025-08,6700,Depreciation,2000,0,Monthly depreciation expense,DEP-2025-08
+JE-000304,JE-000304-2,2025-08-31,2025-08,1600,Accumulated Depreciation,0,2000,Monthly depreciation expense,DEP-2025-08
+JE-000305,JE-000305-1,2025-08-15,2025-08,6800,Office Supplies,1125.53,0,Office supplies,EXP-40246
+JE-000305,JE-000305-2,2025-08-15,2025-08,1000,Cash,0,1125.53,Office supplies,EXP-40246
+JE-000306,JE-000306-1,2025-08-15,2025-08,6900,Utilities,2435.78,0,Utilities,UTIL-40247
+JE-000306,JE-000306-2,2025-08-15,2025-08,1000,Cash,0,2435.78,Utilities,UTIL-40247
+JE-000307,JE-000307-1,2025-08-31,2025-08,1000,Cash,277626.44,0,Customer collections on account,COLL-2025-08
+JE-000307,JE-000307-2,2025-08-31,2025-08,1100,Accounts Receivable,0,277626.44,Customer collections on account,COLL-2025-08
+JE-000308,JE-000308-1,2025-08-31,2025-08,2000,Accounts Payable,93989.8,0,Vendor payments on account,PMT-2025-08
+JE-000308,JE-000308-2,2025-08-31,2025-08,1000,Cash,0,93989.8,Vendor payments on account,PMT-2025-08
+JE-000309,JE-000309-1,2025-09-30,2025-09,1100,Accounts Receivable,309023.69,0,Monthly SaaS subscription revenue recognized,SUB-40248
+JE-000309,JE-000309-2,2025-09-30,2025-09,4000,Product Revenue,0,309023.69,Monthly SaaS subscription revenue recognized,SUB-40248
+JE-000310,JE-000310-1,2025-09-30,2025-09,1100,Accounts Receivable,29432.38,0,Professional services revenue recognized,SVC-40249
+JE-000310,JE-000310-2,2025-09-30,2025-09,4100,Service Revenue,0,29432.38,Professional services revenue recognized,SVC-40249
+JE-000311,JE-000311-1,2025-09-30,2025-09,5000,Cost of Goods Sold,94822.41,0,Hosting infrastructure & customer support costs,INV-40250
+JE-000311,JE-000311-2,2025-09-30,2025-09,2000,Accounts Payable,0,94822.41,Hosting infrastructure & customer support costs,INV-40250
+JE-000312,JE-000312-1,2025-09-05,2025-09,6000,Salaries & Wages,127371.3,0,Payroll run,PR-40251
+JE-000312,JE-000312-2,2025-09-05,2025-09,1000,Cash,0,127371.3,Payroll run,PR-40251
+JE-000313,JE-000313-1,2025-09-05,2025-09,6100,Employee Benefits,28705.46,0,Employee benefits & payroll taxes,PR-40252
+JE-000313,JE-000313-2,2025-09-05,2025-09,1000,Cash,0,28705.46,Employee benefits & payroll taxes,PR-40252
+JE-000314,JE-000314-1,2025-09-15,2025-09,6200,Software & Subscriptions,10194.04,0,Recurring SaaS tooling subscriptions,SUB-40253
+JE-000314,JE-000314-2,2025-09-15,2025-09,1000,Cash,0,10194.04,Recurring SaaS tooling subscriptions,SUB-40253
+JE-000315,JE-000315-1,2025-09-15,2025-09,6300,Marketing & Advertising,19372.96,0,Digital advertising & agency fees,INV-40254
+JE-000315,JE-000315-2,2025-09-15,2025-09,2000,Accounts Payable,0,19372.96,Digital advertising & agency fees,INV-40254
+JE-000316,JE-000316-1,2025-09-15,2025-09,6400,Travel & Entertainment,15519.54,0,Employee travel & client entertainment,EXP-40255
+JE-000316,JE-000316-2,2025-09-15,2025-09,1000,Cash,0,15519.54,Employee travel & client entertainment,EXP-40255
+JE-000317,JE-000317-1,2025-09-15,2025-09,6500,Professional Fees,6594.09,0,"Legal, audit & advisory fees",INV-40256
+JE-000317,JE-000317-2,2025-09-15,2025-09,2000,Accounts Payable,0,6594.09,"Legal, audit & advisory fees",INV-40256
+JE-000318,JE-000318-1,2025-09-05,2025-09,6600,Rent & Facilities,13200,0,Office lease payment,LEASE-40257
+JE-000318,JE-000318-2,2025-09-05,2025-09,1000,Cash,0,13200,Office lease payment,LEASE-40257
+JE-000319,JE-000319-1,2025-09-30,2025-09,6700,Depreciation,2000,0,Monthly depreciation expense,DEP-2025-09
+JE-000319,JE-000319-2,2025-09-30,2025-09,1600,Accumulated Depreciation,0,2000,Monthly depreciation expense,DEP-2025-09
+JE-000320,JE-000320-1,2025-09-15,2025-09,6800,Office Supplies,1093.77,0,Office supplies,EXP-40258
+JE-000320,JE-000320-2,2025-09-15,2025-09,1000,Cash,0,1093.77,Office supplies,EXP-40258
+JE-000321,JE-000321-1,2025-09-15,2025-09,6900,Utilities,2189.44,0,Utilities,UTIL-40259
+JE-000321,JE-000321-2,2025-09-15,2025-09,1000,Cash,0,2189.44,Utilities,UTIL-40259
+JE-000322,JE-000322-1,2025-09-30,2025-09,1000,Cash,287687.66,0,Customer collections on account,COLL-2025-09
+JE-000322,JE-000322-2,2025-09-30,2025-09,1100,Accounts Receivable,0,287687.66,Customer collections on account,COLL-2025-09
+JE-000323,JE-000323-1,2025-09-30,2025-09,2000,Accounts Payable,96631.57,0,Vendor payments on account,PMT-2025-09
+JE-000323,JE-000323-2,2025-09-30,2025-09,1000,Cash,0,96631.57,Vendor payments on account,PMT-2025-09
+JE-000324,JE-000324-1,2025-10-31,2025-10,1100,Accounts Receivable,306781.46,0,Monthly SaaS subscription revenue recognized,SUB-40260
+JE-000324,JE-000324-2,2025-10-31,2025-10,4000,Product Revenue,0,306781.46,Monthly SaaS subscription revenue recognized,SUB-40260
+JE-000325,JE-000325-1,2025-10-31,2025-10,1100,Accounts Receivable,37697.54,0,Professional services revenue recognized,SVC-40261
+JE-000325,JE-000325-2,2025-10-31,2025-10,4100,Service Revenue,0,37697.54,Professional services revenue recognized,SVC-40261
+JE-000326,JE-000326-1,2025-10-31,2025-10,5000,Cost of Goods Sold,98273.22,0,Hosting infrastructure & customer support costs,INV-40262
+JE-000326,JE-000326-2,2025-10-31,2025-10,2000,Accounts Payable,0,98273.22,Hosting infrastructure & customer support costs,INV-40262
+JE-000327,JE-000327-1,2025-10-05,2025-10,6000,Salaries & Wages,130815.35,0,Payroll run,PR-40263
+JE-000327,JE-000327-2,2025-10-05,2025-10,1000,Cash,0,130815.35,Payroll run,PR-40263
+JE-000328,JE-000328-1,2025-10-05,2025-10,6100,Employee Benefits,29614.84,0,Employee benefits & payroll taxes,PR-40264
+JE-000328,JE-000328-2,2025-10-05,2025-10,1000,Cash,0,29614.84,Employee benefits & payroll taxes,PR-40264
+JE-000329,JE-000329-1,2025-10-15,2025-10,6200,Software & Subscriptions,42000,0,One-time ERP/finance-system implementation — vendor SOW,INV-40265
+JE-000329,JE-000329-2,2025-10-15,2025-10,2000,Accounts Payable,0,42000,One-time ERP/finance-system implementation — vendor SOW,INV-40265
+JE-000330,JE-000330-1,2025-10-15,2025-10,6200,Software & Subscriptions,10544.97,0,Recurring SaaS tooling subscriptions,SUB-40266
+JE-000330,JE-000330-2,2025-10-15,2025-10,1000,Cash,0,10544.97,Recurring SaaS tooling subscriptions,SUB-40266
+JE-000331,JE-000331-1,2025-10-15,2025-10,6300,Marketing & Advertising,29073.16,0,Digital advertising & agency fees,INV-40267
+JE-000331,JE-000331-2,2025-10-15,2025-10,2000,Accounts Payable,0,29073.16,Digital advertising & agency fees,INV-40267
+JE-000332,JE-000332-1,2025-10-15,2025-10,6400,Travel & Entertainment,4286.76,0,Employee travel & client entertainment,EXP-40268
+JE-000332,JE-000332-2,2025-10-15,2025-10,1000,Cash,0,4286.76,Employee travel & client entertainment,EXP-40268
+JE-000333,JE-000333-1,2025-10-15,2025-10,6500,Professional Fees,6111.24,0,"Legal, audit & advisory fees",INV-40269
+JE-000333,JE-000333-2,2025-10-15,2025-10,2000,Accounts Payable,0,6111.24,"Legal, audit & advisory fees",INV-40269
+JE-000334,JE-000334-1,2025-10-05,2025-10,6600,Rent & Facilities,13200,0,Office lease payment,LEASE-40270
+JE-000334,JE-000334-2,2025-10-05,2025-10,1000,Cash,0,13200,Office lease payment,LEASE-40270
+JE-000335,JE-000335-1,2025-10-05,2025-10,1500,Fixed Assets,9513.81,0,Capital expenditure — equipment & software capitalization,CAPEX-40271
+JE-000335,JE-000335-2,2025-10-05,2025-10,1000,Cash,0,9513.81,Capital expenditure — equipment & software capitalization,CAPEX-40271
+JE-000336,JE-000336-1,2025-10-31,2025-10,6700,Depreciation,2000,0,Monthly depreciation expense,DEP-2025-10
+JE-000336,JE-000336-2,2025-10-31,2025-10,1600,Accumulated Depreciation,0,2000,Monthly depreciation expense,DEP-2025-10
+JE-000337,JE-000337-1,2025-10-15,2025-10,6800,Office Supplies,1392.93,0,Office supplies,EXP-40272
+JE-000337,JE-000337-2,2025-10-15,2025-10,1000,Cash,0,1392.93,Office supplies,EXP-40272
+JE-000338,JE-000338-1,2025-10-15,2025-10,6900,Utilities,2074.64,0,Utilities,UTIL-40273
+JE-000338,JE-000338-2,2025-10-15,2025-10,1000,Cash,0,2074.64,Utilities,UTIL-40273
+JE-000339,JE-000339-1,2025-10-31,2025-10,1000,Cash,292807.15,0,Customer collections on account,COLL-2025-10
+JE-000339,JE-000339-2,2025-10-31,2025-10,1100,Accounts Receivable,0,292807.15,Customer collections on account,COLL-2025-10
+JE-000340,JE-000340-1,2025-10-31,2025-10,2000,Accounts Payable,106766.09,0,Vendor payments on account,PMT-2025-10
+JE-000340,JE-000340-2,2025-10-31,2025-10,1000,Cash,0,106766.09,Vendor payments on account,PMT-2025-10
+JE-000341,JE-000341-1,2025-11-30,2025-11,1100,Accounts Receivable,326057.67,0,Monthly SaaS subscription revenue recognized,SUB-40274
+JE-000341,JE-000341-2,2025-11-30,2025-11,4000,Product Revenue,0,326057.67,Monthly SaaS subscription revenue recognized,SUB-40274
+JE-000342,JE-000342-1,2025-11-30,2025-11,1100,Accounts Receivable,34343.54,0,Professional services revenue recognized,SVC-40275
+JE-000342,JE-000342-2,2025-11-30,2025-11,4100,Service Revenue,0,34343.54,Professional services revenue recognized,SVC-40275
+JE-000343,JE-000343-1,2025-11-30,2025-11,5000,Cost of Goods Sold,109397.69,0,Hosting infrastructure & customer support costs,INV-40276
+JE-000343,JE-000343-2,2025-11-30,2025-11,2000,Accounts Payable,0,109397.69,Hosting infrastructure & customer support costs,INV-40276
+JE-000344,JE-000344-1,2025-11-05,2025-11,6000,Salaries & Wages,129735.61,0,Payroll run,PR-40277
+JE-000344,JE-000344-2,2025-11-05,2025-11,1000,Cash,0,129735.61,Payroll run,PR-40277
+JE-000345,JE-000345-1,2025-11-05,2025-11,6100,Employee Benefits,29124.66,0,Employee benefits & payroll taxes,PR-40278
+JE-000345,JE-000345-2,2025-11-05,2025-11,1000,Cash,0,29124.66,Employee benefits & payroll taxes,PR-40278
+JE-000346,JE-000346-1,2025-11-15,2025-11,6200,Software & Subscriptions,10311.07,0,Recurring SaaS tooling subscriptions,SUB-40279
+JE-000346,JE-000346-2,2025-11-15,2025-11,1000,Cash,0,10311.07,Recurring SaaS tooling subscriptions,SUB-40279
+JE-000347,JE-000347-1,2025-11-15,2025-11,6300,Marketing & Advertising,38000,0,One-off brand awareness campaign — outside normal Q4 plan,INV-40280
+JE-000347,JE-000347-2,2025-11-15,2025-11,2000,Accounts Payable,0,38000,One-off brand awareness campaign — outside normal Q4 plan,INV-40280
+JE-000348,JE-000348-1,2025-11-15,2025-11,6300,Marketing & Advertising,28691.92,0,Digital advertising & agency fees,INV-40281
+JE-000348,JE-000348-2,2025-11-15,2025-11,2000,Accounts Payable,0,28691.92,Digital advertising & agency fees,INV-40281
+JE-000349,JE-000349-1,2025-11-15,2025-11,6400,Travel & Entertainment,4210.88,0,Employee travel & client entertainment,EXP-40282
+JE-000349,JE-000349-2,2025-11-15,2025-11,1000,Cash,0,4210.88,Employee travel & client entertainment,EXP-40282
+JE-000350,JE-000350-1,2025-11-15,2025-11,6500,Professional Fees,5795.31,0,"Legal, audit & advisory fees",INV-40283
+JE-000350,JE-000350-2,2025-11-15,2025-11,2000,Accounts Payable,0,5795.31,"Legal, audit & advisory fees",INV-40283
+JE-000351,JE-000351-1,2025-11-05,2025-11,6600,Rent & Facilities,13200,0,Office lease payment,LEASE-40284
+JE-000351,JE-000351-2,2025-11-05,2025-11,1000,Cash,0,13200,Office lease payment,LEASE-40284
+JE-000352,JE-000352-1,2025-11-30,2025-11,6700,Depreciation,2000,0,Monthly depreciation expense,DEP-2025-11
+JE-000352,JE-000352-2,2025-11-30,2025-11,1600,Accumulated Depreciation,0,2000,Monthly depreciation expense,DEP-2025-11
+JE-000353,JE-000353-1,2025-11-15,2025-11,6800,Office Supplies,1098.43,0,Office supplies,EXP-40285
+JE-000353,JE-000353-2,2025-11-15,2025-11,1000,Cash,0,1098.43,Office supplies,EXP-40285
+JE-000354,JE-000354-1,2025-11-15,2025-11,6900,Utilities,2016.44,0,Utilities,UTIL-40286
+JE-000354,JE-000354-2,2025-11-15,2025-11,1000,Cash,0,2016.44,Utilities,UTIL-40286
+JE-000355,JE-000355-1,2025-11-30,2025-11,1000,Cash,306341.03,0,Customer collections on account,COLL-2025-11
+JE-000355,JE-000355-2,2025-11-30,2025-11,1100,Accounts Receivable,0,306341.03,Customer collections on account,COLL-2025-11
+JE-000356,JE-000356-1,2025-11-30,2025-11,2000,Accounts Payable,115107.94,0,Vendor payments on account,PMT-2025-11
+JE-000356,JE-000356-2,2025-11-30,2025-11,1000,Cash,0,115107.94,Vendor payments on account,PMT-2025-11
+JE-000357,JE-000357-1,2025-12-31,2025-12,1100,Accounts Receivable,319665.37,0,Monthly SaaS subscription revenue recognized,SUB-40287
+JE-000357,JE-000357-2,2025-12-31,2025-12,4000,Product Revenue,0,319665.37,Monthly SaaS subscription revenue recognized,SUB-40287
+JE-000358,JE-000358-1,2025-12-31,2025-12,1100,Accounts Receivable,36210.91,0,Professional services revenue recognized,SVC-40288
+JE-000358,JE-000358-2,2025-12-31,2025-12,4100,Service Revenue,0,36210.91,Professional services revenue recognized,SVC-40288
+JE-000359,JE-000359-1,2025-12-31,2025-12,5000,Cost of Goods Sold,102205.4,0,Hosting infrastructure & customer support costs,INV-40289
+JE-000359,JE-000359-2,2025-12-31,2025-12,2000,Accounts Payable,0,102205.4,Hosting infrastructure & customer support costs,INV-40289
+JE-000360,JE-000360-1,2025-12-05,2025-12,6000,Salaries & Wages,129982.08,0,Payroll run,PR-40290
+JE-000360,JE-000360-2,2025-12-05,2025-12,1000,Cash,0,129982.08,Payroll run,PR-40290
+JE-000361,JE-000361-1,2025-12-05,2025-12,6100,Employee Benefits,27654.15,0,Employee benefits & payroll taxes,PR-40291
+JE-000361,JE-000361-2,2025-12-05,2025-12,1000,Cash,0,27654.15,Employee benefits & payroll taxes,PR-40291
+JE-000362,JE-000362-1,2025-12-15,2025-12,6200,Software & Subscriptions,11658.41,0,Recurring SaaS tooling subscriptions,SUB-40292
+JE-000362,JE-000362-2,2025-12-15,2025-12,1000,Cash,0,11658.41,Recurring SaaS tooling subscriptions,SUB-40292
+JE-000363,JE-000363-1,2025-12-15,2025-12,6300,Marketing & Advertising,28910.98,0,Digital advertising & agency fees,INV-40293
+JE-000363,JE-000363-2,2025-12-15,2025-12,2000,Accounts Payable,0,28910.98,Digital advertising & agency fees,INV-40293
+JE-000364,JE-000364-1,2025-12-15,2025-12,6400,Travel & Entertainment,4164.39,0,Employee travel & client entertainment,EXP-40294
+JE-000364,JE-000364-2,2025-12-15,2025-12,1000,Cash,0,4164.39,Employee travel & client entertainment,EXP-40294
+JE-000365,JE-000365-1,2025-12-15,2025-12,6500,Professional Fees,5538.91,0,"Legal, audit & advisory fees",INV-40295
+JE-000365,JE-000365-2,2025-12-15,2025-12,2000,Accounts Payable,0,5538.91,"Legal, audit & advisory fees",INV-40295
+JE-000366,JE-000366-1,2025-12-05,2025-12,6600,Rent & Facilities,13200,0,Office lease payment,LEASE-40296
+JE-000366,JE-000366-2,2025-12-05,2025-12,1000,Cash,0,13200,Office lease payment,LEASE-40296
+JE-000367,JE-000367-1,2025-12-31,2025-12,6700,Depreciation,2000,0,Monthly depreciation expense,DEP-2025-12
+JE-000367,JE-000367-2,2025-12-31,2025-12,1600,Accumulated Depreciation,0,2000,Monthly depreciation expense,DEP-2025-12
+JE-000368,JE-000368-1,2025-12-15,2025-12,6800,Office Supplies,1200.28,0,Office supplies,EXP-40297
+JE-000368,JE-000368-2,2025-12-15,2025-12,1000,Cash,0,1200.28,Office supplies,EXP-40297
+JE-000369,JE-000369-1,2025-12-15,2025-12,6900,Utilities,2214.72,0,Utilities,UTIL-40298
+JE-000369,JE-000369-2,2025-12-15,2025-12,1000,Cash,0,2214.72,Utilities,UTIL-40298
+JE-000370,JE-000370-1,2025-12-31,2025-12,1000,Cash,302494.83,0,Customer collections on account,COLL-2025-12
+JE-000370,JE-000370-2,2025-12-31,2025-12,1100,Accounts Receivable,0,302494.83,Customer collections on account,COLL-2025-12
+JE-000371,JE-000371-1,2025-12-31,2025-12,2000,Accounts Payable,109324.24,0,Vendor payments on account,PMT-2025-12
+JE-000371,JE-000371-2,2025-12-31,2025-12,1000,Cash,0,109324.24,Vendor payments on account,PMT-2025-12
