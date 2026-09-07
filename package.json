@@ -10,7 +10,8 @@
     "start": "node src/server.js",
     "generate-data": "node src/generate-data.js",
     "test": "node src/test-client.js",
-    "build-demo": "node scripts/build-demo.js"
+    "build-demo": "node scripts/build-demo.js",
+    "serve-demo": "node scripts/serve-demo.js"
   },
   "keywords": [
     "mcp",

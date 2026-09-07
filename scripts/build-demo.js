@@ -1,8 +1,10 @@
-// Builds demo/index.html: takes demo/template.html (the UI shell) and injects
+// Builds docs/index.html: takes docs/template.html (the UI shell) and injects
 // a compact copy of the real dataset (data/*.csv) so the page is a true,
 // self-contained replay of the MCP server's tool logic — same numbers, same
 // analysis, no server or network access required. Mirrors the sibling
-// financial-research-agent project's scripts/build_demo.js pattern.
+// financial-research-agent project's scripts/build_demo.js pattern. Lives in
+// docs/ rather than demo/ specifically so GitHub Pages can serve it directly
+// from the main branch.
 //
 // Run: node scripts/build-demo.js
 
@@ -48,8 +50,8 @@ const embedded = {
   tbRows: tb.map((r) => [r.period, r.account_code, Number(r.debit), Number(r.credit), r.ending_balance === '' ? null : Number(r.ending_balance), r.source]),
 };
 
-const template = readFileSync(path.join(ROOT, 'demo', 'template.html'), 'utf8');
+const template = readFileSync(path.join(ROOT, 'docs', 'template.html'), 'utf8');
 const output = template.replace('/*__EMBEDDED_DATA__*/', JSON.stringify(embedded));
-writeFileSync(path.join(ROOT, 'demo', 'index.html'), output);
+writeFileSync(path.join(ROOT, 'docs', 'index.html'), output);
 
-console.log(`Built demo/index.html (${(output.length / 1024).toFixed(0)} KB) with ${embedded.accounts.length} accounts, ${embedded.glRows.length} GL rows, ${embedded.tbRows.length} trial balance rows.`);
+console.log(`Built docs/index.html (${(output.length / 1024).toFixed(0)} KB) with ${embedded.accounts.length} accounts, ${embedded.glRows.length} GL rows, ${embedded.tbRows.length} trial balance rows.`);

@@ -23,6 +23,22 @@ project grounds an LLM against unstructured filing text; this one grounds it
 against structured ledger data. Same "explainable finance AI" thesis, two
 different data shapes.
 
+## Live demo
+
+**[hadiagha0.github.io/finance-mcp-server](https://hadiagha0.github.io/finance-mcp-server/)**
+
+`docs/index.html` — a self-contained, static page (no server, no MCP
+connection needed) that embeds the real GL/trial-balance data and runs the
+same variance and forecast logic as `src/lib/analysis.js` client-side. Pick
+an account and period, and watch it flag the seeded anomalies with citations
+back to the exact transaction, or run the forecast tool and see the caveat
+disclosed right next to the chart. Built with `scripts/build-demo.js`
+(regenerate after any change to the data or template:
+`node scripts/build-demo.js`). Preview locally with `npm run serve-demo`
+(serves `docs/` on `http://localhost:4174`). Lives in `docs/` rather than
+`demo/` specifically so GitHub Pages can serve it directly from the `main`
+branch.
+
 ## The dataset
 
 `src/generate-data.js` generates a fully self-consistent, double-entry GL for
